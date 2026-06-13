@@ -5,9 +5,10 @@ Keep in lockstep with context.txt.
 
 ## Stage
 0.1.1 staged (NOT yet published): QoL reach tweaks, ~40% cheaper research,
-rocket-silo tech gating, and post-silo slice 1 = Planetary Survey tech ->
-Survey Satellite -> launch discovers a procedural planet. Still NOT run in
-Factorio (the launch->discover hook especially needs verifying).
+rocket-silo tech gating, post-silo Planetary Survey -> Survey Satellite
+(placeholder, too SE-like), and a dev /jjt-orbit placeholder orbit surface.
+Direction set: post-silo path is reach orbit (tiled space) -> new orbital
+science. Still NOT run in Factorio; many slices stacked unverified.
 
 ## Done
 - Mod moved into mod/ subfolder; repo root keeps design docs.

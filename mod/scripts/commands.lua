@@ -2,6 +2,7 @@
 -- real travel loop (rocket silo) exists. All prefixed jjt- and marked dev.
 
 local gen = require("scripts.planet-gen")
+local orbit = require("scripts.orbit")
 
 local M = {}
 
@@ -47,6 +48,16 @@ function M.register()
       or { 0, 0 }
     player.teleport(pos, surface)
     player.print("Arrived on " .. facts.name)
+  end)
+
+  commands.add_command("jjt-orbit", "Go to orbit (dev).", function(event)
+    local player = game.get_player(event.player_index)
+    if not player then return end
+    local surface = orbit.ensure()
+    local pos = surface.find_non_colliding_position("character", { 0, 0 }, 64, 1)
+      or { 0, 0 }
+    player.teleport(pos, surface)
+    player.print("Entered orbit.")
   end)
 end
 

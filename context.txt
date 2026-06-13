@@ -35,10 +35,11 @@ JJtorio — a Space-Exploration-style overhaul mod for Factorio.
   verification of what the base 2.0 API exposes. [OPEN QUESTION]
 
 ## Originality (do NOT clone SE)
-SE is the inspiration for the SHAPE (procedural planets, late-game space),
-not the mechanics. Avoid SE's signature systems: its 4 specialized sciences
-+ deep-space science, piloted spaceships, space-as-a-tiled-surface, and
-data/energy beaming. Invent JJtorio's own mechanics instead.
+SE is the inspiration for the SHAPE (procedural planets, late-game space,
+space as a navigable tiled surface, an orbital science tier) - not the
+mechanics. Avoid SE's signature SYSTEMS: its 4 specialized sciences +
+deep-space science, piloted spaceships, and data/energy beaming. Invent
+JJtorio's own mechanics for everything else.
 - Core differentiator: each procedural planet forces a DIFFERENT production
   paradigm (a constraint that invalidates blueprint copy-paste), not just
   different ore patches. That is the identity SE does not have.
@@ -75,14 +76,18 @@ in mod/.
 1. Vanilla-ish early/mid game, lightly sped up (reach, cheaper research).
 2. Build a mature base to unlock the rocket silo (gated behind megabase
    techs).
-3. POST-SILO, slice 1 (implemented 0.1.1): research Planetary Survey ->
-   build Survey Satellites -> launch them to DISCOVER procedural planets.
-   The rocket silo's role in this mod is discovering worlds.
-   [Launch->discover hook is best-effort; the base-2.0 launch flow is
-    unverified. Fallback: dev /jjt-goto.]
-4. NEXT (not built): real travel to discovered planets (landing pod /
-   cargo rocket), a dedicated space/astronomic science tier, and making
-   planet "facts" (gravity, day length, class) mechanically matter.
+3. POST-SILO: reach ORBIT - a navigable tiled space surface. In orbit you
+   build and produce a new ORBITAL SCIENCE (JJtorio's own, not SE's) that
+   gates the next tier. (0.1.1 has a dev /jjt-orbit that creates a
+   placeholder orbit platform; real ascent + space tiles/visuals + the
+   science come next.)
+4. From orbit, reach the procedurally generated planets; each planet forces
+   a DIFFERENT production paradigm (the core differentiator).
+5. PLACEHOLDER to revisit: the Survey Satellite / discovery beat (0.1.1)
+   reads too SE-like; replace with an original mechanic once orbit is real.
+6. NEXT (not built): the orbital science pack + recipes, real ascent to
+   orbit (not a command), space-platform tiles/visuals, and making planet
+   "facts" (gravity, day length, class) mechanically matter.
 
 ## Naming conventions
 - Internal prototype name prefix: "jjt-" (e.g. jjt-some-item).

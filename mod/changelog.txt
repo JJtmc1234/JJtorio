@@ -9,6 +9,8 @@ Date: 2026-06-13
       to well after a mature base.
     - Planetary Survey tech (right after the rocket silo) unlocks a Survey
       Satellite; launching one discovers a new procedurally generated planet.
+    - Dev: /jjt-orbit creates and visits a placeholder orbit surface - the
+      foundation for the post-silo orbital science tier.
   Changes:
     - Quality of life: longer build/reach/mining reach and item pickup range.
     - Research costs reduced ~40% across the board.
