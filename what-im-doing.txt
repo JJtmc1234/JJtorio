@@ -13,7 +13,10 @@ mod/ subfolder; procedural planet core written. NOT yet run in Factorio.
 - data stage: early-game mining-speed tweak (prototypes/tweaks.lua).
 - control stage: storage init + procedural planet generation
   (scripts/planet-gen.lua) + dev commands (scripts/commands.lua).
-- Release zip rebuilt at dist/JJtorio_0.1.0.zip (ready, NOT published).
+- Release zip at dist/JJtorio_0.1.0.zip (ready, NOT published).
+- Dev tooling: tools/build-release.ps1, tools/gen-placeholder-icons.ps1,
+  placeholder icons under mod/graphics/icons/, README, .gitattributes.
+- All Lua passes luac -p (syntax only; Factorio API unverified).
 
 ## Decided
 - SE-style procedurally generated planets (runtime surfaces).
