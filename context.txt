@@ -1,0 +1,21 @@
+# context.txt — stable project facts (slow-changing)
+
+Update this whenever the project SHAPE changes: goals, key files,
+naming conventions, the "why" behind decisions. Keep it in lockstep
+with what-im-doing.txt. Do NOT put today's task status here.
+
+## Goal
+(TBD — not yet defined. First real session should fill this in.)
+
+## Why
+(TBD)
+
+## Key files / layout
+(TBD — populate as the structure forms.)
+
+## Naming conventions
+(TBD)
+
+## Decisions & constraints
+- Platform: Windows 11; use PowerShell for shell tasks.
+- Repo initialized 2026-06-13 on branch `main`.

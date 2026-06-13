@@ -1,0 +1,18 @@
+# what-im-doing.txt — live status (fast-changing)
+
+Update every meaningful step: current stage, what's running, what's blocked.
+Keep in lockstep with context.txt.
+
+## Stage
+Project bootstrap — repo + Claude scaffolding initialized.
+
+## In progress
+- Nothing running.
+
+## Blocked
+- Project goal not yet defined; context.txt awaits first real session.
+
+## Next
+- Define the project goal and fill in context.txt.
+
+Last updated: 2026-06-13
