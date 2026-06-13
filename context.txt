@@ -34,6 +34,19 @@ JJtorio — a Space-Exploration-style overhaul mod for Factorio.
   planets ship as Space Age features — reaching space without SA needs
   verification of what the base 2.0 API exposes. [OPEN QUESTION]
 
+## Originality (do NOT clone SE)
+SE is the inspiration for the SHAPE (procedural planets, late-game space),
+not the mechanics. Avoid SE's signature systems: its 4 specialized sciences
++ deep-space science, piloted spaceships, space-as-a-tiled-surface, and
+data/energy beaming. Invent JJtorio's own mechanics instead.
+- Core differentiator: each procedural planet forces a DIFFERENT production
+  paradigm (a constraint that invalidates blueprint copy-paste), not just
+  different ore patches. That is the identity SE does not have.
+- Prefer original framings over SE-flavored ones (e.g. self-bootstrapping
+  COLONIES you set up and leave running, rather than piloted ships).
+- Re-skin/rename anything that reads as an SE port (the "Survey Satellite"
+  discovery beat is a placeholder to revisit with an original mechanic).
+
 ## Key files / layout
 Repo root holds the project (design docs, git); the shippable mod lives
 in mod/.
