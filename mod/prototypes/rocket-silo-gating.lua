@@ -2,13 +2,26 @@
 -- "megabase" staples first. Launching is meant to come after a mature base,
 -- since the real depth begins in space.
 
+-- Names that don't exist in the running game are skipped automatically below,
+-- so this list can be generous.
 local GATES = {
   "bulk-inserter",
-  "logistics-3",         -- express (blue) belts
-  "effect-transmission", -- beacons
+  "logistics-3",              -- express (blue) belts
+  "effect-transmission",      -- beacons
   "speed-module-3",
   "productivity-module-3",
-  "logistic-system",     -- logistic network / bots
+  "efficiency-module-3",
+  "logistic-system",          -- logistic network / bots
+  "personal-roboport-2",
+  "exoskeleton-equipment",
+  "automation-3",             -- assembling machine 3
+  "advanced-material-processing-2", -- electric furnace tier
+  "nuclear-power",
+  "kovarex-enrichment-process",
+  "uranium-processing",
+  "refined-concrete",
+  "production-science-pack",
+  "utility-science-pack",
 }
 
 local silo = data.raw.technology["rocket-silo"]

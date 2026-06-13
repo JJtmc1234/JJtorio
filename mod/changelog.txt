@@ -3,8 +3,10 @@ Version: 0.1.1
 Date: 2026-06-13
   Features:
     - Rocket silo research now requires the late-game "megabase" staples first
-      (bulk inserters, express belts, beacons, speed/productivity module 3,
-      logistic system), pushing the trip to space to after a mature base.
+      (bulk inserters, express belts, beacons, all tier-3 modules, logistic
+      system, personal roboport 2, exoskeletons, assembling machine 3, nuclear
+      power, kovarex, refined concrete, and more), pushing the trip to space
+      to well after a mature base.
   Changes:
     - Quality of life: longer build/reach/mining reach and item pickup range.
     - Research costs reduced ~40% across the board.
