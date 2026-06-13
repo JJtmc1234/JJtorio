@@ -42,7 +42,10 @@ function M.register()
       return
     end
     local surface = gen.create_surface(facts)
-    player.teleport({ 0, 0 }, surface)
+    -- Land on solid ground near the origin rather than possibly in water.
+    local pos = surface.find_non_colliding_position("character", { 0, 0 }, 64, 1)
+      or { 0, 0 }
+    player.teleport(pos, surface)
     player.print("Arrived on " .. facts.name)
   end)
 end
