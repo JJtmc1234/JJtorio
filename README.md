@@ -31,6 +31,16 @@ Reads name + version from `mod/info.json`:
 powershell -File tools\build-release.ps1
 ```
 
+## Publish an update to the portal
+The **first** publish must be done on the website — the API can only update a
+mod that already exists. After that, updates go up with:
+```powershell
+$env:FACTORIO_API_KEY = '<key from https://factorio.com/profile>'
+powershell -File tools\publish.ps1 -NewVersion 0.1.1
+```
+This bumps the version, rebuilds the zip, and uploads it. The key is read
+from the env var and is never written to disk or git.
+
 ## Regenerate placeholder icons
 ```powershell
 powershell -File tools\gen-placeholder-icons.ps1
