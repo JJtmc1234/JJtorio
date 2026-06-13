@@ -1,0 +1,4 @@
+# Normalize line endings: text as LF in the repo, Windows scripts as CRLF.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.png binary

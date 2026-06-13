@@ -26,10 +26,9 @@ New-Item -ItemType Junction -Path "$mods\JJtorio" -Target "$PWD\mod"
 In-game, try: `/jjt-new-planet`, `/jjt-planets`, `/jjt-goto <name>`.
 
 ## Build a release zip
+Reads name + version from `mod/info.json`:
 ```powershell
-$stage = Join-Path $env:TEMP 'jjt_pkg'; Remove-Item $stage -Recurse -Force -ErrorAction Ignore
-Copy-Item mod (Join-Path $stage 'JJtorio') -Recurse
-Compress-Archive (Join-Path $stage 'JJtorio') dist\JJtorio_0.1.0.zip -Force
+powershell -File tools\build-release.ps1
 ```
 
 ## Regenerate placeholder icons
