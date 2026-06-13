@@ -3,6 +3,7 @@
 -- of the mod lives here rather than in the data stage.
 
 local dev_commands = require("scripts.commands")
+local discovery = require("scripts.discovery")
 
 local function init_storage()
   storage.planets = storage.planets or {}
@@ -18,5 +19,6 @@ end
 script.on_init(init_storage)
 script.on_configuration_changed(init_storage)
 
--- Commands must be (re)registered on every load, so register at top level.
+-- Handlers must be (re)registered on every load, so register at top level.
 dev_commands.register()
+discovery.register()

@@ -58,6 +58,19 @@ in mod/.
   are rolled from a per-save seed sequence and stored in `storage`
   (the 2.0 mod global table). Same save -> same planets.
 
+## Progression (the intended player path)
+1. Vanilla-ish early/mid game, lightly sped up (reach, cheaper research).
+2. Build a mature base to unlock the rocket silo (gated behind megabase
+   techs).
+3. POST-SILO, slice 1 (implemented 0.1.1): research Planetary Survey ->
+   build Survey Satellites -> launch them to DISCOVER procedural planets.
+   The rocket silo's role in this mod is discovering worlds.
+   [Launch->discover hook is best-effort; the base-2.0 launch flow is
+    unverified. Fallback: dev /jjt-goto.]
+4. NEXT (not built): real travel to discovered planets (landing pod /
+   cargo rocket), a dedicated space/astronomic science tier, and making
+   planet "facts" (gravity, day length, class) mechanically matter.
+
 ## Naming conventions
 - Internal prototype name prefix: "jjt-" (e.g. jjt-some-item).
 

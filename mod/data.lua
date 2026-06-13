@@ -5,3 +5,4 @@
 require("prototypes.tweaks")
 require("prototypes.tech-costs")
 require("prototypes.rocket-silo-gating")
+require("prototypes.survey-satellite")

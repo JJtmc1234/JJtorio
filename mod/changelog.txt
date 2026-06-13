@@ -7,6 +7,8 @@ Date: 2026-06-13
       system, personal roboport 2, exoskeletons, assembling machine 3, nuclear
       power, kovarex, refined concrete, and more), pushing the trip to space
       to well after a mature base.
+    - Planetary Survey tech (right after the rocket silo) unlocks a Survey
+      Satellite; launching one discovers a new procedurally generated planet.
   Changes:
     - Quality of life: longer build/reach/mining reach and item pickup range.
     - Research costs reduced ~40% across the board.

@@ -4,9 +4,10 @@ Update every meaningful step: current stage, what's running, what's blocked.
 Keep in lockstep with context.txt.
 
 ## Stage
-0.1.1 staged (NOT yet published): added QoL tweaks (reach), ~40% cheaper
-research, and rocket-silo TECH gating behind late-game techs. Foundation
-+ planet core from 0.1.0. Still NOT run in Factorio.
+0.1.1 staged (NOT yet published): QoL reach tweaks, ~40% cheaper research,
+rocket-silo tech gating, and post-silo slice 1 = Planetary Survey tech ->
+Survey Satellite -> launch discovers a procedural planet. Still NOT run in
+Factorio (the launch->discover hook especially needs verifying).
 
 ## Done
 - Mod moved into mod/ subfolder; repo root keeps design docs.
