@@ -13,7 +13,10 @@ mod/ subfolder; procedural planet core written. NOT yet run in Factorio.
 - data stage: early-game mining-speed tweak (prototypes/tweaks.lua).
 - control stage: storage init + procedural planet generation
   (scripts/planet-gen.lua) + dev commands (scripts/commands.lua).
-- Release zip at dist/JJtorio_0.1.0.zip (ready, NOT published).
+- PUBLISHED 0.1.0 to the mod portal (first publish via website by user).
+- Auto-publisher live: tools/publish.ps1 uploads via the portal API using
+  FACTORIO_API_KEY (set as a user env var; confirmed visible to the shell).
+  Claude can push future versions with publish.ps1 -NewVersion x.y.z.
 - Dev tooling: tools/build-release.ps1, tools/gen-placeholder-icons.ps1,
   placeholder icons under mod/graphics/icons/, README, .gitattributes.
 - All Lua passes luac -p (syntax only; Factorio API unverified).
@@ -35,13 +38,13 @@ mod/ subfolder; procedural planet core written. NOT yet run in Factorio.
 
 ## Next steps (roadmap)
 1. Load in-game, fix whatever the API got wrong (expect some). [USER]
-2. Publish 0.1.0 to the portal once it loads clean. [USER decision]
-3. Real travel: tie planet arrival to the rocket silo instead of /jjt-goto.
-4. Give planets distinct terrain per class (tiles/autoplace), not just
+   Then ship the fix as 0.1.1 via publish.ps1.
+2. Real travel: tie planet arrival to the rocket silo instead of /jjt-goto.
+3. Give planets distinct terrain per class (tiles/autoplace), not just
    recolored nauvis.
-5. Make planet "facts" mechanically matter (gravity, day length).
+4. Make planet "facts" mechanically matter (gravity, day length).
 
 ## Blocked
-- Steps 1-2 need the user (in-game test + the publish decision).
+- Step 1 needs an in-game test run (only the user can launch Factorio).
 
 Last updated: 2026-06-13
