@@ -1,0 +1,50 @@
+-- Developer console commands for exercising planet generation before the
+-- real travel loop (rocket silo) exists. All prefixed jjt- and marked dev.
+
+local gen = require("scripts.planet-gen")
+
+local M = {}
+
+local function describe(facts)
+  return string.format(
+    "[%s] %s - %s | ore x%.2f, day %dm, gravity x%.2f",
+    facts.class_label, facts.name, facts.description,
+    facts.ore_richness, facts.day_minutes, facts.gravity)
+end
+
+function M.register()
+  commands.add_command("jjt-new-planet", "Generate a new procedural planet (dev).", function(event)
+    local player = game.get_player(event.player_index)
+    if not player then return end
+    local facts = gen.generate()
+    player.print("Generated " .. describe(facts))
+    player.print("Travel there with: /jjt-goto " .. facts.name)
+  end)
+
+  commands.add_command("jjt-planets", "List generated planets (dev).", function(event)
+    local player = game.get_player(event.player_index)
+    if not player then return end
+    if not next(storage.planets) then
+      player.print("No planets yet. Generate one with /jjt-new-planet")
+      return
+    end
+    for _, facts in pairs(storage.planets) do
+      player.print(describe(facts))
+    end
+  end)
+
+  commands.add_command("jjt-goto", "Teleport to a planet by name (dev).", function(event)
+    local player = game.get_player(event.player_index)
+    if not player then return end
+    local facts = event.parameter and storage.planets[event.parameter]
+    if not facts then
+      player.print("Unknown planet. Use /jjt-planets to list them.")
+      return
+    end
+    local surface = gen.create_surface(facts)
+    player.teleport({ 0, 0 }, surface)
+    player.print("Arrived on " .. facts.name)
+  end)
+end
+
+return M

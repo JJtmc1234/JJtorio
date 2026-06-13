@@ -4,15 +4,41 @@ Update every meaningful step: current stage, what's running, what's blocked.
 Keep in lockstep with context.txt.
 
 ## Stage
-Project bootstrap — repo + Claude scaffolding initialized.
+Foundation coded (autonomous session, 2026-06-13). Mod restructured into
+mod/ subfolder; procedural planet core written. NOT yet run in Factorio.
 
-## In progress
-- Nothing running.
+## Done
+- Mod moved into mod/ subfolder; repo root keeps design docs.
+- Junction at %APPDATA%\Factorio\mods\JJtorio repointed to mod/.
+- data stage: early-game mining-speed tweak (prototypes/tweaks.lua).
+- control stage: storage init + procedural planet generation
+  (scripts/planet-gen.lua) + dev commands (scripts/commands.lua).
+- Release zip rebuilt at dist/JJtorio_0.1.0.zip (ready, NOT published).
+
+## Decided
+- SE-style procedurally generated planets (runtime surfaces).
+- Light early game; depth in space. Keep the vanilla rocket silo.
+- Incompatible with SA and SE; standalone overhaul.
+- Publish to the mod portal as a sync/test path (user accepts it's public).
+  Holding the actual public upload until the user is back — not firing an
+  irreversible public action unattended.
+
+## Open questions / MUST verify in-game
+- UNVERIFIED: the whole mod has not been loaded in Factorio yet. Code
+  follows the documented 2.0 API but nothing is confirmed to run.
+  Verify: load save, run /jjt-new-planet, /jjt-goto <name>; watch for errors.
+- Confirm game.create_surface + MapGenSettings behave as assumed on base 2.0.
+- Confirm `storage` (not `global`) and command re-registration on load.
+
+## Next steps (roadmap)
+1. Load in-game, fix whatever the API got wrong (expect some). [USER]
+2. Publish 0.1.0 to the portal once it loads clean. [USER decision]
+3. Real travel: tie planet arrival to the rocket silo instead of /jjt-goto.
+4. Give planets distinct terrain per class (tiles/autoplace), not just
+   recolored nauvis.
+5. Make planet "facts" mechanically matter (gravity, day length).
 
 ## Blocked
-- Project goal not yet defined; context.txt awaits first real session.
-
-## Next
-- Define the project goal and fill in context.txt.
+- Steps 1-2 need the user (in-game test + the publish decision).
 
 Last updated: 2026-06-13

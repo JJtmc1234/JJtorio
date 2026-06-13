@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-06-13
+  Info:
+    - Initial mod skeleton and procedural planet foundation.
+  Features:
+    - Procedurally generated planets as runtime surfaces (SE-style), each
+      with random "facts": name, class, ore richness, day length, gravity.
+    - Dev commands: /jjt-new-planet, /jjt-planets, /jjt-goto <name>.
+  Changes:
+    - Early game: doubled starting character hand-mining speed.

@@ -5,16 +5,61 @@ naming conventions, the "why" behind decisions. Keep it in lockstep
 with what-im-doing.txt. Do NOT put today's task status here.
 
 ## Goal
-(TBD — not yet defined. First real session should fill this in.)
+JJtorio — a Space-Exploration-style overhaul mod for Factorio.
+- Space-progression overhaul in the spirit of SE (not Space Age).
+- Procedurally generated planets/moons as separate surfaces (SE-style),
+  NOT a small set of handcrafted planets (the SA approach).
+- Early game stays close to vanilla, with light tweaks to make it faster.
+  The overhaul depth lives in the mid/late game (space).
+- Keep the vanilla rocket silo as the way to reach space (SE-style),
+  rather than replacing it.
+
+## Scope / audience
+- Author is a young, beginning modder. Build incrementally and keep
+  each step small and achievable. Ambition is SE-like depth as a
+  long-term goal, reached one small piece at a time — NOT all at once.
+- Ship one working planet end-to-end before adding more.
 
 ## Why
-(TBD)
+- SE-style procedural worlds + a non-rocket launch mechanic give the
+  mod its own identity instead of cloning SE or SA.
+- Light early game keeps time-to-fun low and focuses effort on the
+  part that makes the mod distinct (space).
+
+## Compatibility
+- Incompatible with the Space Age expansion (SA).
+- Incompatible with Space Exploration (SE) — this is a standalone
+  overhaul, not an SE addon.
+- Target: Factorio 2.0 base game. NOTE: in 2.0, space platforms and
+  planets ship as Space Age features — reaching space without SA needs
+  verification of what the base 2.0 API exposes. [OPEN QUESTION]
 
 ## Key files / layout
-(TBD — populate as the structure forms.)
+Repo root holds the project (design docs, git); the shippable mod lives
+in mod/.
+- mod/info.json        — mod metadata (name "JJtorio", factorio_version 2.0).
+- mod/data.lua         — data stage entry; requires prototypes/.
+- mod/control.lua      — control stage entry; storage init + commands.
+- mod/changelog.txt    — player-facing change log (Factorio format).
+- mod/thumbnail.png    — 144x144 placeholder thumbnail.
+- mod/prototypes/tweaks.lua    — early-game data-stage tweaks.
+- mod/scripts/planet-data.lua  — static name parts + planet classes.
+- mod/scripts/planet-gen.lua   — procedural planet gen (surfaces + facts).
+- mod/scripts/commands.lua     — dev console commands.
+- dist/                — built JJtorio_<version>.zip (gitignored).
+- Dev/test link: a directory junction at %APPDATA%\Factorio\mods\JJtorio
+  points to the mod/ subfolder, so in-game edits are live.
+
+## Runtime model (the SE-style core)
+- Planets are runtime SURFACES created with game.create_surface +
+  MapGenSettings, NOT prototypes. This is how SE did it pre-Space-Age,
+  so it should work on base 2.0. [NEEDS IN-GAME VERIFICATION]
+- Each planet's "facts" (name, class, ore richness, day length, gravity)
+  are rolled from a per-save seed sequence and stored in `storage`
+  (the 2.0 mod global table). Same save -> same planets.
 
 ## Naming conventions
-(TBD)
+- Internal prototype name prefix: "jjt-" (e.g. jjt-some-item).
 
 ## Decisions & constraints
 - Platform: Windows 11; use PowerShell for shell tasks.
