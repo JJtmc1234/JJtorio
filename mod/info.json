@@ -7,5 +7,6 @@
   "dependencies": [
     "base >= 2.0"
   ],
-  "description": "An SE-style space overhaul for Factorio. Procedurally generated planets, light early game, depth in space. Work in progress."
+  "description": "A Space-Exploration-style overhaul. Launch from the rocket silo into an endless, procedurally generated universe where every planet rolls its own class, resources, and conditions. The early game stays light and fast; the depth is in space. Standalone - not compatible with Space Age or Space Exploration. Early work in progress.",
+  "homepage": ""
 }
