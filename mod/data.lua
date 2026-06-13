@@ -3,3 +3,5 @@
 -- prototypes/ and required here.
 
 require("prototypes.tweaks")
+require("prototypes.tech-costs")
+require("prototypes.rocket-silo-gating")

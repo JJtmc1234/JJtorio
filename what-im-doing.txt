@@ -4,8 +4,9 @@ Update every meaningful step: current stage, what's running, what's blocked.
 Keep in lockstep with context.txt.
 
 ## Stage
-Foundation coded (autonomous session, 2026-06-13). Mod restructured into
-mod/ subfolder; procedural planet core written. NOT yet run in Factorio.
+0.1.1 staged (NOT yet published): added QoL tweaks (reach), ~40% cheaper
+research, and rocket-silo TECH gating behind late-game techs. Foundation
++ planet core from 0.1.0. Still NOT run in Factorio.
 
 ## Done
 - Mod moved into mod/ subfolder; repo root keeps design docs.
