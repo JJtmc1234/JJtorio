@@ -7,7 +7,7 @@ as you learn it.
 
 Status key:  [ ] not tested   [~] partially or issue found   [x] passes   [!] blocker or broken
 
-Target build: JJtorio 0.1.16 (published). Load in Factorio 2.0 BASE GAME. NO Space Age, NO SE.
+Target build: JJtorio 0.1.17 (published). Load in Factorio 2.0 BASE GAME. NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0. M0, does the foundation load and run (blocks everything else)
@@ -43,10 +43,9 @@ Target build: JJtorio 0.1.16 (published). Load in Factorio 2.0 BASE GAME. NO Spa
        planet sciences, Resonance, Core, Exotic, the three force sciences, and
        Stellar. Recipes vary per pack.
 
-[ ] 9. Big draft tech web (0.1.15). Over 1000 placeholder technologies hang off every
-       science tier as feature families (launch systems, radiators, core tapping,
-       warp coils, stellar collectors, and more). Confirm the mod LOADS and the tech
-       tree is dense with the families. Effects are empty on purpose for now.
+[x] 9. The 1000 placeholder tech web was REMOVED in 0.1.17. It was empty filler,
+       not real progression. The real progression is item 8, the science tier
+       chain with per tier upgrade techs that grant bonuses.
 
 [ ] 10. Non-contiguous technology levels warning (0.1.16). Per-tier boost techs were
         renamed so the gateway is not read as a leveled tech. Confirm the warning is

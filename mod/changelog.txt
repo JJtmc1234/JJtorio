@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.17
+Date: 2026-07-18
+  Changes:
+    - Removed the 1000 placeholder tech web. It was empty filler, not real
+      progression. The late game is now the science tier chain plus fuller per
+      tier upgrade techs that grant real bonuses, a genuine progression.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.16
 Date: 2026-07-18
   Bugfixes:

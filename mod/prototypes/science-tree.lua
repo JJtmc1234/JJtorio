@@ -118,8 +118,9 @@ for _, t in ipairs(TIERS) do
   -- Intermediate techs use their own base name, NOT the gateway name plus a
   -- number. Naming them jjt-<id>-science-<n> made Factorio read them as levels
   -- of the gateway and warn about non-contiguous levels.
+  -- Fuller per-tier upgrade chain so the tree reads as a real progression.
   local prev = tech_name(t.id)
-  for i = 1, (t.techs or 0) do
+  for i = 1, ((t.techs or 2) + 4) do
     local bonus = BONUSES[((i - 1) % #BONUSES) + 1]
     local name = "jjt-" .. t.id .. "-boost-" .. i
     protos[#protos + 1] = {

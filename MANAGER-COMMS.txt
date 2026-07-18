@@ -977,3 +977,10 @@ jjt-<id>-science. Renamed intermediates to jjt-<id>-boost-<n> so the gateway is
 a lone tech and the boost levels are their own contiguous sequence. Affected all
 tiers, not just core. Shipped 0.1.16. -- MAIN-CLAUDE
 --------------------------------------------------------------------------
+
+[2026-07-18] From MAIN-CLAUDE. Per JJ, removed the 1000 placeholder tech web
+(deleted prototypes/tech-web.lua and its require). It was empty filler, not real
+progression. Kept the science tier chain as the real progression and made it
+fuller, each tier now has more upgrade techs that grant real bonuses. Shipped
+0.1.17. JJ will send a tech tree screenshot to plan the run. -- MAIN-CLAUDE
+--------------------------------------------------------------------------
