@@ -3,11 +3,10 @@
 Last updated 2026-07-18.
 
 ## Where we are
-Shipped through 0.1.18, with 0.1.19 in progress. The mod loads in game, the
-early game works, planets generate with per class tiles, and orbit reads as
-space. The full late game tech tree is drafted, tiers 1 to 8, with per tier
-upgrade techs between the tiers that grant real bonuses. Techs are starting to
-unlock new tiers of content.
+Shipped through 0.1.20. The mod loads in game, the early game works, planets
+generate with per class tiles, and orbit reads as space. The full late game
+tech tree is drafted, tiers 1 to 8, with per tier upgrade techs between the
+tiers that grant real bonuses. Techs now unlock new tiers of content.
 
 ## Verified in game
 Mod loads on base Factorio 2.0. Dev commands run. Red and green science craft 2.
@@ -28,9 +27,10 @@ placeholder art with lit item icons, a finer tile grain, and a matching inner
 shadow so icons read as rounded lit forms. Bug fixes from the QC pass in 0.1.10
 and 0.1.11. A rocket launch crash from a wrong cargo pod call, planet name
 collisions overwriting a world, and a Rocket Science pack load error from a
-missing durability field. 0.1.19 in progress, not yet committed, adds tech
-unlocked content tiers. Advanced Fabrication, Turbo Logistics, and Exotic
-Munitions, built by cloning base prototypes and bumping stats, draft balance.
+missing durability field. 0.1.19 added tech unlocked content tiers. Advanced
+Fabrication, Turbo Logistics, and Exotic Munitions, built by cloning base
+prototypes and bumping stats, draft balance. 0.1.20 gave the placeholder tiles
+a coarse mottle pass so they read as natural material instead of uniform noise.
 
 ## Next
 Give the drafted tiers real effects and balance beyond placeholder costs, then
@@ -40,6 +40,5 @@ water tuning are polish items.
 ## Open
 The science tree and per tier upgrade techs add many prototypes drafted since
 the last verified load, so confirm the mod still loads in game. Costs, recipes,
-and upgrade effects are placeholder draft balance. The 0.1.19 content tiers are
-uncommitted and not yet loaded, so confirm they load before shipping. Oceanic
-water tuning needs a property expression, deferred.
+and upgrade effects are placeholder draft balance. Oceanic water tuning needs a
+property expression, deferred.
