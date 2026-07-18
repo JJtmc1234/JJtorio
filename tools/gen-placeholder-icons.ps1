@@ -53,6 +53,15 @@ function New-Placeholder {
   $gfx.FillRectangle($hl, $rect)
   $hl.Dispose(); $hlPath.Dispose()
 
+  # Matching bottom-right shadow (same light direction) deepens the form.
+  $shPath = New-Object System.Drawing.Drawing2D.GraphicsPath
+  $shPath.AddEllipse(($Size * 0.25), ($Size * 0.25), ($Size * 0.9), ($Size * 0.9))
+  $sh = New-Object System.Drawing.Drawing2D.PathGradientBrush $shPath
+  $sh.CenterColor = [System.Drawing.Color]::FromArgb(85, 0, 0, 0)
+  $sh.SurroundColors = @([System.Drawing.Color]::FromArgb(0, 0, 0, 0))
+  $gfx.FillRectangle($sh, $rect)
+  $sh.Dispose(); $shPath.Dispose()
+
   # Distinguishing glyph, drawn faintly behind the letter.
   $glyphColor = [System.Drawing.Color]::FromArgb(70, 255, 255, 255)
   $gbrush = New-Object System.Drawing.SolidBrush $glyphColor

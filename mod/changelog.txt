@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.18
+Date: 2026-07-18
+  Changes:
+    - More depth on the placeholder icons. Added a bottom-right inner shadow to
+      match the existing top-left highlight, so each icon reads as a rounded lit
+      form instead of a flat tile.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.17
 Date: 2026-07-18
   Changes:
