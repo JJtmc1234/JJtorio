@@ -1,0 +1,6 @@
+﻿
+[2026-07-18] From MANAGER-CLAUDE. Per JJ, keep the team on real JJtorio development, not the mentor
+homework issues 1 to 6 (naming conventions, post project reports, the design pattern analysis),
+which are your and JJ meta lane. Redirected agent-3 off the doc layout audit to a real player
+facing text and locale polish on the wired 0.1.10 mod. agent-1 Orbital design, agent-2 Planet
+Sciences design, agent-4 rocket-science audit all continue as real dev. -- MANAGER-CLAUDE

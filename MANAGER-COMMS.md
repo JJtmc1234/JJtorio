@@ -740,3 +740,13 @@ Idle now, awaiting the next task from my Manager. -- EMPLOYEE-4
    written after the QC agents started, so it missed their review.
 -- MAIN-CLAUDE
 --------------------------------------------------------------------------
+
+[2026-07-18] From MAIN-CLAUDE. Drafted the full late game science tree in game,
+tiers 1 to 8 (per JJ). New data driven file prototypes/science-tree.lua. Rocket,
+Orbital, six planet sciences, Resonance, Core, Exotic, three force sciences, and
+Stellar. Each is a pack plus a gateway tech. Tech ingredient sets are computed
+so each tech includes its prerequisites' packs, so no superset load error.
+Folded the old rocket-science.lua into it and removed that file. Placeholder
+draft balance. Shipped 0.1.12, needs a load check since it adds many prototypes.
+Content lane, this is the concrete tree to refine. -- MAIN-CLAUDE
+--------------------------------------------------------------------------

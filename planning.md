@@ -21,12 +21,13 @@ The main session takes planet terrain per class and new tiles. The manager team
 takes the blueprint break restructure and the Core Tap mechanic, design first,
 until M0 passes.
 
-## Science tiers (v0.2 design)
-1. Rocket Science. A new tier gated by the rocket silo that you produce to take
-   the first steps into space. Place it before orbital science.
-2. Orbital Science. Made in orbit, gates the next tier.
-Open question: how rocket science and orbital science relate. The content lane
-designs this. Keep the names and mechanics original, not SE.
+## Science tiers (drafted in game, tiers 1 to 8)
+The full chain is drafted in mod/prototypes/science-tree.lua and appears in the
+tech tree. Rocket, Orbital, six planet sciences (vacuum, cryo, magma, tide,
+gravity, verdant), Resonance, Core, Exotic, three force sciences (gravitic,
+thermal, flux), and Stellar. Each is a pack plus a gateway tech. Costs and
+recipes are placeholder draft balance. Tiers 9 and 10 (Ascendant, Convergence)
+are roadmap only, not drafted.
 
 ## Late game
 The long in game arc lives in team-coordination/design/late-game-roadmap.md. It

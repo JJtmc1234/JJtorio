@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.12
+Date: 2026-07-18
+  Features:
+    - Late game science tree drafted in game, tiers 1 to 8. Rocket, Orbital,
+      six planet sciences, Resonance, Core, Exotic, three force sciences, and
+      Stellar, each a new pack plus a gateway tech. Placeholder draft balance.
+  Changes:
+    - Folded the standalone Rocket Science draft into the full science tree.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.11
 Date: 2026-07-18
   Bugfixes:
