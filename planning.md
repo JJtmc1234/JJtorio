@@ -21,6 +21,13 @@ The main session takes planet terrain per class and new tiles. The manager team
 takes the blueprint break restructure and the Core Tap mechanic, design first,
 until M0 passes.
 
+## Science tiers (v0.2 design)
+1. Rocket Science. A new tier gated by the rocket silo that you produce to take
+   the first steps into space. Place it before orbital science.
+2. Orbital Science. Made in orbit, gates the next tier.
+Open question: how rocket science and orbital science relate. The content lane
+designs this. Keep the names and mechanics original, not SE.
+
 ## Late game
 The long in game arc lives in team-coordination/design/late-game-roadmap.md. It
 is a rough draft to refine later.
