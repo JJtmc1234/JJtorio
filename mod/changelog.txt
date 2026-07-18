@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.5
+Date: 2026-07-18
+  Changes:
+    - Honest scope: the description no longer implies planets are playable yet.
+      0.1.x is the foundation + early game; planets, orbit, and the orbital
+      science tier are planned for 0.2.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.4
 Date: 2026-07-18
   Info:

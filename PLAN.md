@@ -22,6 +22,11 @@ copy-paste. That is the identity, not "more ore patches".
   `/jjt-new-planet`, `/jjt-goto`, `/jjt-orbit`. *(done, unverified)*
 - Placeholder: Survey Satellite discovery — too SE-like, to be replaced.
 
+## Versioning
+- **0.1.x** = foundation + early game (shipped): tweaks, silo gating, dev tools.
+- **0.2** = planets, orbit, orbital science, and the late-game content.
+- Do NOT advertise 0.2 features as shipped. Planets are not a player feature yet.
+
 ## Milestones
 - **M0 — Verify the foundation** *(BLOCKING; needs an in-game test)*
   Load in Factorio, fix load/runtime errors, confirm surfaces + commands work
@@ -40,6 +45,12 @@ copy-paste. That is the identity, not "more ore patches".
   planet facts (gravity, day length, class) mechanically matter.
 - **M5 — Content + polish**
   Real art to replace placeholders, balance pass, locale, docs.
+
+## Late-game vision
+The long in-game arc (Eras I–IX: orbit → colonies → logistics web → deep
+extraction → mastering the forces → megastructures → frontier → Convergence →
+infinite) lives in `design/late-game-roadmap.md`. Rough first draft — refine
+later; carve small vertical slices from it after M0.
 
 ## Working rules
 - Verify in-game before claiming anything works.
