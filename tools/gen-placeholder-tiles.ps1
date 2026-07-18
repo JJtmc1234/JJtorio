@@ -32,9 +32,22 @@ foreach ($t in $tiles) {
   $bmp = New-Object System.Drawing.Bitmap $w, $h
   $g = [System.Drawing.Graphics]::FromImage($bmp)
   $g.Clear([System.Drawing.Color]::FromArgb(255, $t.base[0], $t.base[1], $t.base[2]))
+  $g.SmoothingMode = 'AntiAlias'
   $rand = New-Object System.Random $t.seed
   for ($v = 0; $v -lt $count; $v++) {
     $ox = $v * $tile
+    # Coarse mottle: a few soft translucent blotches break up the uniform base
+    # so the material varies at a larger scale than the flecks.
+    for ($i = 0; $i -lt 5; $i++) {
+      $d = $rand.Next(8, 18)
+      $x = $ox + $rand.Next(-4, $tile - $d + 4)
+      $y = $rand.Next(-4, $tile - $d + 4)
+      $j = $rand.Next(-18, 12)
+      $col = [System.Drawing.Color]::FromArgb(55, (Clamp ($t.base[0] + $j)), (Clamp ($t.base[1] + $j)), (Clamp ($t.base[2] + $j)))
+      $brush = New-Object System.Drawing.SolidBrush $col
+      $g.FillEllipse($brush, $x, $y, $d, $d)
+      $brush.Dispose()
+    }
     for ($i = 0; $i -lt 60; $i++) {
       $x = $ox + $rand.Next(0, $tile)
       $y = $rand.Next(0, $tile)

@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.20
+Date: 2026-07-18
+  Changes:
+    - Richer placeholder tiles. Added a coarse mottle pass of soft translucent
+      blotches under the flecks, so snow, ash, sand, and basalt vary at a larger
+      scale and read as natural material instead of uniform noise.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.19
 Date: 2026-07-18
   Features:
