@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.11
+Date: 2026-07-18
+  Bugfixes:
+    - Fixed a load error in 0.1.10. The Rocket Science pack is a tool and needed
+      a durability field, now added.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.10
 Date: 2026-07-18
   Features:

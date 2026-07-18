@@ -6,7 +6,8 @@ know exactly what to launch Factorio and check. Mark each item's status as you l
 
 Status key:  [ ] not tested   [~] partially / issue found   [x] passes   [!] BLOCKER/broken
 
-Target build: JJtorio 0.1.10 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
+Target build: JJtorio 0.1.11 (published). 0.1.10 failed to load (Rocket Science
+pack missing durability), fixed in 0.1.11. Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0 — M0: does the foundation even load + run? (BLOCKING everything else)
