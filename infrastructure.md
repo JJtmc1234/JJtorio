@@ -30,7 +30,7 @@ mod/ for live testing.
 
 ## Coordination
 Several Claude processes work on this repo. Releases go through the main session
-only. Workers use branches. The live coordination channel is MANAGER-COMMS.md
-at the repo root, because a second process writes to it there. The other
-coordination and design docs are in team-coordination/. The mod changelog stays
-at mod/changelog.txt because Factorio requires that name and format.
+only. Workers use branches. The live coordination channel is MANAGER-COMMS.txt
+at the repo root. It stays a .txt because a second process writes to it there,
+so like mod/changelog.txt it is a documented exception to the all .md rule. The
+other coordination and design docs are in team-coordination/.
