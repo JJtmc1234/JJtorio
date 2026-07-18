@@ -1,53 +1,57 @@
-# JJtorio — Employee / Contributor Task List
+# JJtorio — Worker Agent Guide
 
-How to help build JJtorio. Read `context.txt` (stable facts), `PLAN.md`
-(milestones), and `what-im-doing.txt` (current status) before starting.
+The "employees" on this project are Claude processes (agents / subagents), not
+humans. This is what a worker agent should do when assigned to JJtorio.
 
-## Ground rules
-- Don't clone Space Exploration's systems (its 4 sciences, piloted ships,
-  data/energy beaming). SE inspires the *shape*, not the mechanics.
-- Verify in Factorio before saying something works.
-- Keep source files focused (~150 lines); guard base-game edits so a missing
+## Onboarding (read first, every time)
+1. `CLAUDE.md` — working principles (authoritative).
+2. `context.txt` — stable project facts + the runtime model.
+3. `PLAN.md` — vision, the core differentiator, milestones M0–M5.
+4. `what-im-doing.txt` — live status; update it as you work.
+5. Project memory (`MEMORY.md`) — standing preferences (e.g. always publish).
+
+## Working rules (non-negotiable)
+- Action discipline: make local, reversible edits freely. Releases are
+  centralized — a worker agent does NOT publish to the mod portal (avoids
+  version collisions). The main session owns bump → commit → push → publish.
+- Less code is more: nothing beyond the assigned task.
+- Files stay focused (~150 lines); guard base-game edits so a missing
   prototype can't crash the load.
-- Keep the two docs current: `context.txt` when the project shape changes,
-  `what-im-doing.txt` every meaningful step.
+- Don't clone SE systems (its 4 sciences, piloted ships, data/energy beaming).
+- Verify what you can: run `luac -p` on changed Lua (syntax only). You CANNOT
+  run Factorio — never claim runtime behavior "works"; mark it unverified.
+- Keep `context.txt` / `what-im-doing.txt` in lockstep with your changes.
 
-## Workflow
-- Code: branch off `main`, open a pull request at
-  https://github.com/JJtmc1234/JJtorio. Keep PRs small and focused.
-- Ideas / bugs / feedback (non-code): email jjtmcmultiversal@gmail.com with
-  the subject "JJtorio".
-- Releases are handled centrally (version bump + mod-portal publish). Please
-  don't publish to the portal yourself.
+## Coordination (multiple agents)
+- Take one area/task; keep the diff small and self-contained.
+- Parallel work uses a git branch or worktree; hand the branch back for the
+  main session to review, merge, and release.
+- Note what you did in `what-im-doing.txt` so other agents can see it.
 
-## Right now — top priority (M0: verify the foundation)
-The whole mod is written but UNVERIFIED in-game. Highest-value task:
-1. Load JJtorio in Factorio 2.0 (base game — no Space Age, no SE).
-2. Fix any load errors (likely spots: the rocket-silo tech gating, the new
-   item/recipe/tech, the `on_rocket_launched` hook).
-3. Run `/jjt-new-planet`, `/jjt-goto <name>`, `/jjt-orbit` and report results.
+## Tasks by area
+### Code review (high value now)
+The mod is written but unverified in-game. Review the Lua + prototypes against
+the Factorio 2.0 API for likely load/runtime errors — the rocket-silo gating,
+the survey-satellite item/recipe/tech, the `on_rocket_launched` hook, and
+surface creation. Report concrete fixes.
 
-## Areas of work
 ### Testing / QA
-- Confirm planet and orbit surfaces generate on base 2.0.
-- Confirm the rocket-silo prerequisites show up and are researchable.
-- Regression-check the early-game tweaks (reach, inventory, speeds, costs).
+- Static checks + reasoning about base-2.0 behavior (surfaces, tech gating).
+- Draft in-game test steps for a human to run (no agent can launch Factorio).
 
-### Art (replace placeholders)
-- `mod/graphics/icons/*.png` and `mod/thumbnail.png` are flat placeholders.
-- Need real icons (starting with the Survey Satellite) and a proper 144x144
-  thumbnail. `tools/gen-placeholder-icons.ps1` is only a stopgap.
+### Art (placeholders)
+- Replace the flat placeholder icons/thumbnail; the generator is a stopgap.
 
 ### Balance
-- Early-game numbers: mining/lab/machine speeds, science batch sizes, and the
-  research cost factor — tune for "light and fast, not trivial".
-- The rocket-silo prerequisite list — is it the right gate?
+- Early-game numbers and the rocket-silo prerequisite gate.
 
-### Content (see PLAN.md, M1–M4)
-- Real ascent to orbit + space tiles/visuals.
-- The orbital science tier (original — not SE's).
-- Planet "production paradigms" — the core differentiator. Propose concrete
-  constraints (heat, gravity, storms) and how they change how you build.
+### Content (PLAN.md, M1–M4)
+- Ascent to orbit + space tiles; the orbital science tier; planet production
+  paradigms (the differentiator).
 
 ### Docs
-- Keep PLAN.md / context.txt / README current; help triage emailed feedback.
+- Keep PLAN.md / context.txt / README / this file current.
+
+## Community feedback (humans, separate)
+Player feedback arrives by email (subject "JJtorio"); triage it and fold
+useful items into PLAN.md.
