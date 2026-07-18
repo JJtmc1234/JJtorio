@@ -19,3 +19,7 @@ bump("reach_distance", 4)
 bump("reach_resource_distance", 2)
 bump("item_pickup_distance", 1)
 bump("loot_pickup_distance", 1)
+
+-- A little easier to start: more inventory pockets and a bit quicker on foot.
+bump("inventory_size", 10)
+if character.running_speed then character.running_speed = character.running_speed * 1.15 end

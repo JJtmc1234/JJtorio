@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 2026-06-13
+  Changes:
+    - Easier early game: larger starting inventory and slightly faster
+      movement, on top of the existing mining/reach/cheaper-research tweaks.
+    - Fuller in-game description and a contact address for community feedback.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 2026-06-13
   Features:
