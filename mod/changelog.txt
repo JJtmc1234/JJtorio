@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.13
+Date: 2026-07-18
+  Features:
+    - Fuller late game tech tree. Each science tier now has several intermediate
+      techs that consume its pack and grant real bonuses (lab speed, mining
+      productivity, inventory), filling the tree between the tiers.
+  Changes:
+    - Science pack recipes now vary per tier instead of all using the same two
+      ingredients.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.12
 Date: 2026-07-18
   Features:

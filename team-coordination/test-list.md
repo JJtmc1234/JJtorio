@@ -6,7 +6,7 @@ know exactly what to launch Factorio and check. Mark each item's status as you l
 
 Status key:  [ ] not tested   [~] partially / issue found   [x] passes   [!] BLOCKER/broken
 
-Target build: JJtorio 0.1.12 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
+Target build: JJtorio 0.1.13 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0 — M0: does the foundation even load + run? (BLOCKING everything else)
@@ -39,12 +39,13 @@ Target build: JJtorio 0.1.12 (published). Load in Factorio 2.0 BASE GAME — NO 
        tiles (snow, ash, sand, basalt). Oceanic has land, fertile is green.
        Real tile art is a future polish item, not a bug.
 
-[ ] 8. Late game science tree (0.1.12). Tiers 1 to 8 are drafted in the tech
-       tree, folding in the old Rocket Science draft. First confirm the mod
-       still LOADS, since it adds many new packs and techs. Then open the tech
-       tree and confirm the chain appears after the rocket silo. Rocket,
-       Orbital, the six planet sciences, Resonance, Core, Exotic, the three
-       force sciences, and Stellar. Research Rocket then Orbital to sanity check.
+[ ] 8. Full late game tech tree (0.1.13). Tiers 1 to 8, each with a science
+       pack, a gateway tech, and several intermediate techs that grant bonuses,
+       so the tree fills out between tiers. First confirm the mod still LOADS,
+       since it adds many packs and techs. Then open the tech tree and confirm
+       the chain after the rocket silo, Rocket, Orbital, the six planet
+       sciences, Resonance, Core, Exotic, the three force sciences, and Stellar,
+       with intermediate techs hanging off each. Recipes vary per pack now.
 
 ## Known issues
 Tiles work. The textures are flat stand-ins, real art is a future polish item.
