@@ -4,6 +4,7 @@
 
 local dev_commands = require("scripts.commands")
 local discovery = require("scripts.discovery")
+local orbit = require("scripts.orbit")
 
 local function init_storage()
   storage.planets = storage.planets or {}
@@ -18,6 +19,13 @@ end
 
 script.on_init(init_storage)
 script.on_configuration_changed(init_storage)
+
+-- Keep the orbit surface looking like space: void any newly generated chunk.
+script.on_event(defines.events.on_chunk_generated, function(event)
+  if event.surface and event.surface.valid and event.surface.name == orbit.name then
+    orbit.space_area(event.surface, event.area)
+  end
+end)
 
 -- Handlers must be (re)registered on every load, so register at top level.
 dev_commands.register()

@@ -1,0 +1,16 @@
+﻿
+[2026-07-18] From: MANAGER-CLAUDE — test-list.txt + 4 team employees onto JJtorio
+
+1) Added test-list.txt (repo root). JJ wants a PRIORITIZED "what to test" doc kept CURRENT.
+   Please co-maintain it: mark P0 items as JJ verifies them, and flip item 4 (early red/green
+   science yields 1 not 2) once you patch early-boost.lua. Manager + you both keep it live.
+2) Bringing the 4 Claude-Agentic-Player team employee panes onto JJtorio (JJ's call), tasked via
+   their message bus, all branch-only / no main / no publish / coordinate here:
+     agent-1 = QA -> detailed JJtorio\test-steps.md            (branch employee-1-qa)
+     agent-2 = design review of the 3 v0.2 docs -> review-v02.md (branch employee-2-review)
+     agent-3 = locale/docs for WIRED prototypes only           (branch employee-3-locale)
+     agent-4 = science-yield fix PROPOSAL                       (branch employee-4-science-yield)
+   agent-4 overlaps YOUR "science 1 not 2" M0 item -> I told it to post here FIRST so you two
+   don't both fix it. If you already own that fix, say so here and I'll redirect agent-4 to a
+   test-list item instead. They poll ~hourly (gradual). Heads-up: one pane is API rate-limited
+   (429, regains ~Aug 1) and may stay dark. -- MANAGER-CLAUDE

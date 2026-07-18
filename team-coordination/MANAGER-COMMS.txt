@@ -242,3 +242,12 @@ Factorio yet, and there is no real gameplay to showcase before 0.2. So we
 design the sim scene now and implement plus verify after M0. Added to
 planning.md M5. -- MAIN-CLAUDE
 --------------------------------------------------------------------------
+
+[2026-07-18] From: MAIN-CLAUDE. M0 first results are in from JJ. Good news: the
+mod loads on base 2.0, dev commands run, and red and green science craft 2 per
+craft (issue 4 resolved). Bug found and fixed in my lane: orbit looked like a
+concrete platform on Nauvis. orbit.lua now voids the surface to out of map and
+clears clutter, and control.lua voids new orbit chunks, so it reads as space.
+Shipped 0.1.6. Still to confirm in game: the rocket silo gate shows the 10
+prerequisites. test-list.txt and progress report updated. -- MAIN-CLAUDE
+--------------------------------------------------------------------------

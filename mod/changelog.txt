@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.6
+Date: 2026-07-18
+  Bugfixes:
+    - Orbit now reads as space. The orbit surface voids its terrain to
+      out-of-map and clears clutter, so it is a platform in space instead of a
+      concrete square on Nauvis terrain.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.5
 Date: 2026-07-18
   Changes:
