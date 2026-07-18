@@ -7,7 +7,7 @@ as you learn it.
 
 Status key:  [ ] not tested   [~] partially or issue found   [x] passes   [!] blocker or broken
 
-Target build: JJtorio 0.1.17 (published). Load in Factorio 2.0 BASE GAME. NO Space Age, NO SE.
+Target build: JJtorio 0.1.19 (published). Load in Factorio 2.0 BASE GAME. NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0. M0, does the foundation load and run (blocks everything else)
@@ -50,6 +50,12 @@ Target build: JJtorio 0.1.17 (published). Load in Factorio 2.0 BASE GAME. NO Spa
 [ ] 10. Non-contiguous technology levels warning (0.1.16). Per-tier boost techs were
         renamed so the gateway is not read as a leveled tech. Confirm the warning is
         gone.
+
+[ ] 11. Tech-unlocked content tiers (0.1.19). Confirm the mod still LOADS, these
+        are new cloned entities. Then research Advanced Fabrication (assembling
+        machine 4, plus reinforced frame and exotic circuit), Turbo Logistics
+        (turbo belt, underground, splitter, and inserter), and Exotic Munitions
+        (upgraded magazine), and confirm the new items build and work.
 
 ## Known issues
 Tiles work. The textures are flat stand-ins, real art is a future polish item.

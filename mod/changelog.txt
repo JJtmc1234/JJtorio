@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.19
+Date: 2026-07-18
+  Features:
+    - Techs now unlock new tiers of content. Advanced Fabrication (assembling
+      machine 4 and two intermediates), Turbo Logistics (a faster belt set and
+      a turbo inserter), and Exotic Munitions (an upgraded magazine). Built by
+      cloning base prototypes and bumping stats, draft balance.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.18
 Date: 2026-07-18
   Changes:

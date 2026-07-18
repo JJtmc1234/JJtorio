@@ -3,10 +3,11 @@
 Last updated 2026-07-18.
 
 ## Where we are
-Shipped through 0.1.18. The mod loads in game, the early game works, planets
-generate with per class tiles, and orbit reads as space. The full late game
-tech tree is drafted, tiers 1 to 8, with per tier upgrade techs between the
-tiers that grant real bonuses.
+Shipped through 0.1.18, with 0.1.19 in progress. The mod loads in game, the
+early game works, planets generate with per class tiles, and orbit reads as
+space. The full late game tech tree is drafted, tiers 1 to 8, with per tier
+upgrade techs between the tiers that grant real bonuses. Techs are starting to
+unlock new tiers of content.
 
 ## Verified in game
 Mod loads on base Factorio 2.0. Dev commands run. Red and green science craft 2.
