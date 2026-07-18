@@ -44,6 +44,15 @@ function New-Placeholder {
   $grad = New-Object System.Drawing.Drawing2D.LinearGradientBrush $rect, $top, $bot, 90.0
   $gfx.FillRectangle($grad, $rect)
 
+  # Soft top-left highlight so the icon reads as a lit surface, not a flat swatch.
+  $hlPath = New-Object System.Drawing.Drawing2D.GraphicsPath
+  $hlPath.AddEllipse(($Size * -0.15), ($Size * -0.15), ($Size * 0.9), ($Size * 0.9))
+  $hl = New-Object System.Drawing.Drawing2D.PathGradientBrush $hlPath
+  $hl.CenterColor = [System.Drawing.Color]::FromArgb(90, 255, 255, 255)
+  $hl.SurroundColors = @([System.Drawing.Color]::FromArgb(0, 255, 255, 255))
+  $gfx.FillRectangle($hl, $rect)
+  $hl.Dispose(); $hlPath.Dispose()
+
   # Distinguishing glyph, drawn faintly behind the letter.
   $glyphColor = [System.Drawing.Color]::FromArgb(70, 255, 255, 255)
   $gbrush = New-Object System.Drawing.SolidBrush $glyphColor

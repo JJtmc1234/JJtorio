@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.14
+Date: 2026-07-18
+  Changes:
+    - Nicer placeholder art. Item icons now carry a soft top-left highlight so
+      they read as a lit surface, and the custom tiles gained a fine grain pass
+      for more material texture.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.13
 Date: 2026-07-18
   Features:

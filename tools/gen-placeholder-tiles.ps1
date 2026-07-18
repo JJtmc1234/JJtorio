@@ -45,6 +45,17 @@ foreach ($t in $tiles) {
       $g.FillRectangle($brush, $x, $y, $s, $s)
       $brush.Dispose()
     }
+    # Fine grain pass: single-pixel specks near the base color add texture
+    # without changing the tile's overall read.
+    for ($i = 0; $i -lt 90; $i++) {
+      $x = $ox + $rand.Next(0, $tile)
+      $y = $rand.Next(0, $tile)
+      $j = $rand.Next(-10, 11)
+      $col = [System.Drawing.Color]::FromArgb(255, (Clamp ($t.base[0] + $j)), (Clamp ($t.base[1] + $j)), (Clamp ($t.base[2] + $j)))
+      $brush = New-Object System.Drawing.SolidBrush $col
+      $g.FillRectangle($brush, $x, $y, 1, 1)
+      $brush.Dispose()
+    }
   }
   $g.Dispose()
   $path = Join-Path $OutDir ($t.name + ".png")
