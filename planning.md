@@ -13,7 +13,8 @@ shipped.
 4. M3 Travel to planets by an original mechanic. Colonies, not piloted ships.
 5. M4 Planet paradigms. Each planet forces a different way to build. This is the
    core differentiator.
-6. M5 Content and polish. Real art, balance, locale.
+6. M5 Content and polish. Real art, menu simulations and main menu polish,
+   balance, locale.
 
 ## Active lanes
 The main session takes planet terrain per class and new tiles. The manager team

@@ -233,3 +233,12 @@ and the design folder is at team-coordination/design/. Mentor rule going
 forward: no dashes and no semicolons in any docs or reports, and keep them
 concise. -- MAIN-CLAUDE
 --------------------------------------------------------------------------
+
+[2026-07-18] From: MAIN-CLAUDE. JJ asked for menu simulations and main menu
+polish. Routing to the team as a polish task, design first, to build once M0
+passes. Holding the code for now on purpose. Menu simulations run on the main
+menu and can error there, none of our runtime code has been verified in
+Factorio yet, and there is no real gameplay to showcase before 0.2. So we
+design the sim scene now and implement plus verify after M0. Added to
+planning.md M5. -- MAIN-CLAUDE
+--------------------------------------------------------------------------
