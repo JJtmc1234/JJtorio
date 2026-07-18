@@ -3,25 +3,31 @@
 Last updated 2026-07-18.
 
 ## Where we are
-Shipped through 0.1.9, working on 0.1.10. The mod loads in game, the early game
-works, planets generate with per class tiles, and orbit reads as space.
+Shipped through 0.1.13. The mod loads in game, the early game works, planets
+generate with per class tiles, and orbit reads as space. The full late game
+tech tree is drafted, tiers 1 to 8, with intermediate techs between the tiers.
 
 ## Verified in game
 Mod loads on base Factorio 2.0. Dev commands run. Red and green science craft 2.
 Orbit reads as space. Custom placeholder tiles load and planet classes look
-distinct.
+distinct. This covers the state up to 0.1.9.
 
-## New in 0.1.10 (needs a load check)
-Rocket Science tier drafted in the tech tree. A new Rocket Science pack, a
-gateway tech off the rocket silo, and a first branch of draft techs. Also two
-bug fixes from the QC pass. A rocket launch crash from a wrong cargo pod call,
-and planet name collisions overwriting a world.
+## New since 0.1.9 (needs a load check)
+Rocket Science tier and then the full science tree drafted in game, tiers 1 to
+8. Rocket, Orbital, six planet sciences, Resonance, Core, Exotic, three force
+sciences, and Stellar. Each is a new pack plus a gateway tech. 0.1.13 added
+intermediate techs per tier that consume the pack and grant real bonuses, and
+varied pack recipes per tier. Bug fixes from the QC pass in 0.1.10 and 0.1.11.
+A rocket launch crash from a wrong cargo pod call, planet name collisions
+overwriting a world, and a Rocket Science pack load error from a missing
+durability field.
 
 ## Next
-Flesh out the Rocket Science branch with real effects, then Orbital Science.
-Real tile art and oceanic water tuning are polish items. The team is on the
-blueprint break and the Core Tap, design first.
+Give the drafted tiers real effects and balance beyond placeholder costs, then
+Orbital Science as the first original in orbit tier. Real tile art and oceanic
+water tuning are polish items.
 
 ## Open
-The Rocket Science draft adds new prototypes not yet loaded in game, so confirm
-the mod still loads. Oceanic water tuning needs a property expression, deferred.
+The full science tree adds many prototypes drafted since the last verified load,
+so confirm the mod still loads in game. Costs and recipes are placeholder draft
+balance. Oceanic water tuning needs a property expression, deferred.
