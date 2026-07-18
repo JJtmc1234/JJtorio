@@ -34,6 +34,11 @@ Target build: JJtorio 0.1.6 (published). Load in Factorio 2.0 BASE GAME — NO S
        own icon) and the 144x144 thumbnail shows on the mod.
 
 --------------------------------------------------------------------------
+[ ] 7. Planet terrain per class (0.1.7). Run /jjt-new-planet then /jjt-goto
+       <name>. A barren or rocky world should look dry and treeless, an oceanic
+       world watery, a fertile world green. Frozen and volcanic are approximate
+       until custom tiles.
+
 ## NOT testable yet — v0.2 groundwork (designed + staged, NOT wired; do NOT test)
 - Orbit ascent + orbital science (E3), Break-copy-paste "Divergent Foundation" (E5),
   Core Tap (E6). All un-wired in data.lua by design until P0 passes. Nothing to test.

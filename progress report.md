@@ -13,13 +13,17 @@ craft two per craft as intended.
 ## Fixed, needs a recheck
 Orbit looked like a concrete platform on Nauvis. Now the orbit surface voids
 its terrain to out of map and clears clutter, so it reads as a platform in
-space. Recheck with /jjt-orbit on 0.1.6.
+space. Recheck with /jjt-orbit on 0.1.7.
+
+Planet terrain now varies by class in 0.1.7. Recheck with /jjt-new-planet then
+/jjt-goto that a barren or rocky world looks dry and treeless, not grassy.
 
 ## Still to confirm
 The rocket silo tech shows the intended ten prerequisites and is researchable
 once you have them.
 
 ## Next
-The main session builds planet terrain per class and new tiles. The team
-designs the blueprint break and the Core Tap. After M0 fully passes we wire in
-orbital science and build the real orbit ascent.
+Planet terrain per class is in 0.1.7, so classes look distinct. Custom tiles
+for frozen and volcanic come next. The team designs the blueprint break and the
+Core Tap. After M0 fully passes we wire in orbital science and the real orbit
+ascent.

@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.7
+Date: 2026-07-18
+  Changes:
+    - Planets now look like their class. Each class sets tree density, water,
+      and biome bias, so a barren world is dry and treeless instead of grassy.
+      Frozen and volcanic will get custom tiles later.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.6
 Date: 2026-07-18
   Bugfixes:

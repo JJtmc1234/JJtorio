@@ -30,6 +30,7 @@ function M.roll_facts(seed)
     ore_richness = class.ore_bias * (rng(70, 140) / 100),
     day_minutes = rng(8, 30),
     gravity = rng(60, 160) / 100,
+    terrain = class.terrain,
   }
 end
 
@@ -44,6 +45,16 @@ local function map_gen_for(facts)
       size = 1,
       richness = facts.ore_richness,
     }
+  end
+  -- Class terrain: control trees, water, and the biome bias so a barren world
+  -- actually looks barren instead of grassy.
+  local t = facts.terrain
+  if t then
+    settings.autoplace_controls["trees"] = { frequency = t.trees or 1, size = t.trees or 1, richness = 1 }
+    if t.water ~= nil then settings.water = t.water end
+    settings.property_expression_names = settings.property_expression_names or {}
+    if t.moisture ~= nil then settings.property_expression_names["moisture"] = tostring(t.moisture) end
+    if t.aux ~= nil then settings.property_expression_names["aux"] = tostring(t.aux) end
   end
   return settings
 end

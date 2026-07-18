@@ -15,15 +15,23 @@ M.name_suffixes = {
   "n", "s", "x", "th", "ra", "is", "or", "ad", "um", "ix", "ar", "eon",
 }
 
--- Planet "classes". Each rolls different flavor and an ore-richness bias.
--- ore_bias multiplies the random richness roll in planet-gen.
+-- Planet classes. Each sets an ore richness bias plus terrain knobs that make
+-- the class look distinct. moisture and aux bias the biome tiles, trees sets
+-- forest density, and water scales lakes. Frozen and volcanic will get real
+-- custom tiles later. For now they use the closest base biome.
 M.classes = {
-  { id = "rocky",    label = "Rocky",    ore_bias = 1.0, desc = "A cratered world of bare stone." },
-  { id = "volcanic", label = "Volcanic", ore_bias = 1.4, desc = "Lava plains, metal-rich and hostile." },
-  { id = "frozen",   label = "Frozen",   ore_bias = 0.8, desc = "An ice world; ore locked beneath frost." },
-  { id = "barren",   label = "Barren",   ore_bias = 0.6, desc = "Wind-scoured and resource-poor." },
-  { id = "oceanic",  label = "Oceanic",  ore_bias = 0.9, desc = "Shallow seas dotted with islands." },
-  { id = "fertile",  label = "Fertile",  ore_bias = 1.1, desc = "Unusually green, temperate and teeming." },
+  { id = "rocky",    label = "Rocky",    ore_bias = 1.0, desc = "A cratered world of bare stone.",
+    terrain = { moisture = 0.15, aux = 0.5,  trees = 0.05, water = 0.2 } },
+  { id = "volcanic", label = "Volcanic", ore_bias = 1.4, desc = "Lava plains, metal rich and hostile.",
+    terrain = { moisture = 0.0,  aux = 0.95, trees = 0.0,  water = 0.0 } },
+  { id = "frozen",   label = "Frozen",   ore_bias = 0.8, desc = "An ice world. Ore is locked beneath frost.",
+    terrain = { moisture = 0.6,  aux = 0.05, trees = 0.15, water = 0.4 } },
+  { id = "barren",   label = "Barren",   ore_bias = 0.6, desc = "Wind scoured and resource poor.",
+    terrain = { moisture = 0.02, aux = 0.5,  trees = 0.0,  water = 0.05 } },
+  { id = "oceanic",  label = "Oceanic",  ore_bias = 0.9, desc = "Shallow seas dotted with islands.",
+    terrain = { moisture = 0.8,  aux = 0.5,  trees = 0.2,  water = 4.0 } },
+  { id = "fertile",  label = "Fertile",  ore_bias = 1.1, desc = "Unusually green, temperate and teeming.",
+    terrain = { moisture = 0.95, aux = 0.5,  trees = 0.6,  water = 0.6 } },
 }
 
 return M
