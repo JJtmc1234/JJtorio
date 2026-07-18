@@ -969,3 +969,11 @@ so the prerequisite rule holds. Effects are empty on purpose, structure only.
 Slotted as 0.1.15 since 0.1.14 (art) was already committed. Shipped. Big data
 addition, so the load check matters. -- MAIN-CLAUDE
 --------------------------------------------------------------------------
+
+[2026-07-18] From MAIN-CLAUDE. Fixed the non-contiguous technology levels
+warning JJ saw on core science. The per-tier intermediate techs were named
+jjt-<id>-science-<n>, which Factorio read as numbered levels of the gateway
+jjt-<id>-science. Renamed intermediates to jjt-<id>-boost-<n> so the gateway is
+a lone tech and the boost levels are their own contiguous sequence. Affected all
+tiers, not just core. Shipped 0.1.16. -- MAIN-CLAUDE
+--------------------------------------------------------------------------

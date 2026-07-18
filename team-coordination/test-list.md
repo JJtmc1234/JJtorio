@@ -1,4 +1,4 @@
-# test-list.txt — what JJ should test, in priority order
+﻿# test-list.txt â€” what JJ should test, in priority order
 
 Living doc. Manager-Claude + Main-Claude keep this CURRENT: when a testable slice lands
 (a fix, a wired feature, a new command), add/update its line here FIRST. JJ reads this to
@@ -6,12 +6,12 @@ know exactly what to launch Factorio and check. Mark each item's status as you l
 
 Status key:  [ ] not tested   [~] partially / issue found   [x] passes   [!] BLOCKER/broken
 
-Target build: JJtorio 0.1.15 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
+Target build: JJtorio 0.1.16 (published). Load in Factorio 2.0 BASE GAME â€” NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
-## P0 — M0: does the foundation even load + run? (BLOCKING everything else)
+## P0 â€” M0: does the foundation even load + run? (BLOCKING everything else)
 [x] 1. Mod LOADS: enable JJtorio 0.1.10, start a new base-2.0 save. No error at data stage
-       and no error at control stage. (E1 fixed a definite crash bug — defines.inventory
+       and no error at control stage. (E1 fixed a definite crash bug â€” defines.inventory
        .rocket didn't exist in 2.0; confirm nothing else trips.)
 [x] 2. Dev commands run without error and do what they say:
          /jjt-new-planet     -> creates a planet (a new surface + rolled facts)
@@ -23,13 +23,13 @@ Target build: JJtorio 0.1.15 (published). Load in Factorio 2.0 BASE GAME — NO 
        the gate you wanted actually applied). Gate = mature-base techs (6-pack science base,
        electric furnaces, bots, express belts, nuclear).
 
-## P1 — early-game balance sanity (only meaningful once P0 loads)
+## P1 â€” early-game balance sanity (only meaningful once P0 loads)
 [x] 4. RESOLVED: early red and green science craft 2 per craft, confirmed in game
        by JJ on 0.1.5.
 [x] 5. Feel check: research light-but-not-trivial; inventory ~100 + reach comfortable, not
        silly; asm-1 (0.65) still worth upgrading to asm-2 (0.75).
 
-## P2 — art render check (cosmetic)
+## P2 â€” art render check (cosmetic)
 [x] 6. New placeholder icons render in-game (distinct per item; the survey satellite has its
        own icon) and the 144x144 thumbnail shows on the mod.
 
@@ -58,7 +58,7 @@ Target build: JJtorio 0.1.15 (published). Load in Factorio 2.0 BASE GAME — NO 
 Tiles work. The textures are flat stand-ins, real art is a future polish item.
 Oceanic water tuning is deferred, 2.0 needs a property expression for water.
 
-## NOT testable yet — v0.2 groundwork (designed + staged, NOT wired; do NOT test)
+## NOT testable yet â€” v0.2 groundwork (designed + staged, NOT wired; do NOT test)
 - Orbit ascent + orbital science (E3), Break-copy-paste "Divergent Foundation" (E5),
   Core Tap (E6). All un-wired in data.lua by design until P0 passes. Nothing to test.
 

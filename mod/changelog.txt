@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.16
+Date: 2026-07-18
+  Bugfixes:
+    - Fixed the non-contiguous technology levels warning. Per-tier intermediate
+      techs were named like the gateway plus a number, so Factorio read them as
+      levels of the gateway. Renamed them to their own base name.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.15
 Date: 2026-07-18
   Features:

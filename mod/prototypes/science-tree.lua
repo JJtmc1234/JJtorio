@@ -115,10 +115,13 @@ for _, t in ipairs(TIERS) do
     unit = { count = 200 + 150 * depth, time = 45, ingredients = units(anc) },
   }
 
+  -- Intermediate techs use their own base name, NOT the gateway name plus a
+  -- number. Naming them jjt-<id>-science-<n> made Factorio read them as levels
+  -- of the gateway and warn about non-contiguous levels.
   local prev = tech_name(t.id)
   for i = 1, (t.techs or 0) do
     local bonus = BONUSES[((i - 1) % #BONUSES) + 1]
-    local name = tech_name(t.id) .. "-" .. i
+    local name = "jjt-" .. t.id .. "-boost-" .. i
     protos[#protos + 1] = {
       type = "technology", name = name, localised_name = { "", t.label .. " " .. i },
       icon = ICON, icon_size = 64, prerequisites = { prev },
