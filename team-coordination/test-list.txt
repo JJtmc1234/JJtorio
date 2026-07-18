@@ -6,18 +6,18 @@ know exactly what to launch Factorio and check. Mark each item's status as you l
 
 Status key:  [ ] not tested   [~] partially / issue found   [x] passes   [!] BLOCKER/broken
 
-Target build: JJtorio 0.1.7 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
+Target build: JJtorio 0.1.8 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0 — M0: does the foundation even load + run? (BLOCKING everything else)
 [x] 1. Mod LOADS: enable JJtorio 0.1.5, start a new base-2.0 save. No error at data stage
        and no error at control stage. (E1 fixed a definite crash bug — defines.inventory
        .rocket didn't exist in 2.0; confirm nothing else trips.)
-[~] 2. Dev commands run without error and do what they say:
+[x] 2. Dev commands run without error and do what they say:
          /jjt-new-planet     -> creates a planet (a new surface + rolled facts)
          /jjt-planets        -> lists the planets you've generated
          /jjt-goto <name>    -> teleports you to that planet's surface
-         /jjt-orbit          -> the orbit surface (looked like Nauvis in 0.1.5, fixed in 0.1.6, please recheck)
+         /jjt-orbit          -> the orbit surface, reads as space now (confirmed working)
 [x] 3. Rocket-silo GATE: the rocket-silo tech shows the intended ~10 prerequisites and IS
        researchable once you have them (unknown gate names are skipped silently, so confirm
        the gate you wanted actually applied). Gate = mature-base techs (6-pack science base,
@@ -34,16 +34,16 @@ Target build: JJtorio 0.1.7 (published). Load in Factorio 2.0 BASE GAME — NO S
        own icon) and the 144x144 thumbnail shows on the mod.
 
 --------------------------------------------------------------------------
-[~] 7. Planet terrain per class (0.1.7). Run /jjt-new-planet then /jjt-goto
-       <name>. A barren or rocky world should look dry and treeless, an oceanic
-       world watery, a fertile world green. Frozen and volcanic are approximate
-       until custom tiles.
+[~] 7. Planet terrain per class. Run /jjt-new-planet then /jjt-goto <name>.
+       0.1.8: frozen and volcanic are now painted with base tiles (concrete and
+       nuclear ground), and oceanic water was reduced so there is land. Barren
+       dry, rocky bare, fertile green. Recheck on 0.1.8. Real custom tiles for
+       frozen and volcanic still come later.
 
 ## Known issues
-Frozen, volcanic, and oceanic planets look wrong for now. Frozen and volcanic
-borrow Nauvis biomes, and oceanic can be almost all water with little land to
-stand on. The fix is custom tiles plus tuned water, which is Main-Claude's next
-task.
+0.1.8 improves this. Frozen and volcanic are now painted with base tiles as a
+placeholder, and oceanic water was reduced so there is land. Real custom tile
+art for frozen and volcanic is still pending. Recheck on 0.1.8.
 
 ## NOT testable yet — v0.2 groundwork (designed + staged, NOT wired; do NOT test)
 - Orbit ascent + orbital science (E3), Break-copy-paste "Divergent Foundation" (E5),

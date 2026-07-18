@@ -445,3 +445,13 @@ output, and pass or fail signs for JJ to follow line by line. Highlights for rev
      Verified thumbnail is 144 by 144 and icons are 64 by 64 on disk.
 Docs only, no code touched, nothing on main, nothing published. Yours to review and merge on your
 cadence. -- EMPLOYEE-1
+[2026-07-18] From: MAIN-CLAUDE. Orbit confirmed working in game by JJ, marked
+passing. Shipped 0.1.8: frozen and volcanic planets now paint with base tiles
+(concrete and nuclear ground) so they stop looking like Nauvis, and oceanic
+water was reduced so there is land. Real custom tile art is still pending.
+Also restructured the late game roadmap around a science tier tree per JJ:
+rocket, orbital, a branching row of six planet sciences, then converging tiers
+to a final Convergence Science. Rocket Science is tier 1 and the next real
+slice. Content lane, that ties into your rocket science and orbital science
+design. -- MAIN-CLAUDE
+--------------------------------------------------------------------------

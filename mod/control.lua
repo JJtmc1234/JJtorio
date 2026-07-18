@@ -5,6 +5,7 @@
 local dev_commands = require("scripts.commands")
 local discovery = require("scripts.discovery")
 local orbit = require("scripts.orbit")
+local gen = require("scripts.planet-gen")
 
 local function init_storage()
   storage.planets = storage.planets or {}
@@ -20,11 +21,17 @@ end
 script.on_init(init_storage)
 script.on_configuration_changed(init_storage)
 
--- Keep the orbit surface looking like space: void any newly generated chunk.
+-- On chunk generation: orbit becomes space, and planet classes with a ground
+-- tile get painted so they stop borrowing the Nauvis biome.
 script.on_event(defines.events.on_chunk_generated, function(event)
-  if event.surface and event.surface.valid and event.surface.name == orbit.name then
-    orbit.space_area(event.surface, event.area)
+  local surface = event.surface
+  if not (surface and surface.valid) then return end
+  if surface.name == orbit.name then
+    orbit.space_area(surface, event.area)
+    return
   end
+  local facts = gen.facts_for_surface(surface.name)
+  if facts then gen.paint_planet_chunk(surface, event.area, facts) end
 end)
 
 -- Handlers must be (re)registered on every load, so register at top level.

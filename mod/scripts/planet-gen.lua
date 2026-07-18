@@ -76,6 +76,27 @@ end
 
 M.surface_name = surface_name
 
+-- Look up a planet's facts from its surface name (jjt-<name>).
+function M.facts_for_surface(sname)
+  local name = sname:match("^jjt%-(.+)$")
+  return name and storage.planets and storage.planets[name] or nil
+end
+
+-- Paint a chunk with the planet class's ground tile, if it defines one, so
+-- classes like frozen and volcanic stop borrowing the Nauvis biome.
+function M.paint_planet_chunk(surface, area, facts)
+  local tile = facts.terrain and facts.terrain.ground
+  if not tile then return end
+  local tiles = {}
+  local lt, rb = area.left_top, area.right_bottom
+  for x = lt.x, rb.x - 1 do
+    for y = lt.y, rb.y - 1 do
+      tiles[#tiles + 1] = { name = tile, position = { x, y } }
+    end
+  end
+  surface.set_tiles(tiles)
+end
+
 -- Generate the next planet in this save's sequence.
 function M.generate()
   storage.planet_counter = (storage.planet_counter or 0) + 1

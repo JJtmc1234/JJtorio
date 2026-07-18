@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.8
+Date: 2026-07-18
+  Bugfixes:
+    - Frozen and volcanic planets now paint with base tiles (concrete and
+      nuclear ground) instead of looking like Nauvis. Oceanic water was reduced
+      so there is land to stand on.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.7
 Date: 2026-07-18
   Changes:
