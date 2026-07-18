@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.15
+Date: 2026-07-18
+  Features:
+    - Added a large draft tech web, over 1000 placeholder technologies across
+      about 69 feature families hung off every science tier (launch systems,
+      radiators, core tapping, warp coils, stellar collectors, and many more).
+      Structure only for now, effects come later.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.14
 Date: 2026-07-18
   Changes:

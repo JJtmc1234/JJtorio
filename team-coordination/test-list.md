@@ -6,7 +6,7 @@ know exactly what to launch Factorio and check. Mark each item's status as you l
 
 Status key:  [ ] not tested   [~] partially / issue found   [x] passes   [!] BLOCKER/broken
 
-Target build: JJtorio 0.1.13 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
+Target build: JJtorio 0.1.15 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0 — M0: does the foundation even load + run? (BLOCKING everything else)
@@ -46,6 +46,13 @@ Target build: JJtorio 0.1.13 (published). Load in Factorio 2.0 BASE GAME — NO 
        the chain after the rocket silo, Rocket, Orbital, the six planet
        sciences, Resonance, Core, Exotic, the three force sciences, and Stellar,
        with intermediate techs hanging off each. Recipes vary per pack now.
+
+[ ] 9. Big draft tech web (0.1.15). Over 1000 placeholder technologies hang off
+       every science tier as feature families (launch systems, radiators, core
+       tapping, warp coils, stellar collectors, and more). First confirm the mod
+       still LOADS, this is the largest data addition yet. Then open the tech
+       tree and confirm it is dense with the families. Effects are empty on
+       purpose for now.
 
 ## Known issues
 Tiles work. The textures are flat stand-ins, real art is a future polish item.
