@@ -30,5 +30,6 @@ mod/ for live testing.
 
 ## Coordination
 Several Claude processes work on this repo. Releases go through the main session
-only. Workers use branches. The shared channel is
-team-coordination/MANAGER-COMMS.txt.
+only. Workers use branches. The live coordination channel is MANAGER-COMMS.txt
+at the repo root, because a second process writes to it there. The other
+coordination and design docs are in team-coordination/.
