@@ -4,50 +4,40 @@ Update every meaningful step: current stage, what's running, what's blocked.
 Keep in lockstep with context.txt.
 
 ## Stage
-0.1.1 staged (NOT yet published): QoL reach tweaks, ~40% cheaper research,
-rocket-silo tech gating, post-silo Planetary Survey -> Survey Satellite
-(placeholder, too SE-like), and a dev /jjt-orbit placeholder orbit surface.
-Direction set: post-silo path is reach orbit (tiled space) -> new orbital
-science. Still NOT run in Factorio; many slices stacked unverified.
+0.1.4 PUBLISHED (2026-07-18). Integrated four worker-agent branches into main
+and released. Still NOT run in Factorio (M0 in-game verify pending — only JJ
+can launch the game).
 
-## Done
-- Mod moved into mod/ subfolder; repo root keeps design docs.
-- Junction at %APPDATA%\Factorio\mods\JJtorio repointed to mod/.
-- data stage: early-game mining-speed tweak (prototypes/tweaks.lua).
-- control stage: storage init + procedural planet generation
-  (scripts/planet-gen.lua) + dev commands (scripts/commands.lua).
-- PUBLISHED 0.1.0 to the mod portal (first publish via website by user).
-- Auto-publisher live: tools/publish.ps1 uploads via the portal API using
-  FACTORIO_API_KEY (set as a user env var; confirmed visible to the shell).
-  Claude can push future versions with publish.ps1 -NewVersion x.y.z.
-- Dev tooling: tools/build-release.ps1, tools/gen-placeholder-icons.ps1,
-  placeholder icons under mod/graphics/icons/, README, .gitattributes.
-- All Lua passes luac -p (syntax only; Factorio API unverified).
+## Done (0.1.4)
+- Merged (file-level) from the employee branches:
+  - E1: crash fix on rocket launch (reads the cargo pod, not the removed 2.0
+    rocket inventory) + guarded character edits.
+  - E2: rocket-silo gate trimmed to ~10 "mature base" techs (JJ's choice);
+    starting inventory +20.
+  - E4: better placeholder icons + a survey-satellite icon + thumbnail; icon
+    generator rewrite. Repointed survey-satellite.lua to the new icon.
+  - E3: orbital science design (design/orbit-and-orbital-science.md) +
+    prototypes/orbital-science.lua, left UN-WIRED until M0 verifies.
+- Refreshed info.json description + PORTAL.md (today-vs-planned split).
+- All Lua passes luac -p; zip built + published.
 
-## Decided
-- SE-style procedurally generated planets (runtime surfaces).
-- Light early game; depth in space. Keep the vanilla rocket silo.
-- Incompatible with SA and SE; standalone overhaul.
-- Publish to the mod portal as a sync/test path (user accepts it's public).
-  Holding the actual public upload until the user is back — not firing an
-  irreversible public action unattended.
+## Open / MUST verify in-game (M0)
+- Nothing has run in Factorio. Load 0.1.4, watch for errors, run
+  /jjt-new-planet, /jjt-goto <name>, /jjt-orbit.
+- Science-pack yield: JJ reported red/green craft 1, not 2. Code looks correct
+  (both audits) and E2 kept it; UNRESOLVED — re-check on 0.1.4, then diagnose
+  or remove.
 
-## Open questions / MUST verify in-game
-- UNVERIFIED: the whole mod has not been loaded in Factorio yet. Code
-  follows the documented 2.0 API but nothing is confirmed to run.
-  Verify: load save, run /jjt-new-planet, /jjt-goto <name>; watch for errors.
-- Confirm game.create_surface + MapGenSettings behave as assumed on base 2.0.
-- Confirm `storage` (not `global`) and command re-registration on load.
+## Next (lanes)
+- MAIN (this session): planet terrain per class ("barren Xavara is grassy") +
+  new custom tiles.
+- Employees: break-blueprint restructure (jjt- early intermediates/buildings);
+  the original Core Tap extraction mechanic.
+- After M0 verifies: wire orbital-science.lua; real orbit ascent (PLAN M1/M2).
 
-## Next steps (roadmap)
-1. Load in-game, fix whatever the API got wrong (expect some). [USER]
-   Then ship the fix as 0.1.1 via publish.ps1.
-2. Real travel: tie planet arrival to the rocket silo instead of /jjt-goto.
-3. Give planets distinct terrain per class (tiles/autoplace), not just
-   recolored nauvis.
-4. Make planet "facts" mechanically matter (gravity, day length).
+## Coordination
+- MANAGER-COMMS.txt is the channel with MANAGER-CLAUDE. Releases are
+  centralized through MAIN (this session). Employees work on branches; MAIN
+  reviews + merges + publishes.
 
-## Blocked
-- Step 1 needs an in-game test run (only the user can launch Factorio).
-
-Last updated: 2026-06-13
+Last updated: 2026-07-18

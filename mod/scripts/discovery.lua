@@ -22,7 +22,12 @@ end
 local function on_rocket_launched(event)
   local rocket = event.rocket
   if not (rocket and rocket.valid) then return end
-  local inv = rocket.get_inventory(defines.inventory.rocket)
+  -- 2.0 has no defines.inventory.rocket; the launched payload lives in the
+  -- rocket's cargo pod (defines.inventory.cargo_unit). Both can be absent, so
+  -- guard every step and no-op rather than error.
+  local pod = rocket.cargo_pod
+  if not (pod and pod.valid and defines.inventory.cargo_unit) then return end
+  local inv = pod.get_inventory(defines.inventory.cargo_unit)
   if not inv then return end
   local count = inv.get_item_count("jjt-survey-satellite")
   if count == 0 then return end

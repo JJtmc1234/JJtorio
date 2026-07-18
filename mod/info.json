@@ -1,13 +1,13 @@
 {
   "name": "JJtorio",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "title": "JJtorio",
   "author": "JJ",
   "factorio_version": "2.0",
   "dependencies": [
     "base >= 2.0"
   ],
-  "description": "JJtorio is a work-in-progress overhaul that takes Factorio into an endless, procedurally generated universe. The early game stays light and fast (more reach, cheaper research); the depth begins once you earn the rocket silo, now gated behind the late-game 'megabase' techs. From there you reach orbit and push out to procedurally generated planets, each with its own class, resources, day length and gravity. Standalone - not compatible with Space Age or Space Exploration. Early work in progress. Community feedback welcome: email jjtmcmultiversal@gmail.com with the subject 'JJtorio'.",
+  "description": "JJtorio is a work-in-progress overhaul aiming to turn Factorio 2.0 into an endless, procedurally generated universe. Today: a light, faster early game and procedurally generated planets, with the rocket silo gated behind a mature base. Planned: an early game restructured so vanilla blueprints don't just paste in, reaching orbit and an original orbital science tier, and planets that each force a different way to build. Standalone - not compatible with Space Age or Space Exploration. Early work in progress. Community feedback welcome: email jjtmcmultiversal@gmail.com with the subject 'JJtorio'.",
   "contact": "jjtmcmultiversal@gmail.com",
   "homepage": "https://mods.factorio.com/mod/JJtorio"
 }

@@ -13,10 +13,14 @@ scale("mining-drill", "burner-mining-drill", "mining_speed", 1.5)
 scale("mining-drill", "electric-mining-drill", "mining_speed", 1.5)
 scale("furnace", "stone-furnace", "crafting_speed", 1.5)
 scale("furnace", "steel-furnace", "crafting_speed", 1.5)
+-- asm-1 only 1.3x (0.5 -> 0.65): stays below asm-2's 0.75 so upgrading still
+-- pays off; the rest go 1.5x since they have no same-role successor to protect.
 scale("assembling-machine", "assembling-machine-1", "crafting_speed", 1.3)
 
--- Cheaper: the first two science packs craft in batches of 2 (handles both the
--- {name=,amount=} and {"name", count} result forms).
+-- Cheaper: ONLY the first two science packs craft in batches of 2 -- this makes
+-- the opening (red/green) research light and fast; chemical packs onward are
+-- left at vanilla yield so the mid game keeps its weight. Handles both the
+-- {name=,amount=} and {"name", count} result forms.
 local function set_pack_yield(recipe_name, pack_name, amount)
   local recipe = data.raw.recipe[recipe_name]
   if not (recipe and recipe.results) then return end

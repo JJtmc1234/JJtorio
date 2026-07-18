@@ -2,24 +2,30 @@
 -- The design keeps the early game close to vanilla with light tweaks to make
 -- it faster and less fiddly; the overhaul depth lives later, in space.
 
-local character = data.raw["character"]["character"]
+-- Guard the base lookup so a missing/renamed character prototype can't crash
+-- the data stage.
+local character = data.raw["character"] and data.raw["character"]["character"]
 
--- Add `delta` to a field only if it already exists, so an unexpected base
--- change can't turn this into an arithmetic-on-nil load error.
-local function bump(key, delta)
-  if character[key] then character[key] = character[key] + delta end
+if character then
+  -- Add `delta` to a field only if it already exists, so an unexpected base
+  -- change can't turn this into an arithmetic-on-nil load error.
+  local function bump(key, delta)
+    if character[key] then character[key] = character[key] + delta end
+  end
+
+  -- Faster start: double starting hand-mining speed.
+  if character.mining_speed then character.mining_speed = character.mining_speed * 2 end
+
+  -- More reach: place, interact, mine, and pick up from further away.
+  bump("build_distance", 4)
+  bump("reach_distance", 4)
+  bump("reach_resource_distance", 2)
+  bump("item_pickup_distance", 1)
+  bump("loot_pickup_distance", 1)
+
+  -- A little easier to start: more inventory pockets and a bit quicker on foot.
+  -- +20 (vanilla 80 -> 100) cuts early inventory-full interruptions without
+  -- removing the reason to build storage/logistics.
+  bump("inventory_size", 20)
+  if character.running_speed then character.running_speed = character.running_speed * 1.15 end
 end
-
--- Faster start: double starting hand-mining speed.
-if character.mining_speed then character.mining_speed = character.mining_speed * 2 end
-
--- More reach: place, interact, mine, and pick up from further away.
-bump("build_distance", 4)
-bump("reach_distance", 4)
-bump("reach_resource_distance", 2)
-bump("item_pickup_distance", 1)
-bump("loot_pickup_distance", 1)
-
--- A little easier to start: more inventory pockets and a bit quicker on foot.
-bump("inventory_size", 10)
-if character.running_speed then character.running_speed = character.running_speed * 1.15 end

@@ -3,7 +3,7 @@
 -- scripts/discovery.lua). Unlocked by the Planetary Survey tech, which sits
 -- directly after the rocket silo.
 
-local ICON = "__JJtorio__/graphics/icons/jjt-placeholder-machine.png"
+local ICON = "__JJtorio__/graphics/icons/jjt-survey-satellite.png"
 
 data:extend({
   {

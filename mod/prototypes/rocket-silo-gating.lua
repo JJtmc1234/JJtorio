@@ -1,27 +1,29 @@
--- Push reaching space to the late game: the rocket-silo TECH now requires the
--- "megabase" staples first. Launching is meant to come after a mature base,
--- since the real depth begins in space.
-
+-- Push reaching space to the late game: the rocket-silo TECH now requires a
+-- MATURE base first. Launching is meant to come after you have all six science
+-- packs and solid infrastructure -- but not after "complete the whole game".
+-- The mod's actual identity begins in space, so the gate should mark a real
+-- milestone without demanding pure end-game optimization (all three module-3
+-- tiers, beacons, kovarex, personal equipment) that would delay the fun.
+--
+-- Deliberately EXCLUDED (optimization / personal QoL, not base maturity):
+--   effect-transmission (beacons), speed/productivity/efficiency-module-3,
+--   kovarex-enrichment-process, personal-roboport-2, exoskeleton-equipment.
+-- The human may re-add any of these for a harsher gate, or drop nuclear/
+-- uranium for a faster route to orbit -- flagged for playtest.
+--
 -- Names that don't exist in the running game are skipped automatically below,
--- so this list can be generous.
+-- so this list is safe to keep generous.
 local GATES = {
   "bulk-inserter",
   "logistics-3",              -- express (blue) belts
-  "effect-transmission",      -- beacons
-  "speed-module-3",
-  "productivity-module-3",
-  "efficiency-module-3",
   "logistic-system",          -- logistic network / bots
-  "personal-roboport-2",
-  "exoskeleton-equipment",
   "automation-3",             -- assembling machine 3
   "advanced-material-processing-2", -- electric furnace tier
-  "nuclear-power",
-  "kovarex-enrichment-process",
   "uranium-processing",
+  "nuclear-power",            -- power milestone (borderline: drop for faster orbit)
   "refined-concrete",
-  "production-science-pack",
-  "utility-science-pack",
+  "production-science-pack",  -- purple: forces the full science base
+  "utility-science-pack",     -- yellow: forces the full science base
 }
 
 local silo = data.raw.technology["rocket-silo"]
