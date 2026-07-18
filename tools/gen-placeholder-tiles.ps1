@@ -1,12 +1,11 @@
-# Generates placeholder tile textures for JJtorio planet biomes.
+# Generates placeholder tile textures for JJtorio custom tiles.
 #
-# These are SCRIPT-DRIVEN STAND-INS, not final art. Each tile gets a base color
-# plus scattered flecks so it reads as a material rather than a flat swatch. A
-# real artist still needs to replace them. Wiring these into Factorio tile
-# prototypes (variants.main, material_background, transitions, map_color) is a
-# separate step and is NOT done here.
+# Output is a 4-variant strip per tile (128x32 = four 32x32 tiles side by side)
+# so it matches a Factorio tile main variant with count 4, size 1. These are
+# SCRIPT-DRIVEN STAND-INS, not final art. Each tile gets a base color plus
+# scattered flecks so it reads as a material.
 #
-# Re-run after adding entries to $tiles below:
+# Re-run after adding entries to $tiles:
 #   powershell -File tools\gen-placeholder-tiles.ps1
 param(
   [string]$OutDir = (Join-Path $PSScriptRoot '..\mod\graphics\tiles')
@@ -14,37 +13,41 @@ param(
 
 Add-Type -AssemblyName System.Drawing
 
-# name = output file jjt-<name>.png ; base = fill color ; fleck = speckle color ;
-# seed = fixed so the texture is reproducible.
 $tiles = @(
-  @{ name = 'snow';   base = @(225, 235, 245); fleck = @(200, 215, 235); seed = 11 },  # frozen
-  @{ name = 'ash';    base = @(35, 30, 30);    fleck = @(185, 75, 20);   seed = 22 },  # volcanic
-  @{ name = 'sand';   base = @(200, 180, 130); fleck = @(170, 150, 100); seed = 33 },  # barren
-  @{ name = 'basalt'; base = @(85, 85, 92);    fleck = @(60, 60, 68);    seed = 44 }   # rocky
+  @{ name = 'jjt-snow';   base = @(220, 230, 242); fleck = @(195, 210, 232); seed = 11 },
+  @{ name = 'jjt-ash';    base = @(36, 31, 31);    fleck = @(150, 60, 18);   seed = 22 },
+  @{ name = 'jjt-sand';   base = @(200, 180, 130); fleck = @(170, 150, 100); seed = 33 },
+  @{ name = 'jjt-basalt'; base = @(85, 85, 92);    fleck = @(60, 60, 68);    seed = 44 }
 )
 
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
-$size = 256
+$tile = 32
+$count = 4
+$w = $tile * $count
+$h = $tile
 
 function Clamp([int]$v) { [Math]::Min([Math]::Max($v, 0), 255) }
 
 foreach ($t in $tiles) {
-  $bmp = New-Object System.Drawing.Bitmap $size, $size
+  $bmp = New-Object System.Drawing.Bitmap $w, $h
   $g = [System.Drawing.Graphics]::FromImage($bmp)
   $g.Clear([System.Drawing.Color]::FromArgb(255, $t.base[0], $t.base[1], $t.base[2]))
   $rand = New-Object System.Random $t.seed
-  for ($i = 0; $i -lt 1600; $i++) {
-    $x = $rand.Next(0, $size)
-    $y = $rand.Next(0, $size)
-    $s = $rand.Next(1, 4)
-    $j = $rand.Next(-15, 16)
-    $col = [System.Drawing.Color]::FromArgb(255, (Clamp ($t.fleck[0] + $j)), (Clamp ($t.fleck[1] + $j)), (Clamp ($t.fleck[2] + $j)))
-    $brush = New-Object System.Drawing.SolidBrush $col
-    $g.FillRectangle($brush, $x, $y, $s, $s)
-    $brush.Dispose()
+  for ($v = 0; $v -lt $count; $v++) {
+    $ox = $v * $tile
+    for ($i = 0; $i -lt 60; $i++) {
+      $x = $ox + $rand.Next(0, $tile)
+      $y = $rand.Next(0, $tile)
+      $s = $rand.Next(1, 3)
+      $j = $rand.Next(-14, 15)
+      $col = [System.Drawing.Color]::FromArgb(255, (Clamp ($t.fleck[0] + $j)), (Clamp ($t.fleck[1] + $j)), (Clamp ($t.fleck[2] + $j)))
+      $brush = New-Object System.Drawing.SolidBrush $col
+      $g.FillRectangle($brush, $x, $y, $s, $s)
+      $brush.Dispose()
+    }
   }
   $g.Dispose()
-  $path = Join-Path $OutDir ("jjt-" + $t.name + ".png")
+  $path = Join-Path $OutDir ($t.name + ".png")
   $bmp.Save($path, [System.Drawing.Imaging.ImageFormat]::Png)
   $bmp.Dispose()
   "Wrote $path"

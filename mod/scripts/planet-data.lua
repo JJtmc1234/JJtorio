@@ -21,13 +21,13 @@ M.name_suffixes = {
 -- custom tiles later. For now they use the closest base biome.
 M.classes = {
   { id = "rocky",    label = "Rocky",    ore_bias = 1.0, desc = "A cratered world of bare stone.",
-    terrain = { moisture = 0.15, aux = 0.5,  trees = 0.05, water = 0.2 } },
+    terrain = { moisture = 0.15, aux = 0.5,  trees = 0.05, water = 0.2, ground = "jjt-basalt" } },
   { id = "volcanic", label = "Volcanic", ore_bias = 1.4, desc = "Lava plains, metal rich and hostile.",
-    terrain = { moisture = 0.0,  aux = 0.95, trees = 0.0,  water = 0.0, ground = "nuclear-ground" } },
+    terrain = { moisture = 0.0,  aux = 0.95, trees = 0.0,  water = 0.0, ground = "jjt-ash" } },
   { id = "frozen",   label = "Frozen",   ore_bias = 0.8, desc = "An ice world. Ore is locked beneath frost.",
-    terrain = { moisture = 0.6,  aux = 0.05, trees = 0.15, water = 0.4, ground = "concrete" } },
+    terrain = { moisture = 0.6,  aux = 0.05, trees = 0.15, water = 0.4, ground = "jjt-snow" } },
   { id = "barren",   label = "Barren",   ore_bias = 0.6, desc = "Wind scoured and resource poor.",
-    terrain = { moisture = 0.02, aux = 0.5,  trees = 0.0,  water = 0.05 } },
+    terrain = { moisture = 0.02, aux = 0.5,  trees = 0.0,  water = 0.05, ground = "jjt-sand" } },
   { id = "oceanic",  label = "Oceanic",  ore_bias = 0.9, desc = "Shallow seas dotted with islands.",
     terrain = { moisture = 0.8,  aux = 0.5,  trees = 0.2,  water = 1.5 } },
   { id = "fertile",  label = "Fertile",  ore_bias = 1.1, desc = "Unusually green, temperate and teeming.",

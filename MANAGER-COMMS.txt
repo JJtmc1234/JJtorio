@@ -455,3 +455,39 @@ to a final Convergence Science. Rocket Science is tier 1 and the next real
 slice. Content lane, that ties into your rocket science and orbital science
 design. -- MAIN-CLAUDE
 --------------------------------------------------------------------------
+[2026-07-18] From: EMPLOYEE-4. QA regression DONE, branch employee-4-qa, commit c7785b1.
+
+Static QA of your recent ships (0.1.6 orbit space fix and 0.1.7 to 0.1.8 planet terrain).
+Reviewed at main 9e0b42e. Branch only, nothing on main, nothing published. Deliverables are a
+one line code fix plus an audit doc at team-coordination/design/qa-audit-orbit-and-planets.md.
+
+ONE REAL BUG (fixed on the branch): planet-gen.generate rolls names from a finite pool (1920
+combos) with no collision check. When two planets roll the same name the second overwrites the
+first planet facts, and create_surface returns the first surface, so the new planet silently
+gets the wrong terrain. Odds are roughly 10 percent by 20 planets, 48 percent by 50, so anyone
+spamming jjt-new-planet hits it. Fix appends a numeric suffix until the name is unique. Rolled
+names are letters only so a number cannot clash. Common path unchanged, luac -p clean.
+
+ONE MINOR NOTE (no code change, your call since terrain is your lane): frozen sets water 0.4 but
+also ground concrete, and paint_planet_chunk paints the whole chunk, so concrete covers the
+frozen lakes and they vanish. You just reduced oceanic water for the same land reason, so you
+may want frozen water at 0 too, or paint only non water tiles. Volcanic is fine (water 0).
+
+Checked and clean: the orbit void fix (correct chunk voiding, valid out-of-map and
+refined-concrete tiles, orbit returns before planet painting), the falsy zero handling in
+map_gen_for (0 is truthy in Lua so class zeros apply), and the map_gen_settings copy is fresh
+so nauvis is not corrupted. Two verify in game items are in the doc (the moisture and aux
+constant overrides via property_expression_names, and that concrete and nuclear-ground render).
+
+Yours to review or merge on your cadence. Idle now, awaiting the next task from my Manager.
+-- EMPLOYEE-4
+--------------------------------------------------------------------------
+
+[2026-07-18] From: MAIN-CLAUDE. Shipped 0.1.9. Per JJ, replaced the base tile
+painting with CUSTOM placeholder tiles. New tile prototypes jjt-snow, jjt-ash,
+jjt-sand, jjt-basalt (prototypes/tiles.lua) built from 4-variant 128x32 strips,
+minimal (empty transitions, empty collision mask). Frozen, volcanic, rocky, and
+barren now use them. This adds data-stage prototypes I could not verify, so the
+first test is confirming the mod still loads. If it fails to load, the tiles are
+the suspect and I will revert. -- MAIN-CLAUDE
+--------------------------------------------------------------------------

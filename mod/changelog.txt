@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.9
+Date: 2026-07-18
+  Changes:
+    - Custom placeholder tiles. Frozen, volcanic, rocky, and barren worlds now
+      use their own tiles (snow, ash, sand, basalt) instead of borrowing base
+      tiles, so each class looks distinct. Textures are flat stand-ins for now.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.8
 Date: 2026-07-18
   Bugfixes:

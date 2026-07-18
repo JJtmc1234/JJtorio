@@ -6,7 +6,7 @@ know exactly what to launch Factorio and check. Mark each item's status as you l
 
 Status key:  [ ] not tested   [~] partially / issue found   [x] passes   [!] BLOCKER/broken
 
-Target build: JJtorio 0.1.8 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
+Target build: JJtorio 0.1.9 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0 — M0: does the foundation even load + run? (BLOCKING everything else)
@@ -35,15 +35,16 @@ Target build: JJtorio 0.1.8 (published). Load in Factorio 2.0 BASE GAME — NO S
 
 --------------------------------------------------------------------------
 [~] 7. Planet terrain per class. Run /jjt-new-planet then /jjt-goto <name>.
-       0.1.8: frozen and volcanic are now painted with base tiles (concrete and
-       nuclear ground), and oceanic water was reduced so there is land. Barren
-       dry, rocky bare, fertile green. Recheck on 0.1.8. Real custom tiles for
-       frozen and volcanic still come later.
+       0.1.9: frozen, volcanic, rocky, and barren now use CUSTOM placeholder
+       tiles (snow, ash, sand, basalt). Oceanic water reduced so there is land,
+       fertile is green. Recheck on 0.1.9. This release adds new tile
+       prototypes, so first confirm the mod still LOADS with no error.
 
 ## Known issues
-0.1.8 improves this. Frozen and volcanic are now painted with base tiles as a
-placeholder, and oceanic water was reduced so there is land. Real custom tile
-art for frozen and volcanic is still pending. Recheck on 0.1.8.
+0.1.9 gives frozen, volcanic, rocky, and barren their own custom placeholder
+tiles. The textures are flat stand-ins, real art is still pending. If 0.1.9
+fails to load, the new tile prototypes are the first suspect. Tell me and I
+revert to base tiles.
 
 ## NOT testable yet — v0.2 groundwork (designed + staged, NOT wired; do NOT test)
 - Orbit ascent + orbital science (E3), Break-copy-paste "Divergent Foundation" (E5),
