@@ -28,7 +28,9 @@ placeholder art with lit item icons, a finer tile grain, and a matching inner
 shadow so icons read as rounded lit forms. Bug fixes from the QC pass in 0.1.10
 and 0.1.11. A rocket launch crash from a wrong cargo pod call, planet name
 collisions overwriting a world, and a Rocket Science pack load error from a
-missing durability field.
+missing durability field. 0.1.19 in progress, not yet committed, adds tech
+unlocked content tiers. Advanced Fabrication, Turbo Logistics, and Exotic
+Munitions, built by cloning base prototypes and bumping stats, draft balance.
 
 ## Next
 Give the drafted tiers real effects and balance beyond placeholder costs, then
@@ -38,5 +40,6 @@ water tuning are polish items.
 ## Open
 The science tree and per tier upgrade techs add many prototypes drafted since
 the last verified load, so confirm the mod still loads in game. Costs, recipes,
-and upgrade effects are placeholder draft balance. Oceanic water tuning needs a
-property expression, deferred.
+and upgrade effects are placeholder draft balance. The 0.1.19 content tiers are
+uncommitted and not yet loaded, so confirm they load before shipping. Oceanic
+water tuning needs a property expression, deferred.
