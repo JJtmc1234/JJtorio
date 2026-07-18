@@ -20,19 +20,18 @@ local function announce(force, facts)
 end
 
 local function on_rocket_launched(event)
-  local rocket = event.rocket
-  if not (rocket and rocket.valid) then return end
-  -- 2.0 has no defines.inventory.rocket; the launched payload lives in the
-  -- rocket's cargo pod (defines.inventory.cargo_unit). Both can be absent, so
-  -- guard every step and no-op rather than error.
-  local pod = rocket.cargo_pod
+  -- The launch payload lives in the silo's attached cargo pod. On base 2.0
+  -- there is no cargo pod, so every step is guarded and this simply no-ops.
+  local silo = event.rocket_silo
+  if not (silo and silo.valid) then return end
+  local pod = silo.attached_cargo_pod
   if not (pod and pod.valid and defines.inventory.cargo_unit) then return end
   local inv = pod.get_inventory(defines.inventory.cargo_unit)
   if not inv then return end
   local count = inv.get_item_count("jjt-survey-satellite")
   if count == 0 then return end
 
-  local force = rocket.force
+  local force = silo.force
   for _ = 1, count do
     local facts = gen.generate()
     announce(force, facts)

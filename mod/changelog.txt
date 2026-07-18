@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.10
+Date: 2026-07-18
+  Features:
+    - Rocket Science tier drafted in the tech tree. A new Rocket Science pack, a
+      gateway tech off the rocket silo, and a first branch of draft techs.
+  Bugfixes:
+    - Fixed a rocket launch crash from a wrong cargo pod call in the discovery
+      hook. It now reads the silo cargo pod safely and no ops on base 2.0.
+    - Planet name collisions no longer overwrite an existing world.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.9
 Date: 2026-07-18
   Changes:

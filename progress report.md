@@ -3,27 +3,25 @@
 Last updated 2026-07-18.
 
 ## Where we are
-Shipped 0.1.6 to the mod portal. This is the foundation and early game, and it
-has now had a first in game test.
+Shipped through 0.1.9, working on 0.1.10. The mod loads in game, the early game
+works, planets generate with per class tiles, and orbit reads as space.
 
 ## Verified in game
-The mod loads on base Factorio 2.0. Dev commands run. Red and green science
-craft two per craft as intended.
+Mod loads on base Factorio 2.0. Dev commands run. Red and green science craft 2.
+Orbit reads as space. Custom placeholder tiles load and planet classes look
+distinct.
 
-## Fixed, needs a recheck
-Orbit looked like a concrete platform on Nauvis. Now the orbit surface voids
-its terrain to out of map and clears clutter, so it reads as a platform in
-space. Recheck with /jjt-orbit on 0.1.7.
-
-Planet terrain now varies by class in 0.1.7. Recheck with /jjt-new-planet then
-/jjt-goto that a barren or rocky world looks dry and treeless, not grassy.
-
-## Still to confirm
-The rocket silo tech shows the intended ten prerequisites and is researchable
-once you have them.
+## New in 0.1.10 (needs a load check)
+Rocket Science tier drafted in the tech tree. A new Rocket Science pack, a
+gateway tech off the rocket silo, and a first branch of draft techs. Also two
+bug fixes from the QC pass. A rocket launch crash from a wrong cargo pod call,
+and planet name collisions overwriting a world.
 
 ## Next
-Planet terrain per class is in 0.1.7, so classes look distinct. Custom tiles
-for frozen and volcanic come next. The team designs the blueprint break and the
-Core Tap. After M0 fully passes we wire in orbital science and the real orbit
-ascent.
+Flesh out the Rocket Science branch with real effects, then Orbital Science.
+Real tile art and oceanic water tuning are polish items. The team is on the
+blueprint break and the Core Tap, design first.
+
+## Open
+The Rocket Science draft adds new prototypes not yet loaded in game, so confirm
+the mod still loads. Oceanic water tuning needs a property expression, deferred.

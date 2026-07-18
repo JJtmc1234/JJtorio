@@ -6,11 +6,11 @@ know exactly what to launch Factorio and check. Mark each item's status as you l
 
 Status key:  [ ] not tested   [~] partially / issue found   [x] passes   [!] BLOCKER/broken
 
-Target build: JJtorio 0.1.9 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
+Target build: JJtorio 0.1.10 (published). Load in Factorio 2.0 BASE GAME — NO Space Age, NO SE.
 
 --------------------------------------------------------------------------
 ## P0 — M0: does the foundation even load + run? (BLOCKING everything else)
-[x] 1. Mod LOADS: enable JJtorio 0.1.5, start a new base-2.0 save. No error at data stage
+[x] 1. Mod LOADS: enable JJtorio 0.1.10, start a new base-2.0 save. No error at data stage
        and no error at control stage. (E1 fixed a definite crash bug — defines.inventory
        .rocket didn't exist in 2.0; confirm nothing else trips.)
 [x] 2. Dev commands run without error and do what they say:
@@ -34,17 +34,19 @@ Target build: JJtorio 0.1.9 (published). Load in Factorio 2.0 BASE GAME — NO S
        own icon) and the 144x144 thumbnail shows on the mod.
 
 --------------------------------------------------------------------------
-[~] 7. Planet terrain per class. Run /jjt-new-planet then /jjt-goto <name>.
-       0.1.9: frozen, volcanic, rocky, and barren now use CUSTOM placeholder
-       tiles (snow, ash, sand, basalt). Oceanic water reduced so there is land,
-       fertile is green. Recheck on 0.1.9. This release adds new tile
-       prototypes, so first confirm the mod still LOADS with no error.
+[x] 7. Planet terrain per class. CONFIRMED working on 0.1.9. The mod loads with
+       the custom tiles, and frozen, volcanic, rocky, and barren use their own
+       tiles (snow, ash, sand, basalt). Oceanic has land, fertile is green.
+       Real tile art is a future polish item, not a bug.
+
+[ ] 8. Rocket Science tier (0.1.10). This release adds a new science pack and
+       techs, so first confirm the mod still LOADS. Then in the tech tree find
+       Rocket Science after the rocket silo, research it, craft the Rocket
+       Science pack, and confirm labs accept it and the draft techs appear.
 
 ## Known issues
-0.1.9 gives frozen, volcanic, rocky, and barren their own custom placeholder
-tiles. The textures are flat stand-ins, real art is still pending. If 0.1.9
-fails to load, the new tile prototypes are the first suspect. Tell me and I
-revert to base tiles.
+Tiles work. The textures are flat stand-ins, real art is a future polish item.
+Oceanic water tuning is deferred, 2.0 needs a property expression for water.
 
 ## NOT testable yet — v0.2 groundwork (designed + staged, NOT wired; do NOT test)
 - Orbit ascent + orbital science (E3), Break-copy-paste "Divergent Foundation" (E5),

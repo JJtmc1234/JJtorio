@@ -51,7 +51,9 @@ local function map_gen_for(facts)
   local t = facts.terrain
   if t then
     settings.autoplace_controls["trees"] = { frequency = t.trees or 1, size = t.trees or 1, richness = 1 }
-    if t.water ~= nil then settings.water = t.water end
+    -- NOTE: 2.0 MapGenSettings has no `water` field, so water tuning needs a
+    -- property_expression_names entry (deferred). The `water` in planet-data is
+    -- informational only for now.
     settings.property_expression_names = settings.property_expression_names or {}
     if t.moisture ~= nil then settings.property_expression_names["moisture"] = tostring(t.moisture) end
     if t.aux ~= nil then settings.property_expression_names["aux"] = tostring(t.aux) end
@@ -104,6 +106,13 @@ function M.generate()
   -- space so successive planets are not near-identical.
   local seed = (storage.universe_seed + storage.planet_counter * 2654435761) % 0x100000000
   local facts = M.roll_facts(seed)
+  -- Avoid a name collision overwriting an existing planet.
+  local base = facts.name
+  local n = 2
+  while storage.planets[facts.name] do
+    facts.name = base .. " " .. n
+    n = n + 1
+  end
   storage.planets[facts.name] = facts
   M.create_surface(facts)
   return facts
