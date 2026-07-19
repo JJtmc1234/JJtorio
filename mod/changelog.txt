@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.23
+Date: 2026-07-18
+  Changes:
+    - Thumbnail now hints at the core loop. A subtle ascent streak rises toward
+      orbit past the planet, reinforcing the reach-space identity of the mod.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.22
 Date: 2026-07-18
   Changes:

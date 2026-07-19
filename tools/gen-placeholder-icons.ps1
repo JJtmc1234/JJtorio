@@ -155,6 +155,22 @@ for ($i = 0; $i -lt 40; $i++) {
   $x = $rand.Next(0, $tsize); $y = $rand.Next(0, $tsize); $s = $rand.Next(1, 3)
   $tg.FillEllipse($star, $x, $y, $s, $s)
 }
+# Ascent streak: a fading trail rising toward orbit, on-theme for "reach space".
+$hx = 74.0; $hy = 52.0        # head (near the top, closing on orbit)
+$tx = 34.0; $ty = 132.0       # tail (down low)
+for ($i = 0; $i -le 26; $i++) {
+  $f = $i / 26.0
+  $px = $tx + ($hx - $tx) * $f
+  $py = $ty + ($hy - $ty) * $f
+  $a  = [int](30 + 150 * $f)                 # brighter toward the head
+  $d  = 1.0 + 2.0 * $f                        # wider toward the head
+  $tr = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb($a, 180, 210, 255))
+  $tg.FillEllipse($tr, ($px - $d / 2), ($py - $d / 2), $d, $d)
+  $tr.Dispose()
+}
+$headGlow = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(230, 235, 245, 255))
+$tg.FillEllipse($headGlow, ($hx - 2.5), ($hy - 2.5), 5, 5)
+$headGlow.Dispose()
 # Soft atmospheric glow behind the planet.
 $glowPath = New-Object System.Drawing.Drawing2D.GraphicsPath
 $glowPath.AddEllipse(($tsize - 70), ($tsize - 70), 68, 68)
