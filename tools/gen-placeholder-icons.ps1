@@ -147,8 +147,26 @@ for ($i = 0; $i -lt 40; $i++) {
   $x = $rand.Next(0, $tsize); $y = $rand.Next(0, $tsize); $s = $rand.Next(1, 3)
   $tg.FillEllipse($star, $x, $y, $s, $s)
 }
-$planet = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(255, 90, 150, 200))
+# Soft atmospheric glow behind the planet.
+$glowPath = New-Object System.Drawing.Drawing2D.GraphicsPath
+$glowPath.AddEllipse(($tsize - 70), ($tsize - 70), 68, 68)
+$glow = New-Object System.Drawing.Drawing2D.PathGradientBrush $glowPath
+$glow.CenterColor = [System.Drawing.Color]::FromArgb(120, 120, 180, 230)
+$glow.SurroundColors = @([System.Drawing.Color]::FromArgb(0, 120, 180, 230))
+$tg.FillEllipse($glow, ($tsize - 70), ($tsize - 70), 68, 68)
+$glow.Dispose(); $glowPath.Dispose()
+# Planet disc, then a top-left highlight so it reads as a lit sphere.
+$planet = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(255, 70, 120, 175))
 $tg.FillEllipse($planet, ($tsize - 58), ($tsize - 58), 44, 44)
+$litPath = New-Object System.Drawing.Drawing2D.GraphicsPath
+$litPath.AddEllipse(($tsize - 58), ($tsize - 58), 44, 44)
+$lit = New-Object System.Drawing.Drawing2D.PathGradientBrush $litPath
+$lit.CenterColor = [System.Drawing.Color]::FromArgb(0, 0, 0, 0)
+$lit.SurroundColors = @([System.Drawing.Color]::FromArgb(150, 0, 0, 0))
+$lit.FocusScales = New-Object System.Drawing.PointF 0.35, 0.35
+$lit.CenterPoint = New-Object System.Drawing.PointF ([single]($tsize - 48)), ([single]($tsize - 48))
+$tg.FillEllipse($lit, ($tsize - 58), ($tsize - 58), 44, 44)
+$lit.Dispose(); $litPath.Dispose()
 $tfont = New-Object System.Drawing.Font 'Arial', 25, ([System.Drawing.FontStyle]::Bold)
 $tsf = New-Object System.Drawing.StringFormat
 $tsf.Alignment = [System.Drawing.StringAlignment]::Center
