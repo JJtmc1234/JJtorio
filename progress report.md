@@ -3,7 +3,7 @@
 Last updated 2026-07-18.
 
 ## Where we are
-Shipped through 0.1.23. The mod loads in game, the early game works, planets
+Shipped through 0.1.24. The mod loads in game, the early game works, planets
 generate with per class tiles, and orbit reads as space. The full late game
 tech tree is drafted, tiers 1 to 8, with per tier upgrade techs between the
 tiers that grant real bonuses. Techs now unlock new tiers of content.
@@ -30,7 +30,7 @@ collisions overwriting a world, and a Rocket Science pack load error from a
 missing durability field. 0.1.19 added tech unlocked content tiers. Advanced
 Fabrication, Turbo Logistics, and Exotic Munitions, built by cloning base
 prototypes and bumping stats, draft balance. A run of art polish from 0.1.14
-through 0.1.23 improved the placeholder look. Lit item icons with inner shadow
+through 0.1.24 improved the placeholder look. Lit item icons with inner shadow
 and beveled frames, a finer tile grain and coarse mottle, and a lit planet with
 an ascent streak on the mod thumbnail.
 
