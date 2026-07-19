@@ -94,10 +94,18 @@ function New-Placeholder {
     default { }
   }
 
-  # Border.
+  # Beveled border: light top/left, dark bottom/right (same light as the fill)
+  # so the frame reads as a raised edge instead of a flat outline.
   $inset = [Math]::Max([int]($Size / 21), 2)
-  $pen = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(255, 235, 235, 235)), ([single]$inset)
-  $gfx.DrawRectangle($pen, $inset, $inset, ($Size - 2 * $inset - 1), ($Size - 2 * $inset - 1))
+  $lo = [single]$inset
+  $hi = [single]($Size - $inset - 1)
+  $litPen  = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(255, 250, 250, 250)), ([single]$inset)
+  $darkPen = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(255, 120, 120, 120)), ([single]$inset)
+  $gfx.DrawLine($litPen,  $lo, $lo, $hi, $lo)   # top
+  $gfx.DrawLine($litPen,  $lo, $lo, $lo, $hi)   # left
+  $gfx.DrawLine($darkPen, $lo, $hi, $hi, $hi)   # bottom
+  $gfx.DrawLine($darkPen, $hi, $lo, $hi, $hi)   # right
+  $litPen.Dispose(); $darkPen.Dispose()
 
   # Label: size the font to the number of characters so 3-letter labels fit.
   $fontSize = if ($Label.Length -ge 3) { [int]($Size * 0.30) }

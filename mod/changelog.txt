@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.22
+Date: 2026-07-18
+  Changes:
+    - Beveled icon frames. The placeholder icon border is now light on the top
+      and left and dark on the bottom and right, so it reads as a raised edge in
+      line with the top-left lighting instead of a flat outline.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.21
 Date: 2026-07-18
   Changes:
