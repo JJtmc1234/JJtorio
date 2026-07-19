@@ -62,6 +62,20 @@ function New-Placeholder {
   $gfx.FillRectangle($sh, $rect)
   $sh.Dispose(); $shPath.Dispose()
 
+  # Faint surface grain so the fill reads as a material, not flat plastic.
+  # Deterministic per color so the icon is reproducible.
+  $grain = New-Object System.Random (($R * 7) + ($G * 13) + $B)
+  for ($n = 0; $n -lt [int]($Size * $Size / 18); $n++) {
+    $gx = $grain.Next(0, $Size)
+    $gy = $grain.Next(0, $Size)
+    $ga = $grain.Next(0, 2)
+    $col = if ($ga) { [System.Drawing.Color]::FromArgb(22, 255, 255, 255) }
+           else     { [System.Drawing.Color]::FromArgb(22, 0, 0, 0) }
+    $gb = New-Object System.Drawing.SolidBrush $col
+    $gfx.FillRectangle($gb, $gx, $gy, 1, 1)
+    $gb.Dispose()
+  }
+
   # Distinguishing glyph, drawn faintly behind the letter.
   $glyphColor = [System.Drawing.Color]::FromArgb(70, 255, 255, 255)
   $gbrush = New-Object System.Drawing.SolidBrush $glyphColor

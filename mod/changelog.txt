@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.24
+Date: 2026-07-18
+  Changes:
+    - Icons get a faint surface grain so their fill reads as a material rather
+      than flat plastic, matching the texture treatment already on the tiles.
+      Kept subtle so the letters and glyphs stay crisp.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.23
 Date: 2026-07-18
   Changes:
