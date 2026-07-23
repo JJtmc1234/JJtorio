@@ -13,7 +13,7 @@ local BONUSES = {
   { type = "character-inventory-slots-bonus", modifier = 2 },
 }
 
--- id, label, and the research_trigger. type is craft-item or build-entity.
+-- id, label, the craft target, and the milestone count.
 local TECHS = {
   { id = "belt-logistics",     label = "Belt Logistics",       craft = "transport-belt",         count = 2000 },
   { id = "fast-logistics",     label = "Fast Logistics",       craft = "fast-transport-belt",    count = 1000 },
@@ -38,17 +38,12 @@ local TECHS = {
   { id = "research-campus",    label = "Research Campus",      craft = "lab",                    count = 50 },
   { id = "beacon-grid",        label = "Beacon Grid",          craft = "beacon",                 count = 50 },
   { id = "defense-line",       label = "Defense Line",         craft = "gun-turret",             count = 100 },
-  { id = "recon-network",      label = "Recon Network",        craft = "radar",                  count = 20 },
+  { id = "recon-network",      label = "Recon Network",        craft = "radar",                  count = 40 },
 }
 
 local protos = {}
 for i, t in ipairs(TECHS) do
-  local trigger
-  if t.craft then
-    trigger = { type = "craft-item", item = t.craft, count = t.count }
-  else
-    trigger = { type = "build-entity", entity = t.build, count = t.count }
-  end
+  local trigger = { type = "craft-item", item = t.craft, count = t.count }
   local bonus = BONUSES[((i - 1) % #BONUSES) + 1]
   protos[#protos + 1] = {
     type = "technology",

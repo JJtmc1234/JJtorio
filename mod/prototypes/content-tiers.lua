@@ -35,10 +35,26 @@ local function recipe(name, ingredients, count)
   made[name] = true
 end
 
+-- Intermediates. Defined before the machine 4 recipe that consumes them, so the
+-- recipe never references an item a missing base prototype skipped.
+local frame = clone_item("low-density-structure", "jjt-reinforced-frame")
+if frame then
+  frame.place_result = nil
+  frame.localised_name = { "", "Reinforced frame" }
+  add[#add + 1] = frame
+  recipe("jjt-reinforced-frame", { { type = "item", name = "low-density-structure", amount = 2 }, { type = "item", name = "steel-plate", amount = 4 } })
+end
+local circuit = clone_item("processing-unit", "jjt-exotic-circuit")
+if circuit then
+  circuit.localised_name = { "", "Exotic circuit" }
+  add[#add + 1] = circuit
+  recipe("jjt-exotic-circuit", { { type = "item", name = "processing-unit", amount = 2 }, { type = "item", name = "advanced-circuit", amount = 4 } })
+end
+
 -- Assembling machine 4
 local am = clone("assembling-machine", "assembling-machine-3", "jjt-assembling-machine-4")
 local ami = clone_item("assembling-machine-3", "jjt-assembling-machine-4", true)
-if am and ami then
+if am and ami and made["jjt-reinforced-frame"] and made["jjt-exotic-circuit"] then
   am.crafting_speed = (am.crafting_speed or 1.25) * 1.6
   am.localised_name = { "", "Assembling machine 4" }
   ami.localised_name = { "", "Assembling machine 4" }
@@ -81,21 +97,6 @@ if ins and insi then
   insi.localised_name = { "", "Turbo inserter" }
   add[#add + 1] = ins; add[#add + 1] = insi
   recipe("jjt-turbo-inserter", { { type = "item", name = "bulk-inserter", amount = 1 }, { type = "item", name = "processing-unit", amount = 2 } })
-end
-
--- Intermediates
-local frame = clone_item("low-density-structure", "jjt-reinforced-frame")
-if frame then
-  frame.place_result = nil
-  frame.localised_name = { "", "Reinforced frame" }
-  add[#add + 1] = frame
-  recipe("jjt-reinforced-frame", { { type = "item", name = "low-density-structure", amount = 2 }, { type = "item", name = "steel-plate", amount = 4 } })
-end
-local circuit = clone_item("processing-unit", "jjt-exotic-circuit")
-if circuit then
-  circuit.localised_name = { "", "Exotic circuit" }
-  add[#add + 1] = circuit
-  recipe("jjt-exotic-circuit", { { type = "item", name = "processing-unit", amount = 2 }, { type = "item", name = "advanced-circuit", amount = 4 } })
 end
 
 -- Upgraded magazine

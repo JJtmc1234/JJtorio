@@ -1,4 +1,17 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.29
+Date: 2026-07-23
+  Changes:
+    - Recon Network trigger tech now wants 40 radars instead of 20, so it fires
+      when the base is scaling, not in the first hour.
+  Internal:
+    - Three agent review pass. Defined the reinforced frame and exotic circuit
+      before the machine 4 recipe that uses them and guarded on them, so the
+      recipe can never point at a skipped intermediate. Removed dead terrain data
+      (moisture, aux, water) and its misleading comment, since planet paint only
+      reads trees, ground, and water_world. Dropped an unreachable code branch in
+      the trigger techs.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.28
 Date: 2026-07-23
   Changes:
