@@ -7,7 +7,7 @@ Keep the four planning docs at the repo root current and concise.
 brainstorm.md holds the idea and the why.
 planning.md holds the plan, milestones, and versioning.
 infrastructure.md holds the system overview, the parts and how they connect.
-progress report.md holds the live status. Update it every meaningful step.
+progress-report.md holds the live status. Update it every meaningful step.
 Coordination and design notes live in team-coordination/. Keep every doc short
 and free of dashes and semicolons, because verbose AI text reads as low effort.
 

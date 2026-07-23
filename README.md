@@ -8,7 +8,7 @@ The four planning docs live at the root.
 brainstorm.md is the idea and the why.
 planning.md is the plan, milestones, and versioning.
 infrastructure.md is how it is built.
-progress report.md is the live status.
+progress-report.md is the live status.
 
 Coordination and design notes live in team-coordination/. The shippable mod is
 in mod/, the dev scripts are in tools/.

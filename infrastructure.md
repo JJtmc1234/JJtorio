@@ -7,6 +7,13 @@ mod/ is the shippable Factorio mod. tools/ holds the build, publish, and art
 scripts. dist/ holds the built zip and is gitignored. team-coordination/ holds
 the coordination and design docs. The four planning docs live at the root.
 
+## File conventions
+Docs and notes use lowercase names with no spaces, words joined by a hyphen,
+and the .md format. Exceptions are the tool required names CLAUDE.md and
+README.md, and the two files that must stay .txt, MANAGER-COMMS.txt because a
+second process writes to it and mod/changelog.txt because Factorio requires that
+name and format. Source and config files keep the names their tools expect.
+
 ## The mod (mod/)
 info.json is the manifest, name JJtorio, Factorio 2.0.
 data.lua loads the data stage tweaks from prototypes/.

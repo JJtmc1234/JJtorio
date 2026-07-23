@@ -8,7 +8,7 @@ worker agent should do when assigned to JJtorio.
 2. brainstorm.md, the idea and the why.
 3. planning.md, the plan, milestones, and versioning.
 4. infrastructure.md, the system overview.
-5. progress report.md, the live status. Update it as you work.
+5. progress-report.md, the live status. Update it as you work.
 Coordination and design docs live in team-coordination.
 
 ## Working rules
@@ -27,7 +27,7 @@ No dashes and no semicolons in any doc or report. Keep docs concise.
 ## Coordination
 Take one area. Keep the diff small. Parallel work uses a git branch or worktree,
 then hand it back for the main session to review, merge, and release. Note what
-you did in progress report.md.
+you did in progress-report.md.
 
 ## Tasks by area
 Code review. Audit Lua and prototypes against the 2.0 API for load and runtime
@@ -37,7 +37,7 @@ Art. Replace the flat placeholder icons and tiles.
 Balance. Early game numbers and the rocket silo gate.
 Content. See planning.md M1 to M4. Rocket science, orbital science, planet
 paradigms, the Core Tap.
-Docs. Keep planning.md, infrastructure.md, progress report.md, and this file
+Docs. Keep planning.md, infrastructure.md, progress-report.md, and this file
 current.
 
 ## Community feedback
