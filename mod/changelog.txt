@@ -5,6 +5,9 @@ Date: 2026-07-22
     - 24 trigger techs. These research themselves when you hit a milestone like
       crafting 2000 belts or building 200 assemblers, no science needed, each
       granting a small bonus. They reward scaling the factory up.
+    - New late game gear. A Heavy Tank, a Heavy Turret with more range, Exo Armor
+      with a bigger equipment grid, an Exo Shield, and Exo Legs. Cloned from base
+      gear and buffed, unlocked by three new techs.
   Bugfixes:
     - Painted planets no longer keep Nauvis grass decoratives, rocks, and cliffs
       on top. Trees are kept so fertile stays lush.
