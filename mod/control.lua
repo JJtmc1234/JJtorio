@@ -26,6 +26,10 @@ script.on_configuration_changed(init_storage)
 script.on_event(defines.events.on_chunk_generated, function(event)
   local surface = event.surface
   if not (surface and surface.valid) then return end
+  -- Bound the retiling to a region around the origin so map expansion cannot
+  -- trigger unbounded per-chunk set_tiles forever.
+  local lt = event.area.left_top
+  if math.abs(lt.x) > 256 or math.abs(lt.y) > 256 then return end
   if surface.name == orbit.name then
     orbit.space_area(surface, event.area)
     return

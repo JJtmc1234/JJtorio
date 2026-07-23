@@ -45,7 +45,8 @@ end
 function M.ensure()
   local surface = game.surfaces[ORBIT]
   if surface then return surface end
-  surface = game.create_surface(ORBIT, game.surfaces["nauvis"].map_gen_settings)
+  local base = game.surfaces["nauvis"] or game.surfaces[1]
+  surface = game.create_surface(ORBIT, base.map_gen_settings)
   surface.request_to_generate_chunks({ 0, 0 }, GEN_RADIUS)
   surface.force_generate_chunk_requests()
   local r = GEN_RADIUS * 32

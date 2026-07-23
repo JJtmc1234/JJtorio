@@ -15,7 +15,7 @@ end
 
 function M.register()
   commands.add_command("jjt-new-planet", "Generate a new procedural planet (dev).", function(event)
-    local player = game.get_player(event.player_index)
+    local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     local facts = gen.generate()
     player.print("Generated " .. describe(facts))
@@ -23,7 +23,7 @@ function M.register()
   end)
 
   commands.add_command("jjt-planets", "List generated planets (dev).", function(event)
-    local player = game.get_player(event.player_index)
+    local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     if not next(storage.planets) then
       player.print("No planets yet. Generate one with /jjt-new-planet")
@@ -35,7 +35,7 @@ function M.register()
   end)
 
   commands.add_command("jjt-goto", "Teleport to a planet by name (dev).", function(event)
-    local player = game.get_player(event.player_index)
+    local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     local facts = event.parameter and storage.planets[event.parameter]
     if not facts then
@@ -51,7 +51,7 @@ function M.register()
   end)
 
   commands.add_command("jjt-orbit", "Go to orbit (dev).", function(event)
-    local player = game.get_player(event.player_index)
+    local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     local surface = orbit.ensure()
     local pos = surface.find_non_colliding_position("character", { 0, 0 }, 64, 1)

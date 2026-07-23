@@ -36,7 +36,8 @@ end
 
 -- Copy nauvis' map gen settings and bias the ores by the planet's richness.
 local function map_gen_for(facts)
-  local settings = game.surfaces["nauvis"].map_gen_settings
+  local base = game.surfaces["nauvis"] or game.surfaces[1]
+  local settings = base.map_gen_settings
   settings.seed = facts.seed % 0x100000000
   settings.autoplace_controls = settings.autoplace_controls or {}
   for _, ore in ipairs({ "iron-ore", "copper-ore", "coal", "stone" }) do

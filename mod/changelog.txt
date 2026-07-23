@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.25
+Date: 2026-07-22
+  Bugfixes:
+    - QC pass fixes. Rocket launch discovery no longer reads a cargo pod that
+      does not exist on base 2.0. It now gates on the Planetary Survey tech, so
+      it cannot error. Bounded the orbit and planet chunk retiling to a region
+      around the origin so it is not unbounded. Guarded the nauvis lookup and
+      the dev commands against a missing player.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.24
 Date: 2026-07-18
   Changes:
