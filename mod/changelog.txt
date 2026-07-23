@@ -143,7 +143,7 @@ Version: 0.1.5
 Date: 2026-07-18
   Changes:
     - Honest scope: the description no longer implies planets are playable yet.
-      0.1.x is the foundation + early game; planets, orbit, and the orbital
+      0.1.x is the foundation and early game. Planets, orbit, and the orbital
       science tier are planned for 0.2.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.4
@@ -151,7 +151,7 @@ Date: 2026-07-18
   Info:
     - Integration of work from four worker agents.
   Bugfixes:
-    - Fixed a crash on rocket launch: 2.0 removed the rocket inventory; the
+    - Fixed a crash on rocket launch. 2.0 removed the rocket inventory, so the
       launch hook now reads the cargo pod and no-ops safely if it's absent.
   Changes:
     - Rocket-silo research gate trimmed to a ~10-tech "mature base" (dropped
@@ -166,7 +166,7 @@ Version: 0.1.3
 Date: 2026-06-13
   Changes:
     - Cheaper, faster early game: quicker labs, tier-1 miners, furnaces, and
-      assembling machine 1; the first two science packs craft in batches of 2.
+      assembling machine 1. The first two science packs craft in batches of 2.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.2
 Date: 2026-06-13
@@ -184,8 +184,8 @@ Date: 2026-06-13
       power, kovarex, refined concrete, and more), pushing the trip to space
       to well after a mature base.
     - Planetary Survey tech (right after the rocket silo) unlocks a Survey
-      Satellite; launching one discovers a new procedurally generated planet.
-    - Dev: /jjt-orbit creates and visits a placeholder orbit surface - the
+      Satellite. Launching one discovers a new procedurally generated planet.
+    - Dev: /jjt-orbit creates and visits a placeholder orbit surface, the
       foundation for the post-silo orbital science tier.
   Changes:
     - Quality of life: longer build/reach/mining reach and item pickup range.
