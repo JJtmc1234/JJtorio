@@ -40,7 +40,7 @@ if tank and tanki then
   tank.max_health = (tank.max_health or 2000) * 1.5
   if tank.inventory_size then tank.inventory_size = tank.inventory_size + 20 end
   tanki.place_result = "jjt-heavy-tank"
-  tank.localised_name = { "", "Heavy Tank" }; tanki.localised_name = { "", "Heavy Tank" }
+  tank.localised_name = { "", "Heavy tank" }; tanki.localised_name = { "", "Heavy tank" }
   add[#add + 1] = tank; add[#add + 1] = tanki
   recipe("jjt-heavy-tank", { { type = "item", name = "tank", amount = 1 }, { type = "item", name = "processing-unit", amount = 20 }, { type = "item", name = "low-density-structure", amount = 20 } })
 end
@@ -53,7 +53,7 @@ if tur and turi then
     tur.attack_parameters.range = tur.attack_parameters.range + 6
   end
   turi.place_result = "jjt-heavy-turret"
-  tur.localised_name = { "", "Heavy Turret" }; turi.localised_name = { "", "Heavy Turret" }
+  tur.localised_name = { "", "Heavy turret" }; turi.localised_name = { "", "Heavy turret" }
   add[#add + 1] = tur; add[#add + 1] = turi
   recipe("jjt-heavy-turret", { { type = "item", name = "gun-turret", amount = 1 }, { type = "item", name = "steel-plate", amount = 20 }, { type = "item", name = "processing-unit", amount = 5 } })
 end
@@ -70,7 +70,7 @@ if pa and data.raw["equipment-grid"][pa.equipment_grid] then
   arm.equipment_grid = "jjt-exo-grid"
   arm.inventory_size_bonus = (arm.inventory_size_bonus or 0) + 30
   arm.order = (arm.order or "z") .. "-jjt"
-  arm.localised_name = { "", "Exo Armor" }
+  arm.localised_name = { "", "Exo armor" }
   add[#add + 1] = arm
   recipe("jjt-exo-armor", { { type = "item", name = "power-armor-mk2", amount = 1 }, { type = "item", name = "processing-unit", amount = 30 }, { type = "item", name = "low-density-structure", amount = 40 } })
 end
@@ -79,8 +79,8 @@ end
 local sh, shi = clone("energy-shield-equipment", "energy-shield-mk2-equipment", "jjt-exo-shield"), clone_item("energy-shield-mk2-equipment", "jjt-exo-shield")
 if sh and shi then
   if sh.max_shield then sh.max_shield = sh.max_shield * 1.5 end
-  shi.placed_as_equipment_result = "jjt-exo-shield"
-  sh.localised_name = { "", "Exo Shield" }; shi.localised_name = { "", "Exo Shield" }
+  shi.place_as_equipment_result = "jjt-exo-shield"
+  sh.localised_name = { "", "Exo shield" }; shi.localised_name = { "", "Exo shield" }
   add[#add + 1] = sh; add[#add + 1] = shi
   recipe("jjt-exo-shield", { { type = "item", name = "energy-shield-mk2-equipment", amount = 1 }, { type = "item", name = "processing-unit", amount = 10 } })
 end
@@ -89,7 +89,7 @@ end
 local legs, legsi = clone("movement-bonus-equipment", "exoskeleton-equipment", "jjt-exo-legs"), clone_item("exoskeleton-equipment", "jjt-exo-legs")
 if legs and legsi then
   if legs.movement_bonus then legs.movement_bonus = legs.movement_bonus * 1.5 end
-  legsi.placed_as_equipment_result = "jjt-exo-legs"
+  legsi.place_as_equipment_result = "jjt-exo-legs"
   legs.localised_name = { "", "Exo Legs" }; legsi.localised_name = { "", "Exo Legs" }
   add[#add + 1] = legs; add[#add + 1] = legsi
   recipe("jjt-exo-legs", { { type = "item", name = "exoskeleton-equipment", amount = 1 }, { type = "item", name = "processing-unit", amount = 10 } })
