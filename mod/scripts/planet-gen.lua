@@ -82,16 +82,29 @@ end
 -- Paint a chunk with the planet class's ground tile, if it defines one, so
 -- classes like frozen and volcanic stop borrowing the Nauvis biome.
 function M.paint_planet_chunk(surface, area, facts)
-  local tile = facts.terrain and facts.terrain.ground
-  if not tile then return end
-  local tiles = {}
+  local t = facts.terrain
+  if not (t and (t.ground or t.water_world)) then return end
   local lt, rb = area.left_top, area.right_bottom
+  local tiles = {}
   for x = lt.x, rb.x - 1 do
     for y = lt.y, rb.y - 1 do
-      tiles[#tiles + 1] = { name = tile, position = { x, y } }
+      local name = t.ground
+      if t.water_world then
+        -- Sea with chunky islands, the rest water.
+        local land = (math.floor(x / 6) + math.floor(y / 6)) % 3 == 0
+        name = land and "sand-1" or "water"
+      end
+      tiles[#tiles + 1] = { name = name, position = { x, y } }
     end
   end
   surface.set_tiles(tiles)
+  -- Clear Nauvis decoratives and clutter so the painted ground does not keep
+  -- grass tufts, rocks, and cliffs on top. Trees are left to the class tree
+  -- autoplace, so fertile can stay lush and barren stays bare.
+  surface.destroy_decoratives({ area = area })
+  for _, e in pairs(surface.find_entities_filtered({ area = area, type = { "cliff", "simple-entity" } })) do
+    if e.valid then e.destroy() end
+  end
 end
 
 -- Generate the next planet in this save's sequence.

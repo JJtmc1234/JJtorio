@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.27
+Date: 2026-07-22
+  Bugfixes:
+    - Painted planets no longer keep Nauvis grass decoratives, rocks, and cliffs
+      on top. Trees are kept so fertile stays lush.
+  Changes:
+    - Oceanic is now a sea with sand islands. Fertile paints green ground.
+    - The exotic magazine hits harder, double round damage on top of the double
+      magazine size.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.26
 Date: 2026-07-22
   Changes:

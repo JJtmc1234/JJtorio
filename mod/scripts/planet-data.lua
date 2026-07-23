@@ -29,9 +29,9 @@ M.classes = {
   { id = "barren",   label = "Barren",   ore_bias = 0.6, desc = "Wind scoured and resource poor.",
     terrain = { moisture = 0.02, aux = 0.5,  trees = 0.0,  water = 0.05, ground = "jjt-sand" } },
   { id = "oceanic",  label = "Oceanic",  ore_bias = 0.9, desc = "Shallow seas dotted with islands.",
-    terrain = { moisture = 0.8,  aux = 0.5,  trees = 0.2,  water = 1.5 } },
+    terrain = { moisture = 0.8,  aux = 0.5,  trees = 0.2,  water = 1.5, water_world = true } },
   { id = "fertile",  label = "Fertile",  ore_bias = 1.1, desc = "Unusually green, temperate and teeming.",
-    terrain = { moisture = 0.95, aux = 0.5,  trees = 0.6,  water = 0.6 } },
+    terrain = { moisture = 0.95, aux = 0.5,  trees = 0.6,  water = 0.6, ground = "grass-1" } },
 }
 
 return M

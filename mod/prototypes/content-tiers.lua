@@ -106,6 +106,16 @@ if ammo then
   a.localised_name = { "", "Exotic Rounds Magazine" }
   a.magazine_size = (a.magazine_size or 10) * 2
   a.order = (a.order or "z") .. "-jjt"
+  -- Bump the round damage too, not just the magazine size. Walk the ammo action
+  -- tree and scale any damage amount. Guarded, so an unexpected shape no-ops.
+  local function scale_damage(node, f)
+    if type(node) ~= "table" then return end
+    if node.type == "damage" and node.damage and node.damage.amount then
+      node.damage.amount = node.damage.amount * f
+    end
+    for _, v in pairs(node) do scale_damage(v, f) end
+  end
+  scale_damage(a.ammo_type, 2)
   add[#add + 1] = a
   recipe("jjt-exotic-rounds-magazine", { { type = "item", name = "uranium-rounds-magazine", amount = 2 } })
 end
