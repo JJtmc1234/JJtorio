@@ -47,17 +47,13 @@ local function map_gen_for(facts)
       richness = facts.ore_richness,
     }
   end
-  -- Class terrain: control trees, water, and the biome bias so a barren world
-  -- actually looks barren instead of grassy.
+  -- Class terrain: tree density per class. The class ground tile (see
+  -- paint_planet_chunk) is what actually differentiates the look. The old
+  -- moisture and aux keys are not valid 2.0 property names, so they are dropped
+  -- rather than left as silent no-ops. Water tuning is still deferred.
   local t = facts.terrain
-  if t then
-    settings.autoplace_controls["trees"] = { frequency = t.trees or 1, size = t.trees or 1, richness = 1 }
-    -- NOTE: 2.0 MapGenSettings has no `water` field, so water tuning needs a
-    -- property_expression_names entry (deferred). The `water` in planet-data is
-    -- informational only for now.
-    settings.property_expression_names = settings.property_expression_names or {}
-    if t.moisture ~= nil then settings.property_expression_names["moisture"] = tostring(t.moisture) end
-    if t.aux ~= nil then settings.property_expression_names["aux"] = tostring(t.aux) end
+  if t and t.trees then
+    settings.autoplace_controls["trees"] = { frequency = t.trees, size = t.trees, richness = 1 }
   end
   return settings
 end
@@ -76,8 +72,6 @@ function M.create_surface(facts)
   surface.force_generate_chunk_requests()
   return surface
 end
-
-M.surface_name = surface_name
 
 -- Look up a planet's facts from its surface name (jjt-<name>).
 function M.facts_for_surface(sname)
@@ -106,6 +100,7 @@ function M.generate()
   -- Knuth multiplicative hash spreads consecutive counters across the seed
   -- space so successive planets are not near-identical.
   local seed = (storage.universe_seed + storage.planet_counter * 2654435761) % 0x100000000
+  if seed == 0 then seed = 1 end
   local facts = M.roll_facts(seed)
   -- Avoid a name collision overwriting an existing planet.
   local base = facts.name

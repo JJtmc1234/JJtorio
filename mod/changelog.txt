@@ -1,108 +1,112 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.26
+Date: 2026-07-22
+  Changes:
+    - Debug and improve pass from a three agent review. Trimmed the per tier
+      boost techs to the documented count and lowered and varied their bonuses
+      so they no longer stack into absurd totals. Moved the research discount to
+      run last so it reaches the new tech tree. Wired reinforced frame and
+      exotic circuit into the assembling machine 4 recipe so they are not dead
+      ends, and made the exotic magazine cost two magazines.
+  Bugfixes:
+    - Dropped the invalid moisture and aux map gen overrides that did nothing on
+      2.0. Coerced a zero planet seed to one. Removed a dead surface name export.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.25
 Date: 2026-07-22
   Bugfixes:
-    - QC pass fixes. Rocket launch discovery no longer reads a cargo pod that
-      does not exist on base 2.0. It now gates on the Planetary Survey tech, so
-      it cannot error. Bounded the orbit and planet chunk retiling to a region
-      around the origin so it is not unbounded. Guarded the nauvis lookup and
-      the dev commands against a missing player.
+    - QC pass fixes. Rocket launch discovery no longer reads a cargo pod absent
+      on base 2.0, it now gates on the Planetary Survey tech. Bounded orbit and
+      planet retiling to a region around the origin. Guarded the nauvis lookup
+      and dev commands against a missing player.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.24
 Date: 2026-07-18
   Changes:
-    - Icons get a faint surface grain so their fill reads as a material rather
-      than flat plastic, matching the texture treatment already on the tiles.
-      Kept subtle so the letters and glyphs stay crisp.
+    - Icons get a faint surface grain so the fill reads as material, not flat
+      plastic, matching the tiles. Kept subtle so glyphs stay crisp.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.23
 Date: 2026-07-18
   Changes:
-    - Thumbnail now hints at the core loop. A subtle ascent streak rises toward
-      orbit past the planet, reinforcing the reach-space identity of the mod.
+    - Thumbnail hints at the core loop. A subtle ascent streak rises toward orbit
+      past the planet, reinforcing the reach-space identity.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.22
 Date: 2026-07-18
   Changes:
-    - Beveled icon frames. The placeholder icon border is now light on the top
-      and left and dark on the bottom and right, so it reads as a raised edge in
-      line with the top-left lighting instead of a flat outline.
+    - Beveled icon frames. The border is light on top and left, dark on bottom
+      and right, so it reads as a raised edge instead of a flat outline.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.21
 Date: 2026-07-18
   Changes:
-    - Nicer mod thumbnail. The planet now has a soft atmospheric glow and
-      top-left shading so it reads as a lit sphere against the starfield.
+    - Nicer thumbnail. The planet gets a soft atmospheric glow and top-left
+      shading so it reads as a lit sphere against the starfield.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.20
 Date: 2026-07-18
   Changes:
-    - Richer placeholder tiles. Added a coarse mottle pass of soft translucent
-      blotches under the flecks, so snow, ash, sand, and basalt vary at a larger
-      scale and read as natural material instead of uniform noise.
+    - Richer placeholder tiles. A coarse mottle pass under the flecks so snow,
+      ash, sand, and basalt vary at a larger scale and read as natural material.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.19
 Date: 2026-07-18
   Features:
     - Techs now unlock new tiers of content. Advanced Fabrication (assembling
-      machine 4 and two intermediates), Turbo Logistics (a faster belt set and
-      a turbo inserter), and Exotic Munitions (an upgraded magazine). Built by
-      cloning base prototypes and bumping stats, draft balance.
+      machine 4 and two intermediates), Turbo Logistics (a faster belt set and a
+      turbo inserter), and Exotic Munitions (an upgraded magazine). Cloned from
+      base prototypes, draft balance.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.18
 Date: 2026-07-18
   Changes:
-    - More depth on the placeholder icons. Added a bottom-right inner shadow to
-      match the existing top-left highlight, so each icon reads as a rounded lit
-      form instead of a flat tile.
+    - More depth on placeholder icons. A bottom-right inner shadow matches the
+      top-left highlight so each icon reads as a rounded lit form.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.17
 Date: 2026-07-18
   Changes:
-    - Removed the 1000 placeholder tech web. It was empty filler, not real
-      progression. The late game is now the science tier chain plus fuller per
-      tier upgrade techs that grant real bonuses, a genuine progression.
+    - Removed the 1000 placeholder tech web, empty filler. The late game is now
+      the science tier chain plus per tier upgrade techs that grant real bonuses.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.16
 Date: 2026-07-18
   Bugfixes:
-    - Fixed the non-contiguous technology levels warning. Per-tier intermediate
-      techs were named like the gateway plus a number, so Factorio read them as
-      levels of the gateway. Renamed them to their own base name.
+    - Fixed the non-contiguous technology levels warning. Per tier techs were
+      named like the gateway plus a number, so Factorio read them as its levels.
+      Renamed to their own base name.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.15
 Date: 2026-07-18
   Features:
-    - Added a large draft tech web, over 1000 placeholder technologies across
-      about 69 feature families hung off every science tier (launch systems,
-      radiators, core tapping, warp coils, stellar collectors, and many more).
-      Structure only for now, effects come later.
+    - Added a large draft tech web, over 1000 placeholder techs across about 69
+      feature families off every science tier (launch systems, radiators, core
+      tapping, warp coils, stellar collectors, and more). Structure only for now.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.14
 Date: 2026-07-18
   Changes:
-    - Nicer placeholder art. Item icons now carry a soft top-left highlight so
-      they read as a lit surface, and the custom tiles gained a fine grain pass
-      for more material texture.
+    - Nicer placeholder art. Item icons carry a soft top-left highlight so they
+      read as lit, and the custom tiles gained a fine grain pass.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.13
 Date: 2026-07-18
   Features:
-    - Fuller late game tech tree. Each science tier now has several intermediate
-      techs that consume its pack and grant real bonuses (lab speed, mining
-      productivity, inventory), filling the tree between the tiers.
+    - Fuller late game tech tree. Each tier now has several intermediate techs
+      that consume its pack and grant real bonuses (lab speed, mining
+      productivity, inventory).
   Changes:
-    - Science pack recipes now vary per tier instead of all using the same two
-      ingredients.
+    - Science pack recipes now vary per tier instead of sharing two ingredients.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.12
 Date: 2026-07-18
   Features:
-    - Late game science tree drafted in game, tiers 1 to 8. Rocket, Orbital,
-      six planet sciences, Resonance, Core, Exotic, three force sciences, and
-      Stellar, each a new pack plus a gateway tech. Placeholder draft balance.
+    - Late game science tree drafted in game, tiers 1 to 8. Rocket, Orbital, six
+      planet sciences, Resonance, Core, Exotic, three force sciences, and
+      Stellar, each a pack plus a gateway tech. Placeholder draft balance.
   Changes:
-    - Folded the standalone Rocket Science draft into the full science tree.
+    - Folded the standalone Rocket Science draft into the full tree.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.11
 Date: 2026-07-18
@@ -113,8 +117,8 @@ Date: 2026-07-18
 Version: 0.1.10
 Date: 2026-07-18
   Features:
-    - Rocket Science tier drafted in the tech tree. A new Rocket Science pack, a
-      gateway tech off the rocket silo, and a first branch of draft techs.
+    - Rocket Science tier drafted. A new pack, a gateway tech off the rocket
+      silo, and a first branch of draft techs.
   Bugfixes:
     - Fixed a rocket launch crash from a wrong cargo pod call in the discovery
       hook. It now reads the silo cargo pod safely and no ops on base 2.0.
@@ -123,37 +127,37 @@ Date: 2026-07-18
 Version: 0.1.9
 Date: 2026-07-18
   Changes:
-    - Custom placeholder tiles. Frozen, volcanic, rocky, and barren worlds now
-      use their own tiles (snow, ash, sand, basalt) instead of borrowing base
-      tiles, so each class looks distinct. Textures are flat stand-ins for now.
+    - Custom placeholder tiles. Frozen, volcanic, rocky, and barren worlds use
+      their own tiles (snow, ash, sand, basalt) instead of base tiles. Flat
+      stand-ins for now.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.8
 Date: 2026-07-18
   Bugfixes:
-    - Frozen and volcanic planets now paint with base tiles (concrete and
-      nuclear ground) instead of looking like Nauvis. Oceanic water was reduced
-      so there is land to stand on.
+    - Frozen and volcanic planets paint with base tiles (concrete and nuclear
+      ground) instead of looking like Nauvis. Oceanic water reduced so there is
+      land to stand on.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.7
 Date: 2026-07-18
   Changes:
-    - Planets now look like their class. Each class sets tree density, water,
-      and biome bias, so a barren world is dry and treeless instead of grassy.
-      Frozen and volcanic will get custom tiles later.
+    - Planets look like their class. Each class sets tree density, water, and
+      biome bias, so a barren world is dry and treeless. Frozen and volcanic get
+      custom tiles later.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.6
 Date: 2026-07-18
   Bugfixes:
-    - Orbit now reads as space. The orbit surface voids its terrain to
-      out-of-map and clears clutter, so it is a platform in space instead of a
-      concrete square on Nauvis terrain.
+    - Orbit reads as space. The surface voids its terrain to out-of-map and
+      clears clutter, so it is a platform in space instead of a concrete square
+      on Nauvis.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.5
 Date: 2026-07-18
   Changes:
-    - Honest scope: the description no longer implies planets are playable yet.
-      0.1.x is the foundation and early game. Planets, orbit, and the orbital
-      science tier are planned for 0.2.
+    - Honest scope. The description no longer implies planets are playable. 0.1.x
+      is the foundation and early game. Planets, orbit, and orbital science are
+      planned for 0.2.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.4
 Date: 2026-07-18
@@ -161,43 +165,41 @@ Date: 2026-07-18
     - Integration of work from four worker agents.
   Bugfixes:
     - Fixed a crash on rocket launch. 2.0 removed the rocket inventory, so the
-      launch hook now reads the cargo pod and no-ops safely if it's absent.
+      hook reads the cargo pod and no-ops safely if it's absent.
   Changes:
-    - Rocket-silo research gate trimmed to a ~10-tech "mature base" (dropped
-      pure-optimization techs like tier-3 modules, beacons, and kovarex).
-    - Starting inventory is now +20 (vanilla 80 -> 100).
-    - New placeholder art: distinct per-item icons, a dedicated survey-satellite
-      icon, and a proper space-themed 144x144 thumbnail.
+    - Rocket-silo gate trimmed to a ~10-tech mature base (dropped pure
+      optimization techs like tier-3 modules, beacons, and kovarex).
+    - Starting inventory is now +20 (80 to 100).
+    - New placeholder art, distinct per-item icons, a survey-satellite icon, and
+      a 144x144 thumbnail.
   Internal:
-    - Added an (un-wired) orbital science design + prototype for the next tier.
+    - Added an un-wired orbital science design and prototype for the next tier.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.3
 Date: 2026-06-13
   Changes:
-    - Cheaper, faster early game: quicker labs, tier-1 miners, furnaces, and
+    - Cheaper, faster early game, quicker labs, tier-1 miners, furnaces, and
       assembling machine 1. The first two science packs craft in batches of 2.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.2
 Date: 2026-06-13
   Changes:
-    - Easier early game: larger starting inventory and slightly faster
-      movement, on top of the existing mining/reach/cheaper-research tweaks.
-    - Fuller in-game description and a contact address for community feedback.
+    - Easier early game, larger starting inventory and slightly faster movement,
+      on top of the existing tweaks.
+    - Fuller in-game description and a contact address for feedback.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 2026-06-13
   Features:
-    - Rocket silo research now requires the late-game "megabase" staples first
-      (bulk inserters, express belts, beacons, all tier-3 modules, logistic
-      system, personal roboport 2, exoskeletons, assembling machine 3, nuclear
-      power, kovarex, refined concrete, and more), pushing the trip to space
-      to well after a mature base.
-    - Planetary Survey tech (right after the rocket silo) unlocks a Survey
-      Satellite. Launching one discovers a new procedurally generated planet.
-    - Dev: /jjt-orbit creates and visits a placeholder orbit surface, the
-      foundation for the post-silo orbital science tier.
+    - Rocket silo research now requires late-game megabase staples first (bulk
+      inserters, express belts, beacons, all tier-3 modules, logistic system,
+      personal roboport 2, exoskeletons, assembling machine 3, nuclear, kovarex,
+      refined concrete), pushing space to well after a mature base.
+    - Planetary Survey tech unlocks a Survey Satellite. Launching one discovers a
+      new procedurally generated planet.
+    - Dev: /jjt-orbit creates and visits a placeholder orbit surface.
   Changes:
-    - Quality of life: longer build/reach/mining reach and item pickup range.
+    - QoL, longer build, reach, mining, and item pickup range.
     - Research costs reduced ~40% across the board.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0
@@ -205,8 +207,8 @@ Date: 2026-06-13
   Info:
     - Initial mod skeleton and procedural planet foundation.
   Features:
-    - Procedurally generated planets as runtime surfaces (SE-style), each
-      with random "facts": name, class, ore richness, day length, gravity.
+    - Procedurally generated planets as runtime surfaces (SE-style), each with
+      random facts, name, class, ore richness, day length, gravity.
     - Dev commands: /jjt-new-planet, /jjt-planets, /jjt-goto <name>.
   Changes:
-    - Early game: doubled starting character hand-mining speed.
+    - Early game, doubled starting character hand-mining speed.

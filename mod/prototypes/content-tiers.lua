@@ -43,7 +43,7 @@ if am and ami then
   am.localised_name = { "", "Assembling Machine 4" }
   ami.localised_name = { "", "Assembling Machine 4" }
   add[#add + 1] = am; add[#add + 1] = ami
-  recipe("jjt-assembling-machine-4", { { type = "item", name = "assembling-machine-3", amount = 1 }, { type = "item", name = "processing-unit", amount = 20 } })
+  recipe("jjt-assembling-machine-4", { { type = "item", name = "assembling-machine-3", amount = 1 }, { type = "item", name = "jjt-reinforced-frame", amount = 4 }, { type = "item", name = "jjt-exotic-circuit", amount = 4 } })
 end
 
 -- Turbo belt set
@@ -107,7 +107,7 @@ if ammo then
   a.magazine_size = (a.magazine_size or 10) * 2
   a.order = (a.order or "z") .. "-jjt"
   add[#add + 1] = a
-  recipe("jjt-exotic-rounds-magazine", { { type = "item", name = "uranium-rounds-magazine", amount = 1 }, { type = "item", name = "processing-unit", amount = 1 } })
+  recipe("jjt-exotic-rounds-magazine", { { type = "item", name = "uranium-rounds-magazine", amount = 2 } })
 end
 
 data:extend(add)

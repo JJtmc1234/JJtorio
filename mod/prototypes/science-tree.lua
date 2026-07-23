@@ -11,11 +11,13 @@ local VANILLA = {
   "production-science-pack", "utility-science-pack",
 }
 
--- Safe built-in modifier effects handed out on intermediate techs.
+-- Safe built-in modifier effects handed out on intermediate techs. Kept small
+-- because they stack across every boost tech in the tree.
 local BONUSES = {
-  { type = "laboratory-speed", modifier = 0.15 },
-  { type = "mining-drill-productivity-bonus", modifier = 0.1 },
-  { type = "character-inventory-slots-bonus", modifier = 6 },
+  { type = "laboratory-speed", modifier = 0.08 },
+  { type = "mining-drill-productivity-bonus", modifier = 0.05 },
+  { type = "laboratory-productivity", modifier = 0.04 },
+  { type = "character-inventory-slots-bonus", modifier = 3 },
 }
 
 -- id, label, gateway prereqs, per-tier recipe ingredients, and how many
@@ -118,9 +120,10 @@ for _, t in ipairs(TIERS) do
   -- Intermediate techs use their own base name, NOT the gateway name plus a
   -- number. Naming them jjt-<id>-science-<n> made Factorio read them as levels
   -- of the gateway and warn about non-contiguous levels.
-  -- Fuller per-tier upgrade chain so the tree reads as a real progression.
+  -- Per-tier upgrade chain. Honor the documented count so the tree stays a real
+  -- progression without ballooning into filler.
   local prev = tech_name(t.id)
-  for i = 1, ((t.techs or 2) + 4) do
+  for i = 1, (t.techs or 2) do
     local bonus = BONUSES[((i - 1) % #BONUSES) + 1]
     local name = "jjt-" .. t.id .. "-boost-" .. i
     protos[#protos + 1] = {
