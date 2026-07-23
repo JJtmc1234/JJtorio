@@ -1,6 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.27
 Date: 2026-07-22
+  Features:
+    - 24 trigger techs. These research themselves when you hit a milestone like
+      crafting 2000 belts or building 200 assemblers, no science needed, each
+      granting a small bonus. They reward scaling the factory up.
   Bugfixes:
     - Painted planets no longer keep Nauvis grass decoratives, rocks, and cliffs
       on top. Trees are kept so fertile stays lush.
