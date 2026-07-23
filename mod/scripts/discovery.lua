@@ -14,7 +14,7 @@ local function announce(force, facts)
   for _, player in pairs(game.connected_players) do
     if player.force == force then
       player.print("Survey reached orbit. Discovered planet " .. facts.name
-        .. " (" .. facts.class_label .. "). Travel with: /jjt-goto " .. facts.name)
+        .. " (" .. facts.class_label .. "). Travel with: /goto " .. facts.name)
     end
   end
 end

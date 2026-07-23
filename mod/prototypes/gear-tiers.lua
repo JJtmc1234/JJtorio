@@ -90,7 +90,7 @@ local legs, legsi = clone("movement-bonus-equipment", "exoskeleton-equipment", "
 if legs and legsi then
   if legs.movement_bonus then legs.movement_bonus = legs.movement_bonus * 1.5 end
   legsi.place_as_equipment_result = "jjt-exo-legs"
-  legs.localised_name = { "", "Exo Legs" }; legsi.localised_name = { "", "Exo Legs" }
+  legs.localised_name = { "", "Exo legs" }; legsi.localised_name = { "", "Exo legs" }
   add[#add + 1] = legs; add[#add + 1] = legsi
   recipe("jjt-exo-legs", { { type = "item", name = "exoskeleton-equipment", amount = 1 }, { type = "item", name = "processing-unit", amount = 10 } })
 end

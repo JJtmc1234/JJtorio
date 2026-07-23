@@ -40,8 +40,8 @@ local am = clone("assembling-machine", "assembling-machine-3", "jjt-assembling-m
 local ami = clone_item("assembling-machine-3", "jjt-assembling-machine-4", true)
 if am and ami then
   am.crafting_speed = (am.crafting_speed or 1.25) * 1.6
-  am.localised_name = { "", "Assembling Machine 4" }
-  ami.localised_name = { "", "Assembling Machine 4" }
+  am.localised_name = { "", "Assembling machine 4" }
+  ami.localised_name = { "", "Assembling machine 4" }
   add[#add + 1] = am; add[#add + 1] = ami
   recipe("jjt-assembling-machine-4", { { type = "item", name = "assembling-machine-3", amount = 1 }, { type = "item", name = "jjt-reinforced-frame", amount = 4 }, { type = "item", name = "jjt-exotic-circuit", amount = 4 } })
 end
@@ -58,12 +58,12 @@ if belt and ug and sp and belti and ugi and spi then
   belt.speed = speed; ug.speed = speed; sp.speed = speed
   belt.related_underground_belt = "jjt-turbo-underground-belt"
   ug.max_distance = (ug.max_distance or 9) + 2
-  belt.localised_name = { "", "Turbo Transport Belt" }
-  ug.localised_name = { "", "Turbo Underground Belt" }
-  sp.localised_name = { "", "Turbo Splitter" }
-  belti.localised_name = { "", "Turbo Transport Belt" }
-  ugi.localised_name = { "", "Turbo Underground Belt" }
-  spi.localised_name = { "", "Turbo Splitter" }
+  belt.localised_name = { "", "Turbo transport belt" }
+  ug.localised_name = { "", "Turbo underground belt" }
+  sp.localised_name = { "", "Turbo splitter" }
+  belti.localised_name = { "", "Turbo transport belt" }
+  ugi.localised_name = { "", "Turbo underground belt" }
+  spi.localised_name = { "", "Turbo splitter" }
   add[#add + 1] = belt; add[#add + 1] = ug; add[#add + 1] = sp
   add[#add + 1] = belti; add[#add + 1] = ugi; add[#add + 1] = spi
   recipe("jjt-turbo-transport-belt", { { type = "item", name = "express-transport-belt", amount = 1 }, { type = "item", name = "processing-unit", amount = 1 } })
@@ -77,8 +77,8 @@ local insi = clone_item("bulk-inserter", "jjt-turbo-inserter", true)
 if ins and insi then
   ins.rotation_speed = (ins.rotation_speed or 0.04) * 1.4
   ins.extension_speed = (ins.extension_speed or 0.07) * 1.4
-  ins.localised_name = { "", "Turbo Inserter" }
-  insi.localised_name = { "", "Turbo Inserter" }
+  ins.localised_name = { "", "Turbo inserter" }
+  insi.localised_name = { "", "Turbo inserter" }
   add[#add + 1] = ins; add[#add + 1] = insi
   recipe("jjt-turbo-inserter", { { type = "item", name = "bulk-inserter", amount = 1 }, { type = "item", name = "processing-unit", amount = 2 } })
 end
@@ -87,13 +87,13 @@ end
 local frame = clone_item("low-density-structure", "jjt-reinforced-frame")
 if frame then
   frame.place_result = nil
-  frame.localised_name = { "", "Reinforced Frame" }
+  frame.localised_name = { "", "Reinforced frame" }
   add[#add + 1] = frame
   recipe("jjt-reinforced-frame", { { type = "item", name = "low-density-structure", amount = 2 }, { type = "item", name = "steel-plate", amount = 4 } })
 end
 local circuit = clone_item("processing-unit", "jjt-exotic-circuit")
 if circuit then
-  circuit.localised_name = { "", "Exotic Circuit" }
+  circuit.localised_name = { "", "Exotic circuit" }
   add[#add + 1] = circuit
   recipe("jjt-exotic-circuit", { { type = "item", name = "processing-unit", amount = 2 }, { type = "item", name = "advanced-circuit", amount = 4 } })
 end
@@ -103,7 +103,7 @@ local ammo = data.raw.ammo and data.raw.ammo["uranium-rounds-magazine"]
 if ammo then
   local a = util.copy(ammo)
   a.name = "jjt-exotic-rounds-magazine"
-  a.localised_name = { "", "Exotic Rounds Magazine" }
+  a.localised_name = { "", "Exotic rounds magazine" }
   a.magazine_size = (a.magazine_size or 10) * 2
   a.order = (a.order or "z") .. "-jjt"
   -- Bump the round damage too, not just the magazine size. Walk the ammo action

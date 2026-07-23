@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.28
+Date: 2026-07-23
+  Changes:
+    - Item labels use sentence case to match vanilla, so Assembling Machine 4
+      reads as Assembling machine 4 and the same for the turbo belts, inserter,
+      intermediates, and the exotic magazine.
+    - Dev commands dropped the jjt prefix, so use /new-planet, /planets, /goto,
+      and /orbit.
+    - Declared incompatibility with the major overhauls (Space Age, Space
+      Exploration, Krastorio 2, and the Bob, Angel, Pyanodon, and other packs) so
+      the portal and the game flag the clash instead of loading a broken mix.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.27
 Date: 2026-07-22
   Features:

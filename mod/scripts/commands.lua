@@ -1,5 +1,5 @@
 -- Developer console commands for exercising planet generation before the
--- real travel loop (rocket silo) exists. All prefixed jjt- and marked dev.
+-- real travel loop (rocket silo) exists. Marked dev.
 
 local gen = require("scripts.planet-gen")
 local orbit = require("scripts.orbit")
@@ -14,19 +14,19 @@ local function describe(facts)
 end
 
 function M.register()
-  commands.add_command("jjt-new-planet", "Generate a new procedural planet (dev).", function(event)
+  commands.add_command("new-planet", "Generate a new procedural planet (dev).", function(event)
     local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     local facts = gen.generate()
     player.print("Generated " .. describe(facts))
-    player.print("Travel there with: /jjt-goto " .. facts.name)
+    player.print("Travel there with: /goto " .. facts.name)
   end)
 
-  commands.add_command("jjt-planets", "List generated planets (dev).", function(event)
+  commands.add_command("planets", "List generated planets (dev).", function(event)
     local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     if not next(storage.planets) then
-      player.print("No planets yet. Generate one with /jjt-new-planet")
+      player.print("No planets yet. Generate one with /new-planet")
       return
     end
     for _, facts in pairs(storage.planets) do
@@ -34,12 +34,12 @@ function M.register()
     end
   end)
 
-  commands.add_command("jjt-goto", "Teleport to a planet by name (dev).", function(event)
+  commands.add_command("goto", "Teleport to a planet by name (dev).", function(event)
     local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     local facts = event.parameter and storage.planets[event.parameter]
     if not facts then
-      player.print("Unknown planet. Use /jjt-planets to list them.")
+      player.print("Unknown planet. Use /planets to list them.")
       return
     end
     local surface = gen.create_surface(facts)
@@ -50,7 +50,7 @@ function M.register()
     player.print("Arrived on " .. facts.name)
   end)
 
-  commands.add_command("jjt-orbit", "Go to orbit (dev).", function(event)
+  commands.add_command("orbit", "Go to orbit (dev).", function(event)
     local player = event.player_index and game.get_player(event.player_index)
     if not player then return end
     local surface = orbit.ensure()

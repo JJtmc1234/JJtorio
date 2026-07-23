@@ -1,13 +1,22 @@
 {
   "name": "JJtorio",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "title": "JJtorio",
   "author": "JJ",
   "factorio_version": "2.0",
   "dependencies": [
-    "base >= 2.0"
+    "base >= 2.0",
+    "! space-age",
+    "! space-exploration",
+    "! Krastorio2",
+    "! IndustrialRevolution3",
+    "! nullius",
+    "! Ultracube",
+    "! boblibrary",
+    "! angelsrefining",
+    "! pypostprocessing"
   ],
-  "description": "JJtorio is an early work-in-progress overhaul for Factorio 2.0. Today (0.1.x): a lighter, faster early game - more reach, cheaper and faster research, a bigger starting inventory - with the rocket silo gated behind a mature base. Planned for 0.2 and beyond: an endless, procedurally generated universe - reach orbit, an original orbital science tier, planets that each force a different way to build, and an early game restructured so vanilla blueprints don't just paste in. Standalone - not compatible with Space Age or Space Exploration. Community feedback welcome: email jjtmcmultiversal@gmail.com with the subject 'JJtorio'.",
+  "description": "JJtorio is an early work-in-progress overhaul for Factorio 2.0. Today (0.1.x): a lighter, faster early game - more reach, cheaper and faster research, a bigger starting inventory - with the rocket silo gated behind a mature base. Planned for 0.2 and beyond: an endless, procedurally generated universe - reach orbit, an original orbital science tier, planets that each force a different way to build, and an early game restructured so vanilla blueprints don't just paste in. Standalone and deliberately incompatible with major overhauls like Space Age, Space Exploration, Krastorio 2, Bob's, and Angel's. Community feedback welcome: email jjtmcmultiversal@gmail.com with the subject 'JJtorio'.",
   "contact": "jjtmcmultiversal@gmail.com",
   "homepage": "https://mods.factorio.com/mod/JJtorio"
 }
