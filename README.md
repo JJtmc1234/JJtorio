@@ -13,4 +13,5 @@ progress-report.md, the live status.
 Coordination and design notes are in team-coordination/. The mod is in mod/, dev
 scripts in tools/.
 
-Feedback welcome. Email jjtmcmultiversal@gmail.com, subject JJtorio.
+Community and feedback. Join the Discord: https://discord.gg/TXseAQkgv, or email
+jjtmcmultiversal@gmail.com with the subject JJtorio.
