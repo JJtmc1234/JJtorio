@@ -2,6 +2,10 @@
 -- game start, a body on the map with no in game driver. The intelligence is the
 -- external Claude Agentic Player bridge, which drives this character over RCON
 -- using the Claude API. Without the bridge running it simply stands with you.
+--
+-- The bridge attaches by calling remote.call("jjt_brain", "locate", player_index)
+-- over RCON, which returns the companion's unit number, position, and surface, so
+-- it drives this exact character instead of spawning its own.
 
 local M = {}
 
@@ -17,9 +21,20 @@ local function spawn_for(player)
   local c = surface.create_entity({ name = "character", position = pos, force = player.force })
   if c then
     storage.brain[player.index] = c
-    player.print("[BRAIN] Companion online. It is driven by the external agent bridge over RCON.")
+    player.print("[BRAIN] Companion online (unit " .. c.unit_number
+      .. "). Driven by the external agent bridge over RCON.")
   end
   return c
+end
+
+local function locate(player_index)
+  local b = storage.brain and storage.brain[player_index or 1]
+  if not (b and b.valid) then return nil end
+  return {
+    unit_number = b.unit_number,
+    x = b.position.x, y = b.position.y,
+    surface = b.surface.name,
+  }
 end
 
 function M.register()
@@ -37,6 +52,10 @@ function M.register()
     local c = spawn_for(player)
     player.print(c and "[BRAIN] Companion (re)spawned." or "[BRAIN] Could not place a companion.")
   end)
+  -- Bridge attach point. Re-added on every load, so guard the duplicate.
+  if not remote.interfaces["jjt_brain"] then
+    remote.add_interface("jjt_brain", { locate = locate })
+  end
 end
 
 return M

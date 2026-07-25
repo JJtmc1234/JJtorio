@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.39
+Date: 2026-07-25
+  Changes:
+    - The BRAIN companion now exposes a bridge attach point. Calling
+      remote.call("jjt_brain", "locate", player_index) returns the companion unit
+      number, position, and surface, so the external agent drives the spawned
+      companion instead of spawning its own. The spawn message shows the unit
+      number too.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.38
 Date: 2026-07-25
   Features:
