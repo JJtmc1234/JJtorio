@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.33
+Date: 2026-07-24
+  Features:
+    - Added a reach for space menu simulation, a rocket silo with a feeder line
+      and labs, to the main menu background rotation. Uses base entities only and
+      guards its setup, so it cannot crash the menu. Placeholder scene to tune.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.32
 Date: 2026-07-24
   Features:

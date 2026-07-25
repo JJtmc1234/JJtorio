@@ -14,6 +14,7 @@ require("prototypes.tier-rocket")
 require("prototypes.content-tiers")
 require("prototypes.trigger-techs")
 require("prototypes.gear-tiers")
+require("prototypes.menu-sims")
 -- Last, so the research discount reaches the jjt techs too (it iterates
 -- data.raw.technology at require time).
 require("prototypes.tech-costs")
