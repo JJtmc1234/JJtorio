@@ -95,6 +95,16 @@ if legs and legsi then
   recipe("jjt-exo-legs", { { type = "item", name = "exoskeleton-equipment", amount = 1 }, { type = "item", name = "processing-unit", amount = 10 } })
 end
 
+-- Exo flamethrower (handheld gun with extreme range). A gun is its own item.
+local ft = clone("gun", "flamethrower", "jjt-exo-flamethrower")
+if ft then
+  if ft.attack_parameters then ft.attack_parameters.range = 100 end
+  ft.order = (ft.order or "z") .. "-jjt"
+  ft.localised_name = { "", "Exo flamethrower" }
+  add[#add + 1] = ft
+  recipe("jjt-exo-flamethrower", { { type = "item", name = "flamethrower", amount = 1 }, { type = "item", name = "processing-unit", amount = 10 }, { type = "item", name = "steel-plate", amount = 20 } })
+end
+
 data:extend(add)
 
 -- Unlock techs. Six base packs (including military) so the science pack superset
@@ -126,3 +136,4 @@ end
 tech("jjt-heavy-vehicles", "Heavy Vehicles", "tank", { "jjt-heavy-tank" })
 tech("jjt-advanced-defenses", "Advanced Defenses", "military-3", { "jjt-heavy-turret" })
 tech("jjt-exo-suit", "Exo Suit", "power-armor-mk2", { "jjt-exo-armor", "jjt-exo-shield", "jjt-exo-legs" })
+tech("jjt-exo-weapons", "Exo Weapons", "flamethrower", { "jjt-exo-flamethrower" })

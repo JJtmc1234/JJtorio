@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.34
+Date: 2026-07-24
+  Features:
+    - Exo flamethrower, a handheld weapon with 100 range, behind a new Exo Weapons
+      tech. Cloned from the base flamethrower.
+    - More menu simulations. Reach for space, a factory line, a mining row, and a
+      defense line. The old vanilla menu scenes are removed so only these play.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.33
 Date: 2026-07-24
   Features:
