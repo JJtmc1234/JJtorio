@@ -50,7 +50,7 @@ local tur, turi = clone("ammo-turret", "gun-turret", "jjt-heavy-turret"), clone_
 if tur and turi then
   tur.max_health = (tur.max_health or 400) * 1.5
   if tur.attack_parameters and tur.attack_parameters.range then
-    tur.attack_parameters.range = tur.attack_parameters.range + 6
+    tur.attack_parameters.range = tur.attack_parameters.range + 4
   end
   turi.place_result = "jjt-heavy-turret"
   tur.localised_name = { "", "Heavy turret" }; turi.localised_name = { "", "Heavy turret" }

@@ -1,54 +1,44 @@
 # Progress Report
 
-Last updated 2026-07-22.
+Last updated 2026-07-23.
 
 ## Where we are
-Shipped through 0.1.27. The mod loads, the early game works, planets generate
-with per class tiles, and orbit reads as space. The full late game tech tree is
-drafted, tiers 1 to 8, with per tier upgrade techs that grant real bonuses.
-Techs unlock new tiers of content.
+Shipped through 0.1.30. The mod loads on base 2.0, the early game works, planets
+generate with per class tiles, and orbit reads as space. The full late game tech
+tree is drafted, tiers 1 to 8, with per tier upgrade techs that grant real
+bonuses. Techs unlock new tiers of content, and there are 24 trigger techs plus a
+tier of new gear.
 
-## 0.1.27 batch (needs a load check in game)
-Shipped as one version so JJ tests the whole thing at once.
-- Stage 1 fixes from testing feedback. Painted planets drop Nauvis grass
-  decoratives, rocks, and cliffs but keep trees. Oceanic is a sea with sand
-  islands. Fertile paints green. The exotic magazine got double round damage.
-- Stage 2, 24 trigger techs that research themselves on a milestone like
-  crafting 2000 belts, each granting a small bonus.
-- Stage 3, new gear cloned and buffed. Heavy Tank, Heavy Turret, Exo Armor with
-  a bigger grid, Exo Shield, Exo Legs, behind three new techs.
-- A two agent API check before publish caught two silent breaks and fixed them.
-  Build-entity triggers ignore count in 2.0 so those milestones now use craft
-  triggers, and place_as_equipment_result was renamed to the 2.0 spelling.
+## Recent batches (need an in game load check)
+- 0.1.27 fixes from test feedback. Painted planets drop the Nauvis grass, rocks,
+  and cliffs but keep trees. Oceanic is a sea with sand islands. Fertile paints
+  green. The exotic magazine got double round damage on top of double size.
+- 0.1.27 added 24 trigger techs that self research on a milestone like crafting
+  2000 belts, each granting a small bonus.
+- 0.1.27 added new gear cloned and buffed. Heavy tank, heavy turret, exo armor
+  with a bigger grid, exo shield, and exo legs, behind three techs.
+- 0.1.28 sentence case item labels, dev commands lost the jjt prefix (/new-planet,
+  /planets, /goto, /orbit), and info.json declares incompatibility with the major
+  overhauls.
+- 0.1.29 three agent review cleanups. Reordered the machine 4 intermediates and
+  guarded on them, removed dead terrain data, dropped an unreachable trigger
+  branch, and pushed the Recon Network milestone to 40 radars.
+- 0.1.30 trimmed the heavy turret range to plus 4 so it does not match the laser
+  turret. The exotic magazine was kept strong on purpose per JJ.
 
 ## Verified in game (through 0.1.9)
 Mod loads on base 2.0. Dev commands run. Red and green science craft 2. Orbit
 reads as space. Custom placeholder tiles load and planet classes look distinct.
-
-## New since 0.1.9 (needs a load check)
-- Full science tree drafted in game, tiers 1 to 8. Rocket, Orbital, six planet
-  sciences, Resonance, Core, Exotic, three force sciences, and Stellar. Each is a
-  pack plus a gateway tech.
-- 0.1.13 added per tier intermediate techs that consume the pack and grant real
-  bonuses, and varied pack recipes.
-- 0.1.16 fixed a non-contiguous levels warning by renaming per tier techs so
-  Factorio stops reading them as levels of the gateway.
-- 0.1.17 removed the earlier 1000 tech placeholder web as empty filler. The late
-  game is now the tier chain plus per tier upgrade techs.
-- 0.1.19 added tech unlocked content tiers, Advanced Fabrication, Turbo
-  Logistics, and Exotic Munitions, cloned from base prototypes at draft balance.
-- 0.1.10 and 0.1.11 QC fixes. A rocket launch crash from a wrong cargo pod call,
-  planet name collisions overwriting a world, and a Rocket Science pack load
-  error from a missing durability field.
-- Art polish 0.1.14 through 0.1.24. Lit item icons with inner shadow and beveled
-  frames, finer tile grain and coarse mottle, and a lit planet with an ascent
-  streak on the thumbnail.
+Everything from 0.1.10 on still needs an in game load check, see jjtest.md.
 
 ## Next
 Give the drafted tiers real effects and balance, then Orbital Science as the
-first original in orbit tier. Real tile art and oceanic water tuning are polish.
+first original in orbit tier. Wire some trigger techs into the rocket silo gate
+so the milestones actually gate space (open item from test feedback). Real tile
+art and oceanic water tuning are polish.
 
 ## Open
-The science tree adds many prototypes since the last verified load, so confirm
-the mod still loads. Costs, recipes, and upgrade effects are placeholder draft
-balance. Oceanic water tuning needs a property expression, deferred.
+Confirm the mod still loads after the recent batches. Costs, recipes, and upgrade
+effects are placeholder draft balance. Oceanic water tuning needs a property
+expression, deferred. Trigger techs are standalone achievements, not yet wired
+into the silo gate.

@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.30
+Date: 2026-07-23
+  Changes:
+    - Heavy turret range trimmed from plus 6 to plus 4, so it stays a clear
+      upgrade over the gun turret without matching the laser turret reach.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.29
 Date: 2026-07-23
   Changes:

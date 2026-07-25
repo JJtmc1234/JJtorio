@@ -1,9 +1,7 @@
-# Generates placeholder icon PNGs (and the mod thumbnail) for JJtorio.
-#
-# These are SCRIPT-DRIVEN STAND-INS, not final art. Each placeholder gets its
-# own base color, a big letter, and a simple glyph so items are easy to tell
-# apart in-game and in the inventory. A real artist still needs to replace all
-# of these; see the note at the bottom of this file and what-im-doing.txt.
+# Generates placeholder icon PNGs and the mod thumbnail for JJtorio.
+# Stand-ins, not final art. Each gets a base color, a letter, and a glyph so
+# items are distinct in-game. See the note at the bottom for what a real artist
+# still needs to replace.
 #
 # Re-run after adding entries to $icons below:
 #   powershell -File tools\gen-placeholder-icons.ps1
