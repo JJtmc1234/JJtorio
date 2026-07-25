@@ -153,8 +153,14 @@ local VANILLA = {
   { "chemical-science-pack", 1 }, { "production-science-pack", 1 },
   { "utility-science-pack", 1 },
 }
+-- With military science, for a tech whose prereq chain uses it (the superset rule).
+local VANILLA_MIL = { count = 300, time = 45, ingredients = {
+  { "automation-science-pack", 1 }, { "logistic-science-pack", 1 },
+  { "military-science-pack", 1 }, { "chemical-science-pack", 1 },
+  { "production-science-pack", 1 }, { "utility-science-pack", 1 },
+} }
 
-local function tech(name, label, prereq, recipes)
+local function tech(name, label, prereq, recipes, unit)
   local effects = {}
   for _, r in ipairs(recipes) do
     if made[r] then effects[#effects + 1] = { type = "unlock-recipe", recipe = r } end
@@ -165,7 +171,7 @@ local function tech(name, label, prereq, recipes)
     type = "technology", name = name, localised_name = { "", label },
     icon = "__JJtorio__/graphics/icons/jjt-placeholder-machine.png", icon_size = 64,
     prerequisites = prereqs, effects = effects,
-    unit = { count = 300, time = 45, ingredients = VANILLA },
+    unit = unit or { count = 300, time = 45, ingredients = VANILLA },
   } })
 end
 
@@ -173,5 +179,7 @@ tech("jjt-advanced-fabrication", "Advanced Fabrication", "automation-3",
   { "jjt-assembling-machine-4", "jjt-reinforced-frame", "jjt-exotic-circuit" })
 tech("jjt-turbo-logistics", "Turbo Logistics", "logistics-3",
   { "jjt-turbo-transport-belt", "jjt-turbo-underground-belt", "jjt-turbo-splitter", "jjt-turbo-inserter" })
-tech("jjt-exotic-munitions", "Exotic Munitions", "rocket-silo",
-  { "jjt-exotic-rounds-magazine" })
+-- Gated on uranium-ammo, so the exotic magazine cannot unlock before its
+-- uranium-rounds-magazine ingredient exists.
+tech("jjt-exotic-munitions", "Exotic Munitions", "uranium-ammo",
+  { "jjt-exotic-rounds-magazine" }, VANILLA_MIL)

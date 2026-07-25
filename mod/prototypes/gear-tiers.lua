@@ -59,8 +59,8 @@ if tur and turi then
 end
 
 -- Exo armor with a larger equipment grid. Armor is its own item, no clone_item.
-local pa = data.raw.armor["power-armor-mk2"]
-if pa and data.raw["equipment-grid"][pa.equipment_grid] then
+local pa = data.raw.armor and data.raw.armor["power-armor-mk2"]
+if pa and pa.equipment_grid and data.raw["equipment-grid"] and data.raw["equipment-grid"][pa.equipment_grid] then
   local g = util.copy(data.raw["equipment-grid"][pa.equipment_grid])
   g.name = "jjt-exo-grid"
   g.width = (g.width or 0) + 2; g.height = (g.height or 0) + 2

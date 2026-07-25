@@ -1,4 +1,30 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.36
+Date: 2026-07-25
+  Features:
+    - Planets look like real terrain. Ground is now a per class palette of tiles
+      blended by smooth noise instead of one stamped tile, with class trees and
+      scattered decoratives. Oceanic worlds are organic seas with sand beach
+      islands, not a checkerboard.
+    - Orbit is reshaped into a round dark platform with a hazard rim floating in a
+      black void under a dark sky, so it reads as space instead of a bare square.
+  Bugfixes:
+    - Planet and orbit terrain now paints out to any distance you explore, instead
+      of reverting to Nauvis past 256 tiles from the origin.
+    - Discovering a planet no longer builds its surface until you travel there, so
+      discovering many worlds no longer bloats the save.
+    - Planet ore richness now covers uranium ore and crude oil, not just the
+      starter ores.
+    - Exotic Munitions now requires uranium ammo, so it can no longer unlock before
+      its uranium rounds ingredient exists.
+    - Guarded the exo armor grid lookup against a missing armor or grid prototype.
+    - Removed the planet day length and gravity facts, which had no effect.
+  Changes:
+    - Housekeeping. The description drops the dash style, the infrastructure doc
+      drops the removed comms file, jjtest is refreshed, a leaked local path was
+      scrubbed from the team docs, and the release build now zips only git tracked
+      files so uncommitted work cannot ship.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.35
 Date: 2026-07-24
   Features:

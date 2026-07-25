@@ -25,10 +25,16 @@ if (Test-Path $zip) { Remove-Item $zip -Force }
 $fs = [System.IO.File]::Open($zip, [System.IO.FileMode]::CreateNew)
 $archive = New-Object System.IO.Compression.ZipArchive($fs, [System.IO.Compression.ZipArchiveMode]::Create)
 try {
-  foreach ($f in Get-ChildItem $modDir -Recurse -File) {
-    $rel = $f.FullName.Substring($modDir.Length + 1) -replace '\\', '/'
-    $entry = "$name/$rel"
-    [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $f.FullName, $entry) | Out-Null
+  # Ship only git-tracked files, never whatever happens to be on disk, so an
+  # uncommitted or half-written change cannot leak into a release. Paths come out
+  # of git as "mod/<rel>" with forward slashes already.
+  $tracked = git -C $Root ls-files mod
+  if (-not $tracked) { throw "git ls-files found no tracked files under mod/. Commit the mod before building." }
+  foreach ($rel in $tracked) {
+    $full = Join-Path $Root $rel
+    if (-not (Test-Path $full)) { continue }  # tracked but deleted on disk
+    $entry = "$name/$($rel.Substring(4))"     # strip the leading "mod/"
+    [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $full, $entry) | Out-Null
   }
 }
 finally {

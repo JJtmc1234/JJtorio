@@ -8,9 +8,8 @@ local M = {}
 
 local function describe(facts)
   return string.format(
-    "[%s] %s - %s | ore x%.2f, day %dm, gravity x%.2f",
-    facts.class_label, facts.name, facts.description,
-    facts.ore_richness, facts.day_minutes, facts.gravity)
+    "[%s] %s, %s | ore x%.2f",
+    facts.class_label, facts.name, facts.description, facts.ore_richness)
 end
 
 function M.register()

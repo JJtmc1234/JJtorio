@@ -9,9 +9,8 @@ design docs. The four planning docs live at the root.
 
 ## File conventions
 Docs use lowercase hyphenated .md names. Exceptions are the tool required
-CLAUDE.md and README.md, and two .txt files, MANAGER-COMMS.txt because a second
-process writes to it and mod/changelog.txt because Factorio requires that name.
-Source and config files keep the names their tools expect.
+CLAUDE.md and README.md, and mod/changelog.txt because Factorio requires that
+name. Source and config files keep the names their tools expect.
 
 ## The mod (mod/)
 info.json is the manifest, name JJtorio, Factorio 2.0.
@@ -36,6 +35,6 @@ testing.
 
 ## Coordination
 Several Claude processes work here. Releases go through the main session only.
-Workers use branches. The live channel is MANAGER-COMMS.txt at the root, a .txt
-because a second process writes to it, a documented exception like changelog.txt.
-Other coordination and design docs are in team-coordination/.
+Workers use their own branches or git worktrees. Coordination and design docs
+live in team-coordination/, with per lane prompts and next steps in
+team-coordination/action-items.md.
