@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.37
+Date: 2026-07-25
+  Changes:
+    - Refined the Rocket Science tier. Launch throughput now doubles rocket part
+      productivity, Heavy lift also boosts the thrust assembly on top of unlocking
+      the Heavy silo, and Ascent refinement adds more rocket fuel productivity.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.36
 Date: 2026-07-25
   Features:

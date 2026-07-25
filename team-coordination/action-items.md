@@ -16,6 +16,16 @@ uncommitted edits blocking a release. To make a worktree, from the repo run
 git worktree add ../JJtorio-content -b content, then start Claude in that folder.
 The main session keeps ownership of releases and publishing to the mod portal.
 
+## Rules for every lane
+Onboard by reading CLAUDE.md, then brainstorm, planning, infrastructure, and
+progress-report, then the team-coordination docs. Take one area and keep the diff
+small. Local reversible edits are fine, but a worker never publishes, the main
+session owns bump, commit, push, and publish. Guard base game edits so a missing
+prototype cannot crash the load. Do not clone the Space Exploration systems, its
+four sciences, piloted ships, or beaming. Verify with luac, and since you cannot
+run Factorio, never claim runtime behavior works, mark it unverified for JJ. No
+dashes and no semicolons in docs. Note what you did in progress-report.md.
+
 ## GitHub issues status
 1. No dashes or semicolons in docs. Done and ongoing.
 2. Concise docs, four file layout plus team-coordination. Done.
@@ -127,7 +137,7 @@ against the actual files before writing it.
 ```
 You are a Claude writing the analysis for GitHub issue 5 on JJtorio at
 OneDrive/Desktop/Projects/JJtorio. Read CLAUDE.md, the four root
-docs, team-coordination/employee-list.md, and the recent git log.
+docs, team-coordination/action-items.md, and the recent git log.
 
 Your job. Write team-coordination/reports/agentic-team-analysis.md, a concise
 analysis of the multi Claude team design pattern used on this project. Cover what

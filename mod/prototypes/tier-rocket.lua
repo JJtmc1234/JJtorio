@@ -137,12 +137,13 @@ if gateway and made["jjt-thrust-assembly"] then
 end
 
 payout("jjt-rocket-boost-1", "Launch throughput", {
-  productivity("rocket-part", 0.1),
+  productivity("rocket-part", 0.2),
 })
 payout("jjt-rocket-boost-2", "Heavy lift", {
   unlock("jjt-heavy-silo"),
+  productivity("jjt-thrust-assembly", 0.2),
 })
 payout("jjt-rocket-boost-3", "Ascent refinement", {
   productivity("rocket-part", 0.1),
-  productivity("rocket-fuel", 0.1),
+  productivity("rocket-fuel", 0.2),
 })
