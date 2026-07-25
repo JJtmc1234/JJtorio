@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.38
+Date: 2026-07-25
+  Features:
+    - A BRAIN companion character now spawns next to you at game start. It is the
+      in game body for the Project BRAIN co-op agent, which is driven externally
+      over RCON by the Claude Agentic Player bridge. Without the bridge it just
+      stands with you. Use /brain to spawn or respawn it in an existing save.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.37
 Date: 2026-07-25
   Changes:

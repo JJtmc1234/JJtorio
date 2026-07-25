@@ -6,10 +6,12 @@ local dev_commands = require("scripts.commands")
 local discovery = require("scripts.discovery")
 local orbit = require("scripts.orbit")
 local gen = require("scripts.planet-gen")
+local companion = require("scripts.companion")
 
 local function init_storage()
   storage.planets = storage.planets or {}
   storage.planet_counter = storage.planet_counter or 0
+  storage.brain = storage.brain or {}
   -- Derive the universe seed once from the starting surface so the same save
   -- always rolls the same sequence of planets.
   if not storage.universe_seed then
@@ -40,3 +42,4 @@ end)
 -- Handlers must be (re)registered on every load, so register at top level.
 dev_commands.register()
 discovery.register()
+companion.register()
