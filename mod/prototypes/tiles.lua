@@ -4,7 +4,28 @@
 -- are walkable and buildable. Placed on planets by scripts/planet-gen at chunk
 -- generation. Real art replaces these later.
 
-local function jjt_tile(name, r, g, b, layer)
+-- Reuse base tile sound tables (walking/build) verbatim so footsteps and tile
+-- placement match the material they stand in for.
+local tile_sounds = require("__base__/prototypes/tile/tile-sounds")
+
+-- Looping wind ambience for open terrain. Modeled on the base water ambient
+-- (it counts nearby tiles of this kind), so wind rises as the surface fills the
+-- view. Only real base wind files are used.
+local base_wind = "__base__/sound/world/world_base_wind.ogg"
+local desert_wind = "__base__/sound/wind/wind.ogg"
+
+local function wind(file, volume)
+  return {
+    sound = { filename = file, volume = volume },
+    radius = 8,
+    min_entity_count = 2,
+    max_entity_count = 20,
+    entity_to_sound_ratio = 0.3,
+    average_pause_seconds = 2,
+  }
+end
+
+local function jjt_tile(name, r, g, b, layer, walking, build, ambient)
   return {
     type = "tile",
     name = name,
@@ -21,12 +42,23 @@ local function jjt_tile(name, r, g, b, layer)
       empty_transitions = true,
     },
     map_color = { r = r, g = g, b = b },
+    walking_sound = walking,
+    build_sound = build,
+    ambient_sounds = ambient,
   }
 end
 
 data:extend({
-  jjt_tile("jjt-snow", 0.86, 0.90, 0.96, 61),
-  jjt_tile("jjt-ash", 0.14, 0.12, 0.12, 62),
-  jjt_tile("jjt-sand", 0.78, 0.70, 0.51, 63),
-  jjt_tile("jjt-basalt", 0.33, 0.33, 0.36, 64),
+  -- snow: granular crunch underfoot, cold low wind.
+  jjt_tile("jjt-snow", 0.86, 0.90, 0.96, 61,
+    tile_sounds.walking.sand, tile_sounds.building.landfill, wind(base_wind, 0.45)),
+  -- ash: muffled powdery step, low volcanic wind.
+  jjt_tile("jjt-ash", 0.14, 0.12, 0.12, 62,
+    tile_sounds.walking.dirt, tile_sounds.building.landfill, wind(base_wind, 0.3)),
+  -- sand: dry desert wind.
+  jjt_tile("jjt-sand", 0.78, 0.70, 0.51, 63,
+    tile_sounds.walking.sand, tile_sounds.building.landfill, wind(desert_wind, 0.5)),
+  -- basalt: hard stone footsteps, exposed gusty wind.
+  jjt_tile("jjt-basalt", 0.33, 0.33, 0.36, 64,
+    tile_sounds.walking.pebble, tile_sounds.building.concrete, wind(desert_wind, 0.4)),
 })

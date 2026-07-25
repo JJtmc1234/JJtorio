@@ -11,6 +11,7 @@ require("prototypes.science-tree")
 -- Per tier vertical slices. Each fills in the skeleton science-tree.lua
 -- generated for that tier, so it must come after it.
 require("prototypes.tier-rocket")
+require("prototypes.tier-orbital")
 require("prototypes.content-tiers")
 require("prototypes.trigger-techs")
 require("prototypes.gear-tiers")

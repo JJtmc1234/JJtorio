@@ -62,6 +62,13 @@ function M.create_surface(facts)
   local sname = surface_name(facts)
   if game.surfaces[sname] then return game.surfaces[sname] end
   local surface = game.create_surface(sname, map_gen_for(facts))
+  -- Give the planet wind: a per-class speed drives cloud drift and the wind
+  -- ambience volume, and a seed-derived orientation blows each world its own way.
+  local t = facts.terrain
+  if t then
+    surface.wind_speed = t.wind or 0.6
+    surface.wind_orientation = (facts.seed % 1000) / 1000
+  end
   surface.request_to_generate_chunks({ 0, 0 }, 3)
   surface.force_generate_chunk_requests()
   return surface
@@ -124,7 +131,7 @@ local function scatter_decoratives(surface, area, t, seed)
   local decs, n = {}, 0
   for x = lt.x, rb.x - 1, 2 do
     for y = lt.y, rb.y - 1, 2 do
-      if vnoise(seed + 5, x, y, 3) > 0.7 then
+      if vnoise(seed + 5, x, y, 3) > 0.66 then
         local jx = hash01(seed + 1, x, y) - 0.5
         local jy = hash01(seed + 2, x, y) - 0.5
         n = n + 1

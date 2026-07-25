@@ -20,9 +20,12 @@ M.name_suffixes = {
 -- palette of tiles blended by smooth noise, so repeated names weight a tile
 -- heavier. tree_kinds are the species planted, scatter are decoratives strewn
 -- for texture, and water_world drives the noise sea and islands in planet-gen.
+-- wind is the surface wind speed set at creation (see planet-gen create_surface),
+-- which drives cloud drift and the wind ambience volume.
 M.classes = {
   { id = "rocky",    label = "Rocky",    ore_bias = 1.0, desc = "A cratered world of bare stone.",
     terrain = {
+      wind = 0.9,
       trees = 0.05,
       ground = { "jjt-basalt", "jjt-basalt", "jjt-basalt", "dirt-7", "dirt-6" },
       tree_kinds = { "dead-grey-trunk", "dry-tree", "dead-tree-desert" },
@@ -30,12 +33,14 @@ M.classes = {
     } },
   { id = "volcanic", label = "Volcanic", ore_bias = 1.4, desc = "Lava plains, metal rich and hostile.",
     terrain = {
+      wind = 1.1,
       trees = 0.0,
       ground = { "jjt-ash", "jjt-ash", "jjt-ash", "jjt-basalt", "dirt-6" },
       scatter = { "medium-rock", "small-rock", "cracked-mud-decal" },
     } },
   { id = "frozen",   label = "Frozen",   ore_bias = 0.8, desc = "An ice world. Ore is locked beneath frost.",
     terrain = {
+      wind = 1.5,
       trees = 0.12,
       ground = { "jjt-snow", "jjt-snow", "jjt-snow", "dirt-7" },
       tree_kinds = { "tree-09", "tree-09-brown", "dead-grey-trunk" },
@@ -43,12 +48,14 @@ M.classes = {
     } },
   { id = "barren",   label = "Barren",   ore_bias = 0.6, desc = "Wind scoured and resource poor.",
     terrain = {
+      wind = 1.8,
       trees = 0.0,
       ground = { "jjt-sand", "jjt-sand", "sand-1", "sand-3", "red-desert-0", "red-desert-1" },
       scatter = { "sand-decal", "sand-dune-decal", "brown-fluff-dry", "red-desert-decal", "small-sand-rock", "medium-sand-rock" },
     } },
   { id = "oceanic",  label = "Oceanic",  ore_bias = 0.9, desc = "Shallow seas dotted with islands.",
     terrain = {
+      wind = 0.5,
       trees = 0.25,
       water_world = true,
       ground = { "grass-1", "grass-3", "sand-1" },
@@ -57,6 +64,7 @@ M.classes = {
     } },
   { id = "fertile",  label = "Fertile",  ore_bias = 1.1, desc = "Unusually green, temperate and teeming.",
     terrain = {
+      wind = 0.4,
       trees = 0.55,
       ground = { "grass-1", "grass-1", "grass-3", "grass-2", "dirt-4" },
       tree_kinds = { "tree-02", "tree-04", "tree-05", "tree-06", "tree-08" },

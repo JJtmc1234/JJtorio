@@ -1,4 +1,19 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.40
+Date: 2026-07-25
+  Features:
+    - Orbital Science tier built, the second real 0.2 slice. An orbital truss
+      intermediate feeds the pack, and the tier techs unlock an orbital
+      construction hub and a deep survey array plus real productivity payouts.
+    - Planets have ambience. The custom tiles gained wind, walking, and build
+      sounds, each class blows its own wind speed (barren howls, fertile is
+      calm), and the surface wind drives cloud drift.
+  Changes:
+    - Rebuilt the main menu simulations. Real ground under the scenes, tighter
+      framing, slower cameras, and four dense scenes, an assembly hall, a
+      smelting bank, a defense line, and a rocket launch.
+    - Added the Discord invite to the mod description.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.39
 Date: 2026-07-25
   Changes:

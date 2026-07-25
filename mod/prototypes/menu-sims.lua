@@ -2,16 +2,19 @@
 -- JJtorio scenes, so the old scenes no longer play. Base entities only and no mods
 -- list, which avoids the known crash from adding a mod to a menu simulation.
 --
--- Techniques copied from the base sims (data/base/menu-simulations and the tips and
--- factoriopedia sims):
---   * the real camera fields are game.simulation.camera_position and camera_zoom,
---     and game.tick_paused must be set false (the old file used game.camera_position
---     which silently failed under pcall so nothing moved).
---   * animation is driven by script.on_nth_tick and on_event closures registered in
---     init, exactly like the base biter and chase sims, so update stays empty.
---   * burner machines are run by setting entity.energy directly (base burner refuel
---     trick), belts are kept full with LuaTransportLine.insert_at_back, and combat
---     uses entity.commandable.set_command to march biters into turret range.
+-- What makes the base sims read well, and what this file copies:
+--   * they load real bases on real ground at camera_zoom 1, so the frame is full and
+--     grounded. We have no save, so each scene lays its own ground tiles first (kills
+--     the lab checkerboard) and builds a dense block that fills the frame at zoom near
+--     one. The old file zoomed out to 0.7 to 0.9, so sparse entities floated in an
+--     empty void, which is why it looked off.
+--   * the real camera fields are game.simulation.camera_position and camera_zoom, and
+--     game.tick_paused must be false. Camera motion is slow or absent, letting the
+--     action carry the scene, so drifts here are small amplitude over long periods.
+--   * animation runs from script.on_nth_tick closures registered in init, like the base
+--     biter and chase sims. Burner machines run by setting entity.energy directly,
+--     belts stay full with LuaTransportLine.insert_at_back, inserters and assemblers do
+--     real work off filled belts, and biters march in with commandable.set_command.
 -- Every runtime call is guarded so a bad call degrades the scene instead of crashing
 -- the menu. These init scripts run only at menu time and cannot be checked by a data
 -- stage load, so they still need an in game look.
@@ -24,18 +27,29 @@ if not uc then return end
 local prelude = [[
 local S = game.surfaces[1]
 local F = game.forces.player
+local D = defines.direction
 game.tick_paused = false
 if S then pcall(function() S.daytime = 0 end) end
 local function cam(x, y, z)
   pcall(function() game.simulation.camera_position = {x, y} end)
   pcall(function() game.simulation.camera_zoom = z end)
 end
+local function ground(x1, y1, x2, y2, tile)
+  if not (S and S.valid) then return end
+  pcall(function()
+    local t = {}
+    for x = x1, x2 do
+      for y = y1, y2 do t[#t + 1] = {name = tile, position = {x, y}} end
+    end
+    S.set_tiles(t)
+  end)
+end
 local function make(name, x, y, dir)
   local e
   pcall(function() e = S.create_entity{name = name, position = {x, y}, direction = dir, force = F} end)
   return e
 end
-local function power(cells, ex, ey)
+local function powered(cells, ex, ey)
   for _, c in pairs(cells) do make("substation", c[1], c[2]) end
   local eei = make("electric-energy-interface", ex, ey)
   if eei then
@@ -52,12 +66,13 @@ local function fill(belt, item)
     pcall(function() belt.get_transport_line(2).insert_at_back{name = item} end)
   end
 end
+-- Gentle sinusoidal drift that starts exactly on center, so there is no first-frame jump.
 local function drift(cx, cy, ax, ay, sp)
   local n = 0
   script.on_nth_tick(1, function()
     n = n + 1
     pcall(function()
-      game.simulation.camera_position = {cx + math.sin(n / sp) * ax, cy + math.cos(n / (sp * 1.4)) * ay}
+      game.simulation.camera_position = {cx + math.sin(n / sp) * ax, cy + math.sin(n / (sp * 1.6)) * ay}
     end)
   end)
 end
@@ -66,72 +81,95 @@ end
 -- Fresh table, so the vanilla menu simulations are dropped.
 uc.main_menu_simulations = {
 
-  -- Scaling factory. Powered assembling machines craft while product belts stream
-  -- underneath and the camera drifts across the hall.
+  -- Assembly hall. A central iron-plate belt feeds two mirrored rows of assemblers
+  -- through inserters, so the machines actually craft gears, with product belts above
+  -- and below. Concrete floor on a grass field, gentle drift.
   ["jjt-assembly-hall"] = {
+    checkboard = false,
     length = 60 * 20,
     init = prelude .. [[
     pcall(function()
-      cam(0, -3, 0.85)
-      local eei = power({{-8, -12}, {8, -12}}, 0, -12)
+      cam(0, 0, 1.0)
+      ground(-26, -15, 26, 15, "grass-1")
+      ground(-20, -9, 20, 9, "concrete")
+      powered({{-16, -8}, {-8, -8}, {0, -8}, {8, -8}, {16, -8}, {-8, 8}, {8, 8}}, 0, 22)
+      local xs = {}
+      for x = -12, 12, 4 do xs[#xs + 1] = x end
       local asms = {}
-      for i = -3, 3 do
-        local a = make("assembling-machine-2", i * 4, -6)
-        if a then
-          pcall(function() a.set_recipe("iron-gear-wheel") end)
-          asms[#asms + 1] = a
+      local feed = make("transport-belt", 0, 0, D.east)
+      local feedrow = {}
+      for x = -16, 16 do
+        local b = make("transport-belt", x, 0, D.east)
+        if b then feedrow[#feedrow + 1] = b end
+      end
+      for _, x in pairs(xs) do
+        local up = make("assembling-machine-2", x, -3)
+        local dn = make("assembling-machine-2", x, 3)
+        make("fast-inserter", x, -1, D.north)
+        make("fast-inserter", x, 1, D.south)
+        for _, a in pairs({up, dn}) do
+          if a then
+            pcall(function() a.set_recipe("iron-gear-wheel") end)
+            asms[#asms + 1] = a
+          end
         end
       end
-      local items = {"iron-gear-wheel", "electronic-circuit", "copper-cable"}
-      local lanes = {}
-      for lane = 1, 3 do
-        local row = {}
-        for x = -16, 16 do
-          local b = make("transport-belt", x, -3 + lane * 2, defines.direction.east)
-          if b then row[#row + 1] = b end
-        end
-        for _, b in pairs(row) do fill(b, items[lane]) end
-        lanes[lane] = row
+      local topb, botb = {}, {}
+      for x = -16, 16 do
+        local t = make("transport-belt", x, -6, D.east)
+        local b = make("transport-belt", x, 6, D.east)
+        if t then topb[#topb + 1] = t end
+        if b then botb[#botb + 1] = b end
       end
+      for _, b in pairs(feedrow) do fill(b, "iron-plate") end
+      for _, b in pairs(topb) do fill(b, "iron-gear-wheel") end
+      for _, b in pairs(botb) do fill(b, "iron-gear-wheel") end
+      script.on_nth_tick(6, function()
+        if feedrow[1] then fill(feedrow[1], "iron-plate") end
+        if topb[1] then fill(topb[1], "iron-gear-wheel") end
+        if botb[1] then fill(botb[1], "iron-gear-wheel") end
+      end)
       script.on_nth_tick(120, function()
         for _, a in pairs(asms) do
           if a.valid then
-            pcall(function() a.insert{name = "iron-plate", count = 40} end)
+            pcall(function() a.insert{name = "iron-plate", count = 20} end)
             pcall(function() a.get_output_inventory().clear() end)
           end
         end
-        if eei and eei.valid then pcall(function() eei.energy = 1e15 end) end
       end)
-      script.on_nth_tick(12, function()
-        for lane = 1, 3 do
-          local row = lanes[lane]
-          if row and row[1] then fill(row[1], items[lane]) end
-        end
-      end)
-      drift(0, -3, 6, 1.5, 320)
+      drift(0, 0, 2.5, 1, 520)
     end)
     ]],
   },
 
-  -- Smelting sprawl. A long row of burner furnaces smelting ore into plates, fed by
-  -- an ore belt on top and an output plate belt below, with a slow lateral pan.
+  -- Smelting bank. Two long solid rows of burner furnaces glow between an ore infeed
+  -- and a plate outfeed, fed directly so the fires never die. Slow lateral pan across
+  -- the line.
   ["jjt-smelting"] = {
+    checkboard = false,
     length = 60 * 20,
     init = prelude .. [[
     pcall(function()
       cam(0, 0, 0.9)
-      local infeed, outfeed, furnaces = {}, {}, {}
-      for x = -16, 16 do
-        local b = make("transport-belt", x, -6, defines.direction.east)
-        if b then infeed[#infeed + 1] = b end
+      ground(-26, -12, 26, 12, "grass-1")
+      ground(-22, -8, 22, 8, "stone-path")
+      local belts = {}
+      for _, y in pairs({-8, -1, 6}) do
+        local row = {}
+        local item = (y == 6) and "iron-plate" or "iron-ore"
+        for x = -20, 20 do
+          local b = make("transport-belt", x, y, D.east)
+          if b then row[#row + 1] = b end
+        end
+        for _, b in pairs(row) do fill(b, item) end
+        belts[#belts + 1] = {row = row, item = item}
       end
-      for x = -16, 16 do
-        local b = make("transport-belt", x, 6, defines.direction.east)
-        if b then outfeed[#outfeed + 1] = b end
-      end
-      for i = -7, 7 do
-        local fur = make("stone-furnace", i * 2, 0)
-        if fur then furnaces[#furnaces + 1] = fur end
+      local furnaces = {}
+      for _, y in pairs({-4, 3}) do
+        for x = -20, 20, 2 do
+          local fur = make("stone-furnace", x, y)
+          if fur then furnaces[#furnaces + 1] = fur end
+        end
       end
       local function feed()
         for _, fur in pairs(furnaces) do
@@ -144,66 +182,34 @@ uc.main_menu_simulations = {
         end
       end
       feed()
-      for _, b in pairs(infeed) do fill(b, "iron-ore") end
-      for _, b in pairs(outfeed) do fill(b, "iron-plate") end
       script.on_nth_tick(90, feed)
-      script.on_nth_tick(12, function()
-        if infeed[1] then fill(infeed[1], "iron-ore") end
-        if outfeed[1] then fill(outfeed[1], "iron-plate") end
-      end)
-      drift(0, 0, 7, 1, 340)
-    end)
-    ]],
-  },
-
-  -- Logistics superhighway. Six alternating express belt lanes packed with different
-  -- goods, kept flowing from their upstream ends, under a slow diagonal drift.
-  ["jjt-belt-superhighway"] = {
-    length = 60 * 18,
-    init = prelude .. [[
-    pcall(function()
-      cam(0, 0, 0.75)
-      local items = {"iron-plate", "copper-plate", "electronic-circuit", "iron-gear-wheel", "steel-plate", "copper-cable"}
-      local lanes = {}
-      for lane = 1, 6 do
-        local y = -10 + (lane - 1) * 4
-        local dir = (lane % 2 == 0) and defines.direction.west or defines.direction.east
-        local row = {}
-        for x = -18, 18 do
-          local b = make("transport-belt", x, y, dir)
-          if b then row[#row + 1] = b end
-        end
-        for _, b in pairs(row) do fill(b, items[lane]) end
-        lanes[lane] = {row = row, dir = dir, item = items[lane]}
-      end
       script.on_nth_tick(9, function()
-        for lane = 1, 6 do
-          local L = lanes[lane]
-          if L and L.row and #L.row > 0 then
-            local head = (L.dir == defines.direction.east) and L.row[1] or L.row[#L.row]
-            fill(head, L.item)
-          end
+        for _, B in pairs(belts) do
+          if B.row[1] then fill(B.row[1], B.item) end
         end
       end)
-      drift(0, 0, 4, 3, 380)
+      drift(0, 0, 4, 0.6, 560)
     end)
     ]],
   },
 
-  -- Holding the line. Indestructible gun turrets behind a wall shred repeating waves
-  -- of biters that march in from the left. Ammo is topped up so the fight never ends.
+  -- Holding the line. Two staggered ranks of indestructible gun turrets behind a wall
+  -- shred repeating biter waves marching in from the left. Ammo is topped up so the
+  -- fight never ends. Dark grass battlefield.
   ["jjt-defense"] = {
+    checkboard = false,
     length = 60 * 20,
     init = prelude .. [[
     pcall(function()
-      cam(-2, 0, 0.75)
-      for y = -10, 10 do
-        local w = make("stone-wall", 5, y)
+      cam(2, 0, 0.9)
+      ground(-26, -15, 30, 15, "grass-2")
+      for y = -12, 12 do
+        local w = make("stone-wall", 6, y)
         if w then pcall(function() w.destructible = false end) end
       end
       local turrets = {}
-      for _, ty in pairs({-8, -4, 0, 4, 8}) do
-        local t = make("gun-turret", 8, ty)
+      for _, spot in pairs({{9, -9}, {9, -3}, {9, 3}, {9, 9}, {13, -6}, {13, 0}, {13, 6}}) do
+        local t = make("gun-turret", spot[1], spot[2])
         if t then
           pcall(function() t.destructible = false end)
           pcall(function() t.insert{name = "firearm-magazine", count = 20} end)
@@ -211,39 +217,42 @@ uc.main_menu_simulations = {
         end
       end
       local function wave()
-        for k = 1, 7 do
+        for k = 1, 12 do
           local name = (math.random(2) == 1) and "small-biter" or "medium-biter"
-          local b = make(name, -18, math.random(-10, 10))
+          local b = make(name, -20 - math.random(0, 6), math.random(-12, 12))
           if b then
-            pcall(function() b.commandable.set_command{type = defines.command.attack_area, destination = {6, 0}, radius = 8} end)
+            pcall(function() b.commandable.set_command{type = defines.command.attack_area, destination = {7, 0}, radius = 10} end)
           end
         end
       end
       wave()
-      script.on_nth_tick(150, wave)
+      script.on_nth_tick(140, wave)
       script.on_nth_tick(120, function()
         for _, t in pairs(turrets) do
           if t.valid then pcall(function() t.insert{name = "firearm-magazine", count = 20} end) end
         end
       end)
-      drift(-2, 0, 3, 1.5, 300)
+      drift(2, 0, 2.5, 1, 500)
     end)
     ]],
   },
 
-  -- Reaching space. A powered rocket silo ringed by support assemblers and a fuel
-  -- belt. The silo is fed rocket parts and set to auto launch, with best effort
-  -- launch attempts, while the camera slowly rises toward it.
+  -- Reaching space. A powered rocket silo on a concrete pad, ringed by support
+  -- assemblers and fuel belts, fed rocket parts and launched on repeat. Camera holds
+  -- high and steady so the launch carries the motion.
   ["jjt-rocket-launch"] = {
+    checkboard = false,
     length = 60 * 22,
     init = prelude .. [[
     pcall(function()
-      cam(0, 2, 0.7)
-      local eei = power({{-14, -8}, {0, -8}, {14, -8}, {-14, 10}, {0, 10}, {14, 10}}, 0, -12)
+      cam(0, -2, 0.82)
+      ground(-28, -18, 28, 16, "grass-1")
+      ground(-20, -14, 20, 12, "concrete")
+      local eei = powered({{-16, -12}, {0, -12}, {16, -12}, {-16, 10}, {0, 10}, {16, 10}}, 0, 20)
       local silo = make("rocket-silo", 0, 0)
       if silo then pcall(function() silo.auto_launch = true end) end
       local recipes = {"iron-gear-wheel", "copper-cable"}
-      local coords = {{-14, -4}, {-14, 0}, {-14, 4}, {14, -4}, {14, 0}, {14, 4}}
+      local coords = {{-15, -6}, {-15, 0}, {-15, 6}, {15, -6}, {15, 0}, {15, 6}}
       local asms = {}
       for i, c in ipairs(coords) do
         local a = make("assembling-machine-3", c[1], c[2])
@@ -252,11 +261,15 @@ uc.main_menu_simulations = {
           asms[#asms + 1] = a
         end
       end
-      local belt = {}
-      for x = -12, 12 do
-        local b = make("transport-belt", x, 6, defines.direction.east)
-        if b then belt[#belt + 1] = b; fill(b, "rocket-fuel") end
+      local top, bot = {}, {}
+      for x = -10, 10 do
+        local t = make("transport-belt", x, -8, D.east)
+        local b = make("transport-belt", x, 8, D.east)
+        if t then top[#top + 1] = t end
+        if b then bot[#bot + 1] = b end
       end
+      for _, b in pairs(top) do fill(b, "low-density-structure") end
+      for _, b in pairs(bot) do fill(b, "rocket-fuel") end
       script.on_nth_tick(60, function()
         if eei and eei.valid then pcall(function() eei.energy = 1e15 end) end
         for _, a in pairs(asms) do
@@ -275,10 +288,11 @@ uc.main_menu_simulations = {
       script.on_nth_tick(30, function()
         if silo and silo.valid then pcall(function() silo.launch_rocket() end) end
       end)
-      script.on_nth_tick(12, function()
-        if belt[1] then fill(belt[1], "rocket-fuel") end
+      script.on_nth_tick(9, function()
+        if top[1] then fill(top[1], "low-density-structure") end
+        if bot[1] then fill(bot[1], "rocket-fuel") end
       end)
-      drift(0, 1, 3, 4, 360)
+      drift(0, -2, 1.5, 0.8, 620)
     end)
     ]],
   },
