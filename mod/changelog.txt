@@ -1,4 +1,17 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.32
+Date: 2026-07-24
+  Features:
+    - Tier 1 Rocket Science built as the first real 0.2 slice. A ground chain, not
+      a gateway. A Thrust assembly intermediate feeds the pack, and the tier techs
+      pay out for real, rocket part productivity, a Heavy silo that needs fewer
+      rocket parts and builds faster, and more rocket part and fuel productivity.
+  Changes:
+    - Resprited the tier 4 content so it no longer looks identical to the base
+      items it clones. Assembling machine 4, the turbo belts and inserter, the
+      reinforced frame, the exotic circuit, and the exotic magazine each get their
+      own placeholder icon. Data stage verified with a headless load on base 2.0.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.31
 Date: 2026-07-23
   Changes:

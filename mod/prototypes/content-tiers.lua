@@ -121,6 +121,29 @@ if ammo then
   recipe("jjt-exotic-rounds-magazine", { { type = "item", name = "uranium-rounds-magazine", amount = 2 } })
 end
 
+-- Tier 4 resprites. Point each new prototype at its own placeholder icon so it
+-- does not read as identical to the base item it was cloned from. Matches the
+-- entity, item, and recipe that share each name.
+local ICONS = {
+  ["jjt-assembling-machine-4"]   = "jjt-am4.png",
+  ["jjt-turbo-transport-belt"]   = "jjt-turbo-belt.png",
+  ["jjt-turbo-underground-belt"] = "jjt-turbo-underground.png",
+  ["jjt-turbo-splitter"]         = "jjt-turbo-splitter.png",
+  ["jjt-turbo-inserter"]         = "jjt-turbo-inserter.png",
+  ["jjt-reinforced-frame"]       = "jjt-reinforced-frame.png",
+  ["jjt-exotic-circuit"]         = "jjt-exotic-circuit.png",
+  ["jjt-exotic-rounds-magazine"] = "jjt-exotic-magazine.png",
+}
+for _, proto in ipairs(add) do
+  local file = ICONS[proto.name]
+  if file then
+    proto.icons = nil
+    proto.icon = "__JJtorio__/graphics/icons/" .. file
+    proto.icon_size = 64
+    proto.icon_mipmaps = nil
+  end
+end
+
 data:extend(add)
 
 -- Unlock techs. Prereqs are non-military base techs, cost the five base packs,

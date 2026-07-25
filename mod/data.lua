@@ -8,6 +8,9 @@ require("prototypes.early-boost")
 require("prototypes.rocket-silo-gating")
 require("prototypes.survey-satellite")
 require("prototypes.science-tree")
+-- Per tier vertical slices. Each fills in the skeleton science-tree.lua
+-- generated for that tier, so it must come after it.
+require("prototypes.tier-rocket")
 require("prototypes.content-tiers")
 require("prototypes.trigger-techs")
 require("prototypes.gear-tiers")

@@ -5,7 +5,9 @@ converges to one final science. Each tier is a pack you make, and making it
 unlocks the next batch of features. There is always a clear next science, and
 each one changes how you build.
 
-Aspirational, v0.2 and beyond. Nothing here is built. Original, not SE. Endless
+Aspirational, v0.2 and beyond. Tier 1 Rocket Science is built as the first real
+slice, see progress-report.md. Everything past it is still a draft skeleton in
+mod/prototypes/science-tree.lua. Original, not SE. Endless
 procedural planets, each forcing a different way to build, and you plan self
 running colonies rather than pilot a ship.
 

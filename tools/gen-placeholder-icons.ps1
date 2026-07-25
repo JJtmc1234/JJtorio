@@ -19,7 +19,16 @@ $icons = @(
   @{ name = 'survey-satellite';    label = 'SAT'; r = 60;  g = 120; b = 170; glyph = 'dish'    },
   @{ name = 'placeholder-machine'; label = 'M';   r = 70;  g = 90;  b = 140; glyph = 'bars'    },
   @{ name = 'placeholder-plate';   label = 'P';   r = 150; g = 105; b = 55;  glyph = 'none'    },
-  @{ name = 'placeholder-fluid';   label = 'F';   r = 55;  g = 135; b = 130; glyph = 'droplet' }
+  @{ name = 'placeholder-fluid';   label = 'F';   r = 55;  g = 135; b = 130; glyph = 'droplet' },
+  # Tier 4 content resprites. Distinct from the base items they are cloned from.
+  @{ name = 'am4';                 label = 'A4';  r = 95;  g = 80;  b = 155; glyph = 'bars'    },
+  @{ name = 'turbo-belt';          label = 'TB';  r = 125; g = 70;  b = 165; glyph = 'none'    },
+  @{ name = 'turbo-underground';   label = 'TU';  r = 100; g = 58;  b = 140; glyph = 'none'    },
+  @{ name = 'turbo-splitter';      label = 'TS';  r = 112; g = 64;  b = 152; glyph = 'none'    },
+  @{ name = 'turbo-inserter';      label = 'TI';  r = 150; g = 80;  b = 60;  glyph = 'none'    },
+  @{ name = 'reinforced-frame';    label = 'RF';  r = 120; g = 132; b = 148; glyph = 'none'    },
+  @{ name = 'exotic-circuit';      label = 'XC';  r = 40;  g = 150; b = 120; glyph = 'bars'    },
+  @{ name = 'exotic-magazine';     label = 'XM';  r = 165; g = 60;  b = 55;  glyph = 'none'    }
 )
 
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null

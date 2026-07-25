@@ -1,6 +1,21 @@
 # Progress Report
 
-Last updated 2026-07-23.
+Last updated 2026-07-24.
+
+## 0.2 vertical slices
+Tier 1 Rocket Science is built, the first drafted tier turned into real content.
+It is a ground chain, not a gateway. A new Thrust assembly intermediate feeds the
+pack, and the three tier techs pay out for real. Launch throughput gives rocket
+part productivity, Heavy lift unlocks a Heavy silo that needs 50 rocket parts
+instead of 100 and builds them half again as fast, and Ascent refinement adds
+more rocket part and rocket fuel productivity. Lives in
+mod/prototypes/tier-rocket.lua, which fills in the skeleton science-tree.lua
+generates so the science pack superset rule stays in one place.
+
+Next slice is Orbital Science, then one planet science. Orbital first has to
+reconcile prototypes/orbital-science.lua, which defines the same two names
+science-tree.lua already generates, so requiring it as is would crash on a
+duplicate prototype.
 
 ## Where we are
 Shipped through 0.1.30. The mod loads on base 2.0, the early game works, planets
@@ -30,6 +45,13 @@ tier of new gear.
 Mod loads on base 2.0. Dev commands run. Red and green science craft 2. Orbit
 reads as space. Custom placeholder tiles load and planet classes look distinct.
 Everything from 0.1.10 on still needs an in game load check, see jjtest.md.
+
+## Verified at the data stage (0.1.31 plus the rocket slice)
+A headless run of factorio.exe with dump data, against an isolated mods folder
+holding only JJtorio on base 2.0.77, loads the whole data stage with no errors.
+The dump confirms the rocket tier prototypes are correct. This covers prototypes
+only. Runtime, control.lua, and anything you have to look at still need a real in
+game check.
 
 ## Next
 Give the drafted tiers real effects and balance, then Orbital Science as the
