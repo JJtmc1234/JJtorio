@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.35
+Date: 2026-07-24
+  Features:
+    - Rebuilt the main menu simulations into five animated scenes, an assembly
+      hall, a smelting row, a belt superhighway, a defense line holding off biter
+      waves, and a rocket launch. Machines are powered and running, belts flow,
+      and the camera drifts. The old vanilla scenes are gone.
+  Changes:
+    - Trigger techs no longer clutter the tech tree root. Each now hangs off the
+      base tech that unlocks its item, so they appear near related content and
+      arm once you have the tech.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.34
 Date: 2026-07-24
   Features:
