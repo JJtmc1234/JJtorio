@@ -1,9 +1,8 @@
 -- Orbit: a space platform you reach after the rocket silo. It is a real
 -- separate surface. Base Factorio 2.0 has no Space Age starfield, so "space"
 -- is built from base parts: a dark metal deck ringed by a hazard rim, shaped
--- as a disc so there is no hard square edge, floating in an out-of-map void
--- under frozen night light. Placeholder until real space tiles and a proper
--- ascent exist.
+-- as a disc so there is no hard square edge, sitting in a jjt-space starfield
+-- under frozen night light. Placeholder until a proper ascent exists.
 
 local M = {}
 
@@ -11,7 +10,7 @@ local ORBIT = "jjt-orbit"
 local DECK_A = "lab-dark-1"                    -- dark deck panel
 local DECK_B = "lab-dark-2"                    -- alternating panel, reads as a grid
 local RIM_TILE = "refined-hazard-concrete-left" -- bright edge warning at the drop
-local VOID_TILE = "out-of-map"                 -- the black space around the platform
+local VOID_TILE = "jjt-space"                   -- the starfield around and beyond the platform
 local RADIUS = 22     -- platform radius in tiles
 local RIM = 2         -- rim thickness in tiles
 local GEN_RADIUS = 2  -- chunks generated around the origin
@@ -21,7 +20,7 @@ local INNER2 = (RADIUS - RIM) * (RADIUS - RIM)
 
 M.name = ORBIT
 
--- Which tile a point gets: void outside the disc, a hazard rim near the edge,
+-- Which tile a point gets: starfield outside the disc, a hazard rim near the edge,
 -- and an alternating dark deck inside. A disc has no straight boundary, so the
 -- platform reads as an intentional station rather than a raw chunk square.
 local function tile_at(x, y)
@@ -69,7 +68,7 @@ function M.ensure()
   if surface then return surface end
   local base = game.surfaces["nauvis"] or game.surfaces[1]
   surface = game.create_surface(ORBIT, orbit_map_gen(base))
-  -- Freeze a dark sky so the black void reads as space, not an unlit pad.
+  -- Freeze a dark sky so the starfield reads as space, not an unlit pad.
   surface.freeze_daytime = true
   surface.daytime = 0.5
   surface.request_to_generate_chunks({ 0, 0 }, GEN_RADIUS)

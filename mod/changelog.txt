@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.41
+Date: 2026-07-25
+  Features:
+    - Orbit is a real starfield now. A community made space texture becomes a
+      jjt-space tile, and the void around the orbit platform shows stars instead
+      of flat black. Thanks to the Discord member who made the texture.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.40
 Date: 2026-07-25
   Features:

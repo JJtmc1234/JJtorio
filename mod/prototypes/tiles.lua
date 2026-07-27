@@ -48,6 +48,39 @@ local function jjt_tile(name, r, g, b, layer, walking, build, ambient)
   }
 end
 
+-- space: the starfield around and beyond the orbit platform. One 512x512 image
+-- from the community covers an 8x8 block of tiles (64 px per tile, the base 2.0
+-- size), so the large variant is size 8 count 1. A size 1 variant reads the top
+-- left patch as the fallback the engine uses for fringe tiles that cannot fill a
+-- full 8x8 block. Empty collision so it is walkable and buildable, empty
+-- transitions, and no ambient sound because space is silent.
+data:extend({
+  {
+    type = "tile",
+    name = "jjt-space",
+    collision_mask = { layers = {} },
+    layer = 60,
+    variants = {
+      main = {
+        {
+          picture = "__JJtorio__/graphics/space-parallax.png",
+          count = 1,
+          size = 1,
+        },
+        {
+          picture = "__JJtorio__/graphics/space-parallax.png",
+          count = 1,
+          size = 8,
+        },
+      },
+      empty_transitions = true,
+    },
+    map_color = { r = 0.02, g = 0.02, b = 0.06 },
+    walking_sound = tile_sounds.walking.concrete,
+    build_sound = tile_sounds.building.landfill,
+  },
+})
+
 data:extend({
   -- snow: granular crunch underfoot, cold low wind.
   jjt_tile("jjt-snow", 0.86, 0.90, 0.96, 61,
