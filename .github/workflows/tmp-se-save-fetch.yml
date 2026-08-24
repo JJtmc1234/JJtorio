@@ -1,0 +1,79 @@
+name: Temporary SE save fetch
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Download public Space Exploration save candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/redmew out/notafreak out/attachments
+
+          download() {
+            local url="$1"
+            local dest="$2"
+            echo "Downloading $dest"
+            curl --fail --location --retry 5 --retry-delay 2 \
+              --connect-timeout 30 --max-time 1200 \
+              -A 'Mozilla/5.0 SE-save-research' \
+              "$url" -o "$dest"
+          }
+
+          download 'https://refactorio.de/saves?directory=public%2Ffinal&file=se_crash.zip' \
+            'out/redmew/se_crash.zip'
+          download 'https://refactorio.de/saves?directory=public%2Fstart&file=se07_2025_start.zip' \
+            'out/redmew/se07_2025_start.zip'
+
+          curl --fail --silent --show-error --location \
+            -H 'Accept: application/vnd.github+json' \
+            -A 'SE-save-research' \
+            'https://api.github.com/repos/NotAFreak/.factorio/contents/saves?ref=main' \
+            > /tmp/notafreak-saves.json
+
+          jq -r '.[] | select(.type == "file" and (.name | endswith(".zip"))) | [.download_url, .name] | @tsv' \
+            /tmp/notafreak-saves.json |
+          while IFS=$'\t' read -r url name; do
+            download "$url" "out/notafreak/$name"
+          done
+
+          download 'https://github.com/user-attachments/files/23176857/Space.Exploration.Creative.Test.world.zip' \
+            'out/attachments/Space.Exploration.Creative.Test.world.zip'
+          download 'https://github.com/user-attachments/files/23529570/broken_factory_planer_repair.zip' \
+            'out/attachments/broken_factory_planer_repair.zip'
+          download 'https://bammeson.com/K2SE-0.7-Factorissimo-Issue.zip' \
+            'out/attachments/K2SE-0.7-Factorissimo-Issue.zip' || true
+
+          find out -type f -name '*.zip' -print0 |
+          while IFS= read -r -d '' file; do
+            echo "Testing $file"
+            unzip -tqq "$file"
+          done
+
+          {
+            echo 'Public Space Exploration save candidate fetch'
+            echo 'Generated:' "$(date -u +%FT%TZ)"
+            echo
+            find out -type f -printf '%s\t%p\n' | sort -n
+            echo
+            sha256sum $(find out -type f -name '*.zip' -print | sort)
+          } > out/MANIFEST.txt
+
+      - name: Upload candidate saves
+        uses: actions/upload-artifact@v4
+        with:
+          name: se-save-candidates
+          path: out/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
