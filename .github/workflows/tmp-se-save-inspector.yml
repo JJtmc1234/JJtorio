@@ -1,0 +1,181 @@
+name: Temporary SE Save Inspector
+
+on:
+  push:
+    branches: [tmp-se-save-inspector]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Fetch save
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          url='https://refactorio.de/saves?directory=public%2Ffinal&file=se_crash.zip'
+          curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 \
+            --user-agent 'Mozilla/5.0 SE-save-inspector' "$url" -o out/se_crash.zip
+          test -s out/se_crash.zip
+          file out/se_crash.zip | tee out/file-type.txt
+          stat --printf='bytes=%s\n' out/se_crash.zip | tee out/size.txt
+          unzip -t out/se_crash.zip | tail -20 | tee out/zip-test.txt
+
+      - name: Parse save header and extract evidence
+        shell: bash
+        run: |
+          cat > /tmp/inspect.py <<'PY'
+          from pathlib import Path
+          import zipfile, struct, json, re, hashlib
+
+          source = Path('out/se_crash.zip')
+          out = Path('out')
+
+          def u8(b, o): return b[o], o + 1
+          def u16(b, o): return struct.unpack_from('<H', b, o)[0], o + 2
+          def u32(b, o): return struct.unpack_from('<I', b, o)[0], o + 4
+
+          def parse_header(data):
+              o = 0
+              version = []
+              for _ in range(4):
+                  x, o = u16(data, o); version.append(x)
+              major, minor, patch, build = version
+              def opt(bits):
+                  nonlocal o
+                  x, o = u8(data, o)
+                  if x != 0xff:
+                      return x
+                  if bits == 16:
+                      x, o = u16(data, o)
+                  else:
+                      x, o = u32(data, o)
+                  return x
+              def text():
+                  nonlocal o
+                  n = opt(32)
+                  s = data[o:o+n].decode('utf-8', 'replace')
+                  o += n
+                  return s
+              def v48():
+                  return [opt(16), opt(16), opt(16)]
+              _, o = u8(data, o)
+              name = text(); campaign = text(); base_mod = text()
+              difficulty, o = u8(data, o)
+              finished, o = u8(data, o); won, o = u8(data, o)
+              next_level = text()
+              can_continue, o = u8(data, o); finished_continuing, o = u8(data, o)
+              saving_replay, o = u8(data, o); debug_allowed, o = u8(data, o)
+              loaded_from = v48()
+              if major >= 2:
+                  loaded_build, o = u32(data, o)
+              else:
+                  loaded_build, o = u16(data, o)
+              allowed_commands, o = u8(data, o)
+              if major >= 2:
+                  o += 4
+              count = opt(32)
+              mods = []
+              for _ in range(count):
+                  mod_name = text(); mod_version = v48(); crc, o = u32(data, o)
+                  mods.append({'name': mod_name, 'version': '.'.join(map(str, mod_version)), 'crc': crc})
+              return {
+                  'factorio_version': '.'.join(map(str, version)),
+                  'save_name': name,
+                  'campaign': campaign,
+                  'base_mod': base_mod,
+                  'difficulty': difficulty,
+                  'finished': bool(finished),
+                  'player_won': bool(won),
+                  'next_level': next_level,
+                  'can_continue': bool(can_continue),
+                  'finished_but_continuing': bool(finished_continuing),
+                  'saving_replay': bool(saving_replay),
+                  'allow_non_admin_debug': bool(debug_allowed),
+                  'loaded_from': '.'.join(map(str, loaded_from)),
+                  'loaded_build': loaded_build,
+                  'allowed_commands': bool(allowed_commands),
+                  'mods': mods,
+              }
+
+          with zipfile.ZipFile(source) as z:
+              names = z.namelist()
+              listing = []
+              for info in z.infolist():
+                  listing.append(f'{info.file_size:12d} {info.compress_size:12d} {info.filename}')
+              (out/'listing.txt').write_text('\n'.join(listing), encoding='utf-8')
+
+              level_init = next(n for n in names if n.endswith('/level-init.dat') or n == 'level-init.dat')
+              header = parse_header(z.read(level_init))
+              header['archive_bytes'] = source.stat().st_size
+              header['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+              (out/'header.json').write_text(json.dumps(header, indent=2), encoding='utf-8')
+
+              preview = next((n for n in names if n.endswith('/preview.jpg') or n == 'preview.jpg'), None)
+              if preview:
+                  (out/'preview.jpg').write_bytes(z.read(preview))
+
+              terms = [
+                  'space-exploration', 'se-rocket-launch-pad', 'se-rocket-science-pack',
+                  'se-cargo-rocket-section', 'se-space-capsule', 'Nauvis Orbit',
+                  'nauvis-orbit', 'rocket_launch_pad', 'launchpad', 'cargo rocket',
+                  'zone_assets', 'visited_zone', 'first_discovered', 'spaceship',
+                  'se-space-science-lab', 'se-space-platform-scaffold'
+              ]
+              counts = {t: 0 for t in terms}
+              contexts = []
+              printable = re.compile(rb'[\x20-\x7e]{4,}')
+              for n in names:
+                  if not (n.endswith('script.dat') or '/level.dat' in n):
+                      continue
+                  try:
+                      blob = z.read(n)
+                  except Exception:
+                      continue
+                  for t in terms:
+                      counts[t] += blob.lower().count(t.lower().encode())
+                  for raw in printable.findall(blob):
+                      s = raw.decode('ascii', 'replace')
+                      low = s.lower()
+                      if any(t.lower() in low for t in terms):
+                          contexts.append(f'{n}: {s[:500]}')
+                          if len(contexts) >= 500:
+                              break
+                  if len(contexts) >= 500:
+                      break
+              (out/'term-counts.json').write_text(json.dumps(counts, indent=2), encoding='utf-8')
+              (out/'string-contexts.txt').write_text('\n'.join(contexts), encoding='utf-8')
+          PY
+          python /tmp/inspect.py
+          cat out/header.json
+          cat out/term-counts.json
+
+      - name: Upload inspection evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: inspection-evidence
+          path: |
+            out/file-type.txt
+            out/size.txt
+            out/zip-test.txt
+            out/header.json
+            out/listing.txt
+            out/term-counts.json
+            out/string-contexts.txt
+            out/preview.jpg
+          if-no-files-found: error
+          retention-days: 1
+
+      - name: Upload original save
+        uses: actions/upload-artifact@v4
+        with:
+          name: se-crash-save
+          path: out/se_crash.zip
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 1
