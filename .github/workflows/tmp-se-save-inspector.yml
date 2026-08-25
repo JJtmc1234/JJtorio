@@ -1,0 +1,59 @@
+name: Temporary SE Save Crawler and Inspector
+
+on:
+  push:
+    branches: [tmp-se-save-inspector]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  crawl-and-inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Restore crawler from previous temporary commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 \
+            https://raw.githubusercontent.com/JJtmc1234/JJtorio/ec96ae0db757db0bddc7be131c252b56ab8c23d8/.github/workflows/tmp-se-save-inspector.yml \
+            -o /tmp/embedded-workflow.yml
+          awk '/^H4s/{copy=1} /^B64$/{copy=0} copy{print}' /tmp/embedded-workflow.yml \
+            > /tmp/se-save-crawler.py.gz.b64
+          test -s /tmp/se-save-crawler.py.gz.b64
+          base64 -d /tmp/se-save-crawler.py.gz.b64 | gzip -d > /tmp/se-save-crawler.py
+          python -m py_compile /tmp/se-save-crawler.py
+
+      - name: Install crawler dependency
+        shell: bash
+        run: python -m pip install --disable-pip-version-check --quiet requests
+
+      - name: Crawl and inspect public save candidates
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python /tmp/se-save-crawler.py 2>&1 | tee crawler.log
+
+      - name: Add run log to evidence
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p out
+          cp crawler.log out/crawler.log 2>/dev/null || true
+          find out -maxdepth 3 -type f -printf '%s\t%p\n' | sort -n > out/FILELIST.txt || true
+
+      - name: Upload research and matching saves
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: se-save-research-pass-2
+          path: out/
+          if-no-files-found: warn
+          retention-days: 7
+          compression-level: 0

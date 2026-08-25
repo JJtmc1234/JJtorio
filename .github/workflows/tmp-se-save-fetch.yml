@@ -69,14 +69,15 @@ jobs:
             echo
             find out -type f -printf '%s\t%p\n' | sort -n
             echo
-            sha256sum $(find out -type f -name '*.zip' -print | sort)
+            find out -type f -name '*.zip' -print0 | sort -z | xargs -0 sha256sum
           } > out/MANIFEST.txt
 
       - name: Upload candidate saves
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: se-save-candidates
           path: out/
           if-no-files-found: error
-          retention-days: 1
+          retention-days: 7
           compression-level: 0
